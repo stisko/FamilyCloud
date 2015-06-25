@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <!--<web-app
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    version="3.0">-->
+    <!-- Config here. -->
+    <servlet>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>controller.Controller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadHandler</servlet-name>
+        <servlet-class>controller.UploadHandler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Post</servlet-name>
+        <servlet-class>controller.Post</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>/controller_servl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadHandler</servlet-name>
+        <url-pattern>/upload_servl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Post</servlet-name>
+        <url-pattern>/post_servl</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>StartPage.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
