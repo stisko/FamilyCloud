@@ -8,6 +8,7 @@ function getToDoList(){
     }
     else
     {
+        //
         
         //sending selected country to servlet
         var url = "controller_servl?event=TODO";
