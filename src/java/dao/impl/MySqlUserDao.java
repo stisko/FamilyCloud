@@ -1,7 +1,12 @@
 package dao.impl;
 
 import dao.UserDao;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Blob;
 import model.User;
 import java.sql.Connection;
@@ -15,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.tomcat.dbcp.pool2.PooledObjectState;
 import java.lang.String;
+import javax.imageio.ImageIO;
 
 public class MySqlUserDao implements UserDao {
 
@@ -135,7 +141,8 @@ public class MySqlUserDao implements UserDao {
             pst.setString(6, user.getEmail());
             pst.setString(7, user.getTown());
             pst.setString(8, user.getDirector());
-
+            
+            
             validation = pst.executeUpdate();
 
             if (validation == 1) {
@@ -432,5 +439,17 @@ public class MySqlUserDao implements UserDao {
 
         return fmembers_list;
     }
+    
+    public byte[] extractBytes (String ImageName) throws IOException {
+ // open image
+ File imgPath = new File(ImageName);
+ BufferedImage bufferedImage = ImageIO.read(imgPath);
+
+ // get DataBufferBytes from Raster
+ WritableRaster raster = bufferedImage .getRaster();
+ DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
+
+ return ( data.getData() );
+}
 
 }

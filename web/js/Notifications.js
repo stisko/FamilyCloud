@@ -1,6 +1,4 @@
 
-
-
 function getNotifications()
 {
 
@@ -12,7 +10,6 @@ function getNotifications()
     }
     else
     {
-        
         //sending selected country to servlet
         var url = "controller_servl?event=NOTIFICATIONS&tag=notifications";
         //creating callback method.here countrychanged is callback method
@@ -38,9 +35,7 @@ function notifications_return(xmlHttp)
         //displaying response in select box by using that id
 //                    document.getElementById("apotelesma2").innerHTML = json.message;
 //                    document.getElementById("signup_btn").setAttribute("class", json.disabled);
-
     }
-
 }
 
 function getMessageNotifications()
@@ -204,7 +199,7 @@ function notifications_return_after_select(xmlHttp)
 
 }
 
-function redirectTo(type){
+function redirectTo(type,target){
     if((type=="famcalevents") || (type=="famcalevents_update") || (type=="famcalevents_delete")){
         alert("FAMCAL");
         getFamilyCalendar();
@@ -217,5 +212,10 @@ function redirectTo(type){
     }else if(type==="wall_post"){
         alert("WALLPOST");
         getWallPost();
+    }else if(type==="messages"){
+        alert("MESSAGES");
+        alert(target);
+        show_chatbox('chat'+target);
+        RefreshMessage(target);
     }
 }

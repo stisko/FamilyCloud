@@ -4,8 +4,16 @@
 <c:forEach items="${notification_list}" var="notifications">
 
     <div class="media notification_list" onclick="showSelectedNotification('${notifications.idnotifications}');
-            redirectTo('${notifications.notification_type}');">
-        <li>
+            redirectTo('${notifications.notification_type}','${notifications.usernameA}');">
+            <c:choose>
+                <c:when test="${notifications.isReadB eq 'N'}">
+                    <li style="background-color: #bdc3c7">
+                </c:when>
+                <c:otherwise>
+                    <li>
+                </c:otherwise>
+            </c:choose>    
+        
             <a style="color: black;">
 
                 <c:choose >
@@ -34,9 +42,7 @@
                              <img class="img-rounded media-object" src="img/Todo_list.png" style="margin: 5px 5px 5px 5px;" width="64" height="64" alt="...">
                         </div>
                     </c:when>
-                    <c:otherwise>
-                        
-                    </c:otherwise>
+                    
 
                 </c:choose>
 
