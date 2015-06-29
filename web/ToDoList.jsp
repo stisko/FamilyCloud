@@ -62,26 +62,26 @@
                                         <td>${famToDo.dueDate}</td> 
                                         <td>${famToDo.completedDate}</td>
                                         <td>${famToDo.status}</td>
-                                        
+
                                         <c:choose>
-                                            
+
                                             <c:when test="${(famToDo.createdBy eq cur.username)||(cur.director eq 'Y')}">
-                                                    
+
                                                 <td><button class="btn btn-default"href="#" data-toggle="modal" data-target="#edittask" value="${famToDo.itemID}" onclick="editToDoItem(this.value)"><span class="glyphicon glyphicon-pencil"> Edit</span></button></td>
                                                 <td><button class="btn btn-default" href="#" data-toggle="modal" data-target="#deletemodal" value="${famToDo.itemID}" onclick="deleteToDoItem(this.value)"><span class="glyphicon glyphicon-remove"> Delete</span></button></td>
                                             </c:when>
-                                            
-                                            
-                                            
+
+
+
                                             <c:otherwise>
-                                                
+
                                                 <td><button class="btn btn-default disabled " href="#" data-toggle="modal" data-target="#edittask" value="${famToDo.itemID}" onclick="editToDoItem(this.value)"><span class="glyphicon glyphicon-pencil"> Edit</span></button></td>
                                                 <td><button class="btn btn-default disabled " href="#" data-toggle="modal" data-target="#deletemodal" value="${famToDo.itemID}" onclick="deleteToDoItem(this.value)"><span class="glyphicon glyphicon-remove"> Delete</span></button></td>
                                             </c:otherwise>
-                                            
-                                            
+
+
                                         </c:choose>
-                                        
+
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -184,7 +184,7 @@
 
 
 
-                   
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

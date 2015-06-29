@@ -120,9 +120,8 @@ public class MySqlNotificationsDao implements NotificationsDao {
 
             List<Notifications> notifications_list = new ArrayList<Notifications>();
 
-            pst = conn.prepareStatement("SELECT * FROM notifications WHERE (usernameB=?)");
+            pst = conn.prepareStatement("SELECT * FROM notifications WHERE (usernameB=? and notification_type!='messages') order by date_created DESC");
             pst.setString(1, username);
-            
 
             ResultSet rs = pst.executeQuery();
 
@@ -140,20 +139,154 @@ public class MySqlNotificationsDao implements NotificationsDao {
                 notifications.setIsReadB(rs.getString("isReadB"));
                 notifications.setReferred_id(rs.getInt("referred_id"));
 
-                if(notifications.getNotification_type().equals("famcalevents")){
+                if (notifications.getNotification_type().equals("famcalevents")) {
                     DaoFactory mySqlFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL);
-                    UserDao myUserDao= mySqlFactory.getUserDao();
-                    
-                    FamCalEventDao myFamCalEvent= mySqlFactory.getFamCalEventDao();
-                    
-                    FamCalEvent famCalEvent= new FamCalEvent();
-                    User myUser= new User();
-                    
-                    myUser=myUserDao.getUser(notifications.getUsernameA());
-                    famCalEvent= myFamCalEvent.getFamCalEvent(notifications.getReferred_id());
-                    notifications.setMessage("User "+myUser.getLastName()+" "+myUser.getFirstName()+" added a Family Calendar event with title: "+famCalEvent.getTitle()+" and referred you in it" );
+                    UserDao myUserDao = mySqlFactory.getUserDao();
+
+                    User myUser = new User();
+                    String event_title = notifications.getMessage();
+                    myUser = myUserDao.getUser(notifications.getUsernameA());
+
+                    notifications.setMessage("User " + myUser.getLastName() + " " + myUser.getFirstName() + " added a Family Calendar event with title: " + event_title + " and referred you in it.");
+                } else if (notifications.getNotification_type().equals("famcalevents_update")) {
+                    DaoFactory mySqlFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL);
+                    UserDao myUserDao = mySqlFactory.getUserDao();
+
+                    User myUser = new User();
+
+                    myUser = myUserDao.getUser(notifications.getUsernameA());
+
+                    String event_title = notifications.getMessage();
+                    notifications.setMessage("User " + myUser.getLastName() + " " + myUser.getFirstName() + " updated a Family Calendar event with title: " + event_title + " and referred you in it.");
+
+                } else if (notifications.getNotification_type().equals("famcalevents_delete")) {
+                    DaoFactory mySqlFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL);
+                    UserDao myUserDao = mySqlFactory.getUserDao();
+
+                    User myUser = new User();
+
+                    myUser = myUserDao.getUser(notifications.getUsernameA());
+
+                    String event_title = notifications.getMessage();
+                    notifications.setMessage("User " + myUser.getLastName() + " " + myUser.getFirstName() + " deleted a Family Calendar event with title: " + event_title + " in which you were referred.");
+
+                } else if (notifications.getNotification_type().equals("shopping_list")) {
+                    DaoFactory mySqlFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL);
+                    UserDao myUserDao = mySqlFactory.getUserDao();
+
+                    User myUser = new User();
+
+                    myUser = myUserDao.getUser(notifications.getUsernameA());
+
+                    String shop_title = notifications.getMessage();
+                    notifications.setMessage("User " + myUser.getLastName() + " " + myUser.getFirstName() + " inserted a Shopping List event with title: " + shop_title + " in which you were referred.");
+                } else if (notifications.getNotification_type().equals("shopping_list_update")) {
+                    DaoFactory mySqlFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL);
+                    UserDao myUserDao = mySqlFactory.getUserDao();
+
+                    User myUser = new User();
+
+                    myUser = myUserDao.getUser(notifications.getUsernameA());
+
+                    String shop_title = notifications.getMessage();
+                    notifications.setMessage("User " + myUser.getLastName() + " " + myUser.getFirstName() + " updated a Shopping List event with title: " + shop_title + " in which you were referred.");
+                } else if (notifications.getNotification_type().equals("shopping_list_delete")) {
+                    DaoFactory mySqlFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL);
+                    UserDao myUserDao = mySqlFactory.getUserDao();
+
+                    User myUser = new User();
+
+                    myUser = myUserDao.getUser(notifications.getUsernameA());
+
+                    String shop_title = notifications.getMessage();
+                    notifications.setMessage("User " + myUser.getLastName() + " " + myUser.getFirstName() + " deleted a Shopping List event with title: " + shop_title + " in which you were referred.");
+                } else if (notifications.getNotification_type().equals("todo_list")) {
+                    DaoFactory mySqlFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL);
+                    UserDao myUserDao = mySqlFactory.getUserDao();
+
+                    User myUser = new User();
+
+                    myUser = myUserDao.getUser(notifications.getUsernameA());
+
+                    String todo_title = notifications.getMessage();
+                    notifications.setMessage("User " + myUser.getLastName() + " " + myUser.getFirstName() + " created a ToDo List event with title: " + todo_title + " in which you were referred.");
+                } else if (notifications.getNotification_type().equals("todo_list_update")) {
+                    DaoFactory mySqlFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL);
+                    UserDao myUserDao = mySqlFactory.getUserDao();
+
+                    User myUser = new User();
+
+                    myUser = myUserDao.getUser(notifications.getUsernameA());
+
+                    String todo_title = notifications.getMessage();
+                    notifications.setMessage("User " + myUser.getLastName() + " " + myUser.getFirstName() + " updated a ToDo List event with title: " + todo_title + " in which you were referred.");
+                } else if (notifications.getNotification_type().equals("todo_list_delete")) {
+                    DaoFactory mySqlFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL);
+                    UserDao myUserDao = mySqlFactory.getUserDao();
+
+                    User myUser = new User();
+
+                    myUser = myUserDao.getUser(notifications.getUsernameA());
+
+                    String todo_title = notifications.getMessage();
+                    notifications.setMessage("User " + myUser.getLastName() + " " + myUser.getFirstName() + " deleted a ToDo List event with title: " + todo_title + " in which you were referred.");
+                } else if (notifications.getNotification_type().equals("wall_post")) {
+
+                    DaoFactory mySqlFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL);
+                    UserDao myUserDao = mySqlFactory.getUserDao();
+
+                    User myUser = new User();
+
+                    myUser = myUserDao.getUser(notifications.getUsernameA());
+
+                    notifications.setMessage("User " + myUser.getLastName() + " " + myUser.getFirstName() + " posted to Family Wall");
                 }
-                
+
+                notifications_list.add(notifications);
+            }
+            conn.close();
+            return notifications_list;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MySqlFamCalEventDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Notifications> getMessageNotifications(String username) {
+        try {
+            PreparedStatement pst;
+            Connection conn = MySqlDaoFactory.createConnection();
+
+            List<Notifications> notifications_list = new ArrayList<Notifications>();
+
+            pst = conn.prepareStatement("SELECT * FROM notifications WHERE (usernameB=? and notification_type='messages') order by date_created");
+            pst.setString(1, username);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Notifications notifications = new Notifications();
+
+                notifications.setIdnotifications(rs.getInt("idnotifications"));
+                notifications.setUsernameA(rs.getString("usernameA"));
+                notifications.setUsernameB(rs.getString("usernameB"));
+                Timestamp timestamp = rs.getTimestamp("date_created");
+                notifications.setDate_created(timestamp);
+                notifications.setMessage(rs.getString("message"));
+                notifications.setNotification_type(rs.getString("notification_type"));
+                notifications.setIsReadA(rs.getString("isreadA"));
+                notifications.setIsReadB(rs.getString("isReadB"));
+                notifications.setReferred_id(rs.getInt("referred_id"));
+
+                DaoFactory mySqlFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL);
+                UserDao myUserDao = mySqlFactory.getUserDao();
+
+                User myUser = new User();
+                myUser = myUserDao.getUser(notifications.getUsernameA());
+                notifications.setMessage("User " + myUser.getLastName() + " " + myUser.getFirstName() + " messaged you.");
+
                 notifications_list.add(notifications);
             }
             conn.close();
@@ -211,11 +344,11 @@ public class MySqlNotificationsDao implements NotificationsDao {
             pst.setString(2, notification.getUsernameB());
             pst.setString(3, notification.getNotification_type());
             pst.setString(4, notification.getMessage());
-            
+
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String currentTime = sdf.format(notification.getDate_created());
             pst.setString(5, currentTime);
-            
+
             pst.setInt(6, notification.getReferred_id());
             pst.setString(7, notification.getIsReadA());
             pst.setString(8, notification.getIsReadB());
@@ -234,20 +367,44 @@ public class MySqlNotificationsDao implements NotificationsDao {
         return false;
     }
 
-    
-    public int getUnreadNotifications(String username){
+    @Override
+    public int getUnreadNotifications(String username) {
         try {
             PreparedStatement pst;
             Connection conn = MySqlDaoFactory.createConnection();
 
-            int count=0;
+            int count = 0;
             pst = conn.prepareStatement("SELECT COUNT(*) FROM notifications WHERE (usernameB=? and isReadB='N')");
             pst.setString(1, username);
-            
+
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
-                count= rs.getInt(1);
+                count = rs.getInt(1);
+            }
+            conn.close();
+            return count;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MySqlFamCalEventDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    @Override
+    public int getUnreadMessageNotifications(String username) {
+        try {
+            PreparedStatement pst;
+            Connection conn = MySqlDaoFactory.createConnection();
+
+            int count = 0;
+            pst = conn.prepareStatement("SELECT COUNT(*) FROM notifications WHERE (usernameB=? and isReadB='N' and notification_type='messages')");
+            pst.setString(1, username);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                count = rs.getInt(1);
             }
             conn.close();
             return count;

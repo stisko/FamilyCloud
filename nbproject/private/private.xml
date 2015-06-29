@@ -3,7 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/events/LogoutEventHandler.java</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/web/js/FamilyCalendar.js</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/web/HomePage.jsp</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/web/EditFamCalEvent.jsp</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/web/Notifications.jsp</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/web/EditShoppingItem.jsp</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/events/getFamilyCalendarEventHandler.java</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/events/getUnreadNotificationsEventHandler.java</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/Event.properties</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/dao/impl/MySqlNotificationsDao.java</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/controller/Controller.java</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/events/EditFamilyCalendarEventHandler.java</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/web/FamilyCalendar.jsp</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/events/getNotificationsListEventHandler.java</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/web/js/Shop.js</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/events/MyFamilyEventHandler.java</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/web/js/Notifications.js</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/events/ShoppingListDetailsEventHandler.java</file>
         </group>
     </open-files>
 </project-private>

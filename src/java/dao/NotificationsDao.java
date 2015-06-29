@@ -22,10 +22,14 @@ public interface NotificationsDao {
 
     public List<Notifications> getNotifications(String username);
     
+    public List<Notifications> getMessageNotifications(String username);
+    
     public Notifications getNotification(int id);
     
     public boolean insertNotification(Notifications notification);
     
     public int getUnreadNotifications(String username);
+    
+    public int getUnreadMessageNotifications(String username);
     
 }

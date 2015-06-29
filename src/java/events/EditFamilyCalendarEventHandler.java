@@ -7,11 +7,16 @@ package events;
 
 import dao.DaoFactory;
 import dao.FamCalEventDao;
+import dao.UserDao;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.FamCalEvent;
 import model.User;
+import modelBO.UserBO;
 import org.json.simple.JSONObject;
 
 /**
@@ -32,6 +37,8 @@ public class EditFamilyCalendarEventHandler extends EventHandlerBase{
         DaoFactory mySqlFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL);
         FamCalEventDao myEventDao= mySqlFactory.getFamCalEventDao();
         
+        UserDao us=mySqlFactory.getUserDao();
+        
         FamCalEvent event= new FamCalEvent();
         
         String id= request.getParameter("id");
@@ -46,6 +53,22 @@ public class EditFamilyCalendarEventHandler extends EventHandlerBase{
         if(tag.equals("delete")){
             path="DeleteFamCalEvent.jsp";
         }else{
+            
+            List<User> lf=new ArrayList<User>();
+            
+            lf=us.getFamilyMembersWithDirector(cur_user.getUsername());
+            
+            String temptag=",";
+        
+        
+            String SelUsers;
+        
+            SelUsers = event.getParticipating_members();
+        
+            List<String> SelUserList = Arrays.asList(SelUsers.split("\\s*,\\s*"));
+        
+            
+            
             JSONObject obj= new JSONObject();
             if(event.getVisibility().equals("Adults")){
                 obj.put("adults", "checked");
@@ -54,6 +77,11 @@ public class EditFamilyCalendarEventHandler extends EventHandlerBase{
                 obj.put("adults", "");
                 obj.put("all", "checked");
             }
+            
+            request.setAttribute("part_users", SelUserList);
+            
+            request.setAttribute("allusers", lf);
+            
             request.setAttribute("visibility", obj);
             path="EditFamCalEvent.jsp";
         }

@@ -29,6 +29,43 @@ function addEvent() {
     }
     else
     {
+        
+        var InvForm = document.forms.addevfamform;
+        var SelBranchVal = "";
+        var x = 0;
+        var count=0;
+        
+        var temp=InvForm.addfamilyparticipating_members.length;
+        for (x=0;x<InvForm.addfamilyparticipating_members.length;x++)
+         {
+            if(InvForm.addfamilyparticipating_members[x].selected )
+            {
+                if(temp==1){
+                    
+                    SelBranchVal = InvForm.addfamilyparticipating_members[x].value;
+                }else{
+                    
+                    count=count+1;
+                    
+                    if(count==1){
+                        SelBranchVal = InvForm.addfamilyparticipating_members[x].value + SelBranchVal ;
+                        
+                    }else{
+                        
+                        SelBranchVal = InvForm.addfamilyparticipating_members[x].value + "," + SelBranchVal ;
+                        
+                    }
+                    
+                    
+                }
+               
+             //alert(InvForm.kb[x].value);
+             
+            }
+         }
+        
+        
+        
         var radios = document.getElementsByName('optradio');
 
         for (var i = 0, length = radios.length; i < length; i++) {
@@ -48,7 +85,7 @@ function addEvent() {
                 "&category=" + document.getElementById("addfamilyevent_categories").value +
                 "&visibility=" + status+
                 "&location=" + document.getElementById("addfamilyevent_location").value +
-                "&part_members=" + document.getElementById("addfamilyparticipating_members").value +
+                "&part_members=" + SelBranchVal +
                 "&description=" + document.getElementById("addfamilyevent_desc").value +
                 "&repeat-time=" + document.getElementById("addevent_repeat_time").value +
                 "&repeat_every=" + document.getElementById("addfamilyrepeatevery").value +
@@ -186,6 +223,44 @@ function UpdateFamCalEvent(id) {
     }
     else
     {
+        
+        
+        var InvForm = document.forms.editevfamform;
+        var SelBranchVal = "";
+        var x = 0;
+        var count=0;
+        
+        var temp=InvForm.editfamilyparticipating_members.length;
+        for (x=0;x<InvForm.editfamilyparticipating_members.length;x++)
+         {
+            if(InvForm.editfamilyparticipating_members[x].selected )
+            {
+                if(temp==1){
+                    
+                    SelBranchVal = InvForm.editfamilyparticipating_members[x].value;
+                }else{
+                    
+                    count=count+1;
+                    
+                    if(count==1){
+                        SelBranchVal = InvForm.editfamilyparticipating_members[x].value + SelBranchVal ;
+                        
+                    }else{
+                        
+                        SelBranchVal = InvForm.editfamilyparticipating_members[x].value + "," + SelBranchVal ;
+                        
+                    }
+                    
+                    
+                }
+               
+             //alert(InvForm.kb[x].value);
+             
+            }
+         }
+        
+        
+        
         var radios = document.getElementsByName('optradio');
 
         for (var i = 0, length = radios.length; i < length; i++) {
@@ -206,7 +281,7 @@ function UpdateFamCalEvent(id) {
                 "&category=" + document.getElementById("editfamilyevent_categories").value +
                 "&visibility=" + status+
                 "&location=" + document.getElementById("editfamilyevent_location").value +
-                "&part_members=" + document.getElementById("editfamilyparticipating_members").value +
+                "&part_members=" + SelBranchVal +
                 "&description=" + document.getElementById("editfamilyevent_desc").value +
                 "&repeat-time=" + document.getElementById("editevent_repeat_time").value +
                 "&repeat_every=" + document.getElementById("editfamilyrepeatevery").value +
@@ -428,3 +503,30 @@ function toggle_repeat() {
 }
 //});
 
+
+
+
+var multiSelect = {};
+function antegeia3() {
+    var s = document.getElementsByTagName('select');
+    for (var i = 0; i < s.length; i++) {
+        if (s[i].multiple) {
+            var n = s[i].name;
+            multiSelect[n] = [];
+            for (var j = 0; j < s[i].options.length; j++) {
+                multiSelect[n][j] = s[i].options[j].selected;
+            }
+            s[i].onchange = changeMultiSelect2;
+        }
+    }
+}
+function changeMultiSelect() {
+    var n = this.name;
+    for (var i = 0; i < this.options.length; i++) {
+        if (this.options[i].selected) {
+            multiSelect[n][i] = !multiSelect[n][i];
+        }
+        this.options[i].selected = multiSelect[n][i];
+    }
+}
+window.onload = init;

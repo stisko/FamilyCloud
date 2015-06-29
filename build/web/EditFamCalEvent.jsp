@@ -1,10 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="modal-content" id="modal-content">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
         </button>
         <h4 class="modal-title" id="myModalLabel">Edit Event</h4>
     </div>
-    <form id="editeventfamilyform">
+    <form id="editeventfamilyform" name="editevfamform">
         <div class="modal-body">
             <div class="row">
                 <div class="col-sm-6">
@@ -62,12 +63,38 @@
                 <div class="col-sm-6">
                     <label for="editfamilyparticipating_members">Add participating members</label>
                     <div class="form-group">
-                        <select id="editfamilyparticipating_members" name="multiselect[]" multiple="multiple">
-                            <option value="1">Anna</option>
-                            <option value="2">Giorgos</option>
-                            <option value="3">Kostas</option>
-                            <option value="4">Mixalis</option>
-                            <option value="5">Marios</option>
+                        <select id="editfamilyparticipating_members" onfocus="antegeia3()" multiple >
+
+
+                            <c:forEach items="${allusers}" var="all_U">
+                                <c:set var="flag" value="false"/>
+
+
+                                <c:forEach items="${part_users}" var="pu">
+
+
+                                    <c:if test="${pu eq all_U.username}">
+
+                                        <c:set var="flag" value="true"/>
+                                    </c:if>
+
+                                </c:forEach>
+
+
+                                <c:if test="${flag}">
+
+                                    <option selected>${all_U.username}</option>
+                                </c:if>
+
+
+                                <c:if test="${!flag}">
+
+                                    <option>${all_U.username}</option>
+                                </c:if>
+
+                            </c:forEach>
+
+
                         </select>
                     </div>
                 </div>

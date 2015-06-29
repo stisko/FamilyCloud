@@ -994,3 +994,8 @@ option.purple:after { background: #bce8f1; }
     vertical-align: middle;
 }
 
+.scroll{
+    overflow-y: scroll;
+    max-height: 400px;
+}
+

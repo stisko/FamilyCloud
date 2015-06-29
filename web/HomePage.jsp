@@ -31,7 +31,7 @@
         <script src="js/Notifications.js"></script>
         <script src="js/PersonalCalendar.js"></script>
         <script src="js/Shop.js"></script>
-        
+
         <script src="js/moment.js"></script>
         <script src="js/fullcalendar.js"></script>
 
@@ -80,8 +80,12 @@
 
 
             window.onload = function () {
+
+
                 RefreshMembers();
                 getUnreadNotificationsCount();
+                getUnreadMessageNotificationsCount();
+
                 $('[data-toggle="offcanvas"]').click(function () {
                     $('.row-offcanvas-left').toggleClass('active');
                 });
@@ -125,12 +129,32 @@
                     <ul class="nav navbar-nav navbar-right">
 
 
-                        <li onclick="getNotifications()" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="presentation"><a href="#"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span><span class="badge backg" id="badge_counter"></span></a></li>
-                        <ul class="dropdown-menu col-sm-2" role="menu" id="dropdown_notifications">
+                        <!--                        <li onclick="getMessageNotifications()" class="dropdown dropdown-toggle" data-toggle="dropdown" data-target="dropdown_messages" aria-haspopup="true" aria-expanded="false" role="presentation"><a href="#"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span><span class="badge backg" id="badge_counter_msg">15</span></a></li>
+                                                <ul class="takis dropdown-menu col-sm-2" role="menu" id="dropdown_messages">
+                                                    <li>malakies</li>
+                                                </ul>-->
+                        <li class="dropdown">
+                            <a href="" onclick="getMessageNotifications()" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span><span class="badge backg" id="badge_counter_msg"></span></a>
+                            <ul class="dropdown-menu scroll" id="dropdown_messages">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="" onclick="getNotifications()" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="glyphicon glyphicon-bell" aria-hidden="true"></span><span class="badge backg" id="badge_counter"></span></a>
+                            <ul class="dropdown-menu scroll" role="menu" id="dropdown_notifications">
 
-                            
+                            </ul>
+                        </li>
 
-                        </ul>
+
+
+
 
 
                         <li role="presentation"><a onclick="getMyFamily()">Home</a>
@@ -141,6 +165,7 @@
                         </li>
                     </ul>
                 </div>
+
             </div>
         </div>
         <div class="fullcont">

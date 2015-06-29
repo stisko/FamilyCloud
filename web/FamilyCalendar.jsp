@@ -101,7 +101,7 @@
                 </button>
                 <h4 class="modal-title" id="myModalLabel">Create Event</h4>
             </div>
-            <form id="addeventfamilyform">
+            <form id="addeventfamilyform" name="addevfamform">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-6">
@@ -159,9 +159,10 @@
                         <div class="col-sm-6">
                             <label for="addfamilyparticipating_members">Add participating members</label>
                             <div class="form-group">
-                                <select id="addfamilyparticipating_members" name="multiselect[]" multiple="multiple">
-                                    <option value="VVaggelas">VVaggelas</option>
-                                    <option value="KMpaZoukas">KMpaZoukas</option>
+                                <select id="addfamilyparticipating_members" onfocus="antegeia3()" multiple="multiple">
+                                    <c:forEach items="${fmembers}" var="fmembers_Ass">
+                                        <option value="${fmembers_Ass.username}">${fmembers_Ass.firstName} ${fmembers_Ass.lastName}</option>
+                                    </c:forEach>
                                     
                                 </select>
                             </div>

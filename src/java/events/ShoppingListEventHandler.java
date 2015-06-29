@@ -61,7 +61,7 @@ public class ShoppingListEventHandler extends EventHandlerBase{
         
         List<UserBO> asignedlist =new ArrayList<UserBO>();
         
-        asignedlist=usBo.family_toUserBo(myUserDAO.getFamilyMembers(cur_user.getUsername()));
+        asignedlist=usBo.family_toUserBo(myUserDAO.getFamilyMembersWithDirector(cur_user.getUsername()));
         
       
         

@@ -36,13 +36,18 @@ public class getNotificationsListEventHandler extends EventHandlerBase {
         User cur_user = (User) mySession.getAttribute("curr_user");
 
         List<Notifications> notifications_list = new ArrayList<Notifications>();
-        notifications_list = myNotificationsDao.getNotifications(cur_user.getUsername());
+        String tag= request.getParameter("tag");
+        if(tag.equals("notifications")){
+            notifications_list = myNotificationsDao.getNotifications(cur_user.getUsername());
+        }else if(tag.equals("messages")){
+            notifications_list= myNotificationsDao.getMessageNotifications(cur_user.getUsername());
+        }
+        
 
         request.setAttribute("notification_list", notifications_list);
 
-        
-            path = "Notifications.jsp";
-        
+        path = "Notifications.jsp";
+
     }
 
 }

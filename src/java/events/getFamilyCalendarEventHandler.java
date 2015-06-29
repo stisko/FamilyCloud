@@ -32,6 +32,7 @@ public class getFamilyCalendarEventHandler extends EventHandlerBase{
         
         User cur_user = (User) mySession.getAttribute("curr_user");
         List<User> fmembers= new ArrayList<User>();
+        List<User> fmembers_exceptme= new ArrayList<User>();
         
         fmembers=myUserDao.getFamilyMembersWithDirector(cur_user.getUsername());
         
