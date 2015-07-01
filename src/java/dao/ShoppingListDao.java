@@ -32,6 +32,8 @@ public interface ShoppingListDao {
     
     public boolean deleteItem(int item);
     
+    public List<ShoppingListItem> getSortedFamilyShoppingList(String username, String sortvalue, String asc_desc_tag);
+    
   
     
 }

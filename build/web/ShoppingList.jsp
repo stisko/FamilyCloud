@@ -64,18 +64,18 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Title</th>
-                                    <th>Assigned To</th>
-                                    <th>Created By</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                    <th>Status</th>
+                                    <th><input class="stat_sort" type="button" value="Title" onclick="sorttableshopSHOP('title')"></th>
+                                    <th><input class="stat_sort" type="button" value="Assigned To" onclick="sorttableshopSHOP('assigned_to')"></th>
+                                    <th><input class="stat_sort" type="button" value="Created By" onclick="sorttableshopSHOP('created_by')"></th>
+                                    <th><input class="stat_sort" type="button" value="Quantity" onclick="sorttableshopSHOP('quantity')"></th>
+                                    <th><input class="stat_sort" type="button" value="Price" onclick="sorttableshopSHOP('price')"></th>
+                                    <th><input class="stat_sort" type="button" value="Status" onclick="sorttableshopSHOP('status')"></th>
                                     <th></th>
                                     <th></th>							
                                 </tr>
 
                             </thead>
-                            <tbody>
+                            <tbody id="changedTableSHOP">
                                 <c:forEach items="${familyShopList}" var="familyShopList" varStatus="loopStatus">
                                     <tr>
                                         <td>${loopStatus.index+1}</td>

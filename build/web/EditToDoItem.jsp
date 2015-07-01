@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="row">									
     <div class="col-sm-6">				
         <label for="titleedittask">Task Title</label>
@@ -27,14 +28,39 @@
         </div>
     </div>							
 </div>
-<label>Assigned To</label>		
-<select class="form-control" id="assignedTo_edit">
-    <option>Anna</option>
-    <option>Giorgos</option>
-    <option>Kostas</option>
-    <option>Mixalhs</option>
-    <option>Marios</option>
-</select>
+<div class="col-sm-4">				
+
+        <label>Assigned To</label>		
+        <select class="form-control" id="assignedTo_edittodo" onfocus="antegeia()" multiple>
+            
+            <c:forEach items="${userslist}" var="insta" >
+                <c:set var="errors" value="false"/>
+                
+                <c:forEach items="${seluserlist}" var="se">
+            
+                    <c:if test="${se eq insta.username}">
+                        <c:set var="errors" value="true"/>
+                        
+                    </c:if>
+                
+                </c:forEach>
+                
+                        <c:if test="${errors}">
+                                <option selected><c:out value="${insta.username}"></c:out> </option>
+                            
+                        </c:if>
+                                
+                                <c:if test="${!errors}">
+                                    <option ><c:out value="${insta.username}"></c:out> </option>
+                                </c:if>
+               
+                
+                
+            </c:forEach>
+
+        </select>
+
+    </div>
  
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

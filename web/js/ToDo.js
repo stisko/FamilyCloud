@@ -8,7 +8,6 @@ function getToDoList(){
     }
     else
     {
-        //eeeeeeeeeee
         
         //sending selected country to servlet
         var url = "controller_servl?event=TODO";
@@ -73,7 +72,7 @@ function insertToDoItem(){
                 break;
             }
         }
-
+        alert(document.getElementById("duedateaddtask").value)
         var url = "controller_servl?event=INSERTTODO&title="+document.getElementById("titleaddtask").value
                 +"&status="+status
                 +"&assignedTo="+SelBranchVal
@@ -92,6 +91,7 @@ function todolist_return()
 
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete")
     {
+        
         //getting response from server(Servlet)
 
 //                    var json = JSON.parse(xmlHttp.responseText);
@@ -161,25 +161,25 @@ function Save_changes_todo(itemID){
         var x = 0;
         var count=0;
         
-        var temp=InvForm.assignedTo_edit.length;
+        var temp=InvForm.assignedTo_edittodo.length;
         
-        for (x=0;x<InvForm.assignedTo_edit.length;x++)
+        for (x=0;x<InvForm.assignedTo_edittodo.length;x++)
          {
-            if(InvForm.assignedTo_edit[x].selected )
+            if(InvForm.assignedTo_edittodo[x].selected )
             {
                 if(temp==1){
                     
-                    SelBranchVal = InvForm.assignedTo_edit[x].value;
+                    SelBranchVal = InvForm.assignedTo_edittodo[x].value;
                 }else{
                     
                     count=count+1;
                     
                     if(count==1){
-                        SelBranchVal = InvForm.assignedTo_edit[x].value + SelBranchVal ;
+                        SelBranchVal = InvForm.assignedTo_edittodo[x].value + SelBranchVal ;
                         
                     }else{
                         
-                        SelBranchVal = InvForm.assignedTo_edit[x].value + "," + SelBranchVal ;
+                        SelBranchVal = InvForm.assignedTo_edittodo[x].value + "," + SelBranchVal ;
                         
                     }
                     
@@ -195,18 +195,21 @@ function Save_changes_todo(itemID){
         
         for(var i=0, length=radios.length;i<length; i++){
             if(radios[i].checked){
-                status=radios[i].value;
+                statuss=radios[i].value;
                 break;
             }
         }
+        
         //alert(itemID)
         //sending selected country to servlet
         var url = "controller_servl?event=UPDATETODO&itemID="+itemID+
                 "&title="+document.getElementById("titleedittask").value+
                 "&dueDate="+document.getElementById("duedateedittask").value+
                 "&assignedTo="+SelBranchVal+
-                "&status="+status;
+                "&status="+statuss;
+
         xmlHttp.onreadystatechange = todolist_return
+        
 
         xmlHttp.open("GET", url, true)
         xmlHttp.send(null)
@@ -271,6 +274,7 @@ function deleteToDoItem_save(itemID){
     }
 }
 
+var asc_desc=false;
 
 function sorttableshop(sortedTable){
     
@@ -283,7 +287,11 @@ function sorttableshop(sortedTable){
     else
     {
         
-        var url = "controller_servl?event=TODOSORT&sortedTag="+sortedTable;
+       asc_desc=!asc_desc;
+        
+       // alert(asc_desc);
+        
+        var url = "controller_servl?event=TODOSORT&sortedTag="+sortedTable+"&ssa="+asc_desc;
         xmlHttp.onreadystatechange = sortedfuncTable;
 
         xmlHttp.open("GET", url, true)

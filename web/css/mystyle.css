@@ -999,3 +999,10 @@ option.purple:after { background: #bce8f1; }
     max-height: 400px;
 }
 
+.stat_sort[type=button]{
+    
+    //color:black;
+    color:#08233e;
+    
+    
+}

@@ -36,17 +36,17 @@
         <div class="row">
             <div class="col-sm-12 mavroperivlima" >
                 <div class="perivlimatable2">
-                    <div class="table-responsive">
+                    <div class="table-responsive ">
                         <table class="table" id="todolisttable">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Title</th>
-                                    <th>Assigned To</th>
-                                    <th>Created By</th>
-                                    <th>Due Date</th>
-                                    <th>Completed Date</th>
-                                    <th><input type="button" value="status" onclick="sorttableshop(this.value)"></th>
+                                    <th><input class="stat_sort" type="button" value="Title" onclick="sorttableshop('title')"></th>
+                                    <th><input class="stat_sort" type="button" value="Assigned To" onclick="sorttableshop('assigned_to')"></th>
+                                    <th><input class="stat_sort" type="button" value="Created By" onclick="sorttableshop('created_by')"></th>
+                                    <th><input class="stat_sort" type="button" value="Due Date" onclick="sorttableshop('due_date')"></th>
+                                    <th><input class="stat_sort" type="button" value="Date Completed" onclick="sorttableshop('completed_date')"></th>
+                                    <th><input class="stat_sort" type="button" value="status" onclick="sorttableshop(this.value)"></th>
                                     <th></th>
                                     <th></th>							
                                 </tr>
@@ -62,26 +62,26 @@
                                         <td>${famToDo.dueDate}</td> 
                                         <td>${famToDo.completedDate}</td>
                                         <td>${famToDo.status}</td>
-
+                                        
                                         <c:choose>
-
+                                            
                                             <c:when test="${(famToDo.createdBy eq cur.username)||(cur.director eq 'Y')}">
-
+                                                    
                                                 <td><button class="btn btn-default"href="#" data-toggle="modal" data-target="#edittask" value="${famToDo.itemID}" onclick="editToDoItem(this.value)"><span class="glyphicon glyphicon-pencil"> Edit</span></button></td>
                                                 <td><button class="btn btn-default" href="#" data-toggle="modal" data-target="#deletemodal" value="${famToDo.itemID}" onclick="deleteToDoItem(this.value)"><span class="glyphicon glyphicon-remove"> Delete</span></button></td>
                                             </c:when>
-
-
-
+                                            
+                                            
+                                            
                                             <c:otherwise>
-
+                                                
                                                 <td><button class="btn btn-default disabled " href="#" data-toggle="modal" data-target="#edittask" value="${famToDo.itemID}" onclick="editToDoItem(this.value)"><span class="glyphicon glyphicon-pencil"> Edit</span></button></td>
                                                 <td><button class="btn btn-default disabled " href="#" data-toggle="modal" data-target="#deletemodal" value="${famToDo.itemID}" onclick="deleteToDoItem(this.value)"><span class="glyphicon glyphicon-remove"> Delete</span></button></td>
                                             </c:otherwise>
-
-
+                                            
+                                            
                                         </c:choose>
-
+                                        
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -144,7 +144,7 @@
                     <div class="row">									
                         <div class="col-sm-6">				
                             <label for="titleaddtask">Task Title</label>
-                            <input type="text" class="form-control" id="titleaddtask" placeholder="Enter Title">										
+                            <input type="text" class="form-control" id="titleaddtask" placeholder="Enter Title" >										
                         </div>									
                         <div class="col-sm-6">				
                             <label for="duedateaddtask">Due Date</label>
@@ -184,7 +184,7 @@
 
 
 
-
+                   
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

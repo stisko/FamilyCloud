@@ -24,7 +24,6 @@ public interface ToDoListItemDao {
     public ToDoListItem getItem(int itemID);
     
     public List<ToDoListItem> getFamilyToDoList(String username);
-    
-    public List<ToDoListItem> getSortedFamilyToDoList(String username, String sortvalue);
-    
+        
+    public List<ToDoListItem> getSortedFamilyToDoList(String username, String sortvalue,String asc_desc_tag);
 }

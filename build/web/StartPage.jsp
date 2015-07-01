@@ -122,6 +122,51 @@
                 }
             }
 
+
+            function forgotreveal() {
+
+
+                if (document.getElementById("forgotpassword").style.display == 'block') {
+                    document.getElementById("forgotpassword").style.display = 'none';
+                } else {
+                    document.getElementById("forgotpassword").style.display = 'block';
+                }
+
+
+
+            }
+
+
+            function sendforgot() {
+
+                xmlHttp = GetXmlHttpObject();
+                if (xmlHttp == null)
+                {
+                    alert("Browser does not support HTTP Request")
+                    return
+                }
+                else
+                {
+
+                    var mm = document.getElementById("emailforgpass").value;
+
+
+
+                    //sending selected country to servlet
+                    var url = "controller_servl?event=EMAILSEN&mail=" + mm;
+                    //creating callback method.here countrychanged is callback method
+                    xmlHttp.onreadystatechange = emailReturn
+
+                    xmlHttp.open("GET", url, true)
+                    xmlHttp.send(null)
+                }
+
+
+
+
+
+            }
+
         </script>
 
 
@@ -296,7 +341,7 @@
                                 <label for="registerdate" class="col-sm-2 control-label">Birth date</label>
                                 <div class="col-sm-8">
                                     <input type="date" class="form-control" id="registerdate" name="birthdate_n" placeholder="YYYY-MM-DD" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d
-" required>
+                                           " required>
                                 </div>
                             </div>
 
@@ -359,7 +404,7 @@
                             </div>
                             <div class="row">
 
-                                <a id="forgotpassnotif" href="#">Forgot your password ?</a>
+                                <a id="forgotpassnotif" onclick="forgotreveal()">Forgot your password ?</a>
 
 
 
@@ -375,8 +420,8 @@
 
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <button type="button" class="btn btn-primary">Send</button>
-                                        </div>										
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="sendforgot()">Send</button>
+                                        </div>          
                                     </div>
                                 </div>
                             </div>
@@ -388,7 +433,7 @@
                     </div>
                 </div>
             </div>
-
+        </div>
 
 
 

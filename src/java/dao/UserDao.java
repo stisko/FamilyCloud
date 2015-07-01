@@ -31,5 +31,7 @@ import model.User;
     
     public boolean changePassword(User user);
     
+    public List<String> getforgottendetails(String email);
+    
 }
 

@@ -41,7 +41,11 @@ public class MySqlToDoListItemDao implements ToDoListItemDao{
             pst.setString(3, item.getTitle());
             pst.setString(4, item.getAssignedTo());
             pst.setString(5, item.getCreatedBy());
-            pst.setDate(6, new java.sql.Date(item.getDueDate().getTime()));
+            
+            
+                pst.setDate(6, new java.sql.Date(item.getDueDate().getTime()));
+            
+            
             //pst.setDate(7, new java.sql.Date(item.getCompletedDate().getTime()));
             pst.setString(7, item.getStatus());
             
@@ -226,18 +230,31 @@ public class MySqlToDoListItemDao implements ToDoListItemDao{
     }
 
     @Override
-    public List<ToDoListItem> getSortedFamilyToDoList(String username, String sortvalue) {
+    public List<ToDoListItem> getSortedFamilyToDoList(String username, String sortvalue,String asc_desc_tag) {
          PreparedStatement pst = null;
             Connection conn = MySqlDaoFactory.createConnection();
             List<ToDoListItem> item_list= new ArrayList<ToDoListItem>();
         
         try {
            
+           if( asc_desc_tag.equals("false")) {
+               
+               String qtemp="SELECT * FROM todo_list WHERE director_username=? order by"+" "+sortvalue+" "+"DESC";
+               
+               pst = conn.prepareStatement(qtemp);
+           
+           }
+           
+           else{
+               String qtemp="SELECT * FROM todo_list WHERE director_username=? order by"+" "+sortvalue+" "+"ASC";
+           
+           pst = conn.prepareStatement(qtemp);
+           
+           }
             
             
-            pst = conn.prepareStatement("SELECT * FROM todo_list WHERE director_username=? order by status");
             pst.setString(1, username);
-          //  pst.setString(2, sortvalue);
+           // pst.setString(2, sortvalue);
             
             ResultSet rs = pst.executeQuery();
             
@@ -281,7 +298,7 @@ public class MySqlToDoListItemDao implements ToDoListItemDao{
 
     
 }
-    
+
     
     
 }

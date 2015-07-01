@@ -326,6 +326,60 @@ function deleteShopItemItem(shitemid){
     
 }
 
+var asc_descSHOP=false;
+
+function sorttableshopSHOP(sortedTable){
+    
+    alert("sdfasdf");
+    
+    xmlHttp = GetXmlHttpObject();
+    if (xmlHttp == null)
+    {
+        alert("Browser does not support HTTP Request")
+        return
+    }
+    else
+    {
+        
+       asc_descSHOP=!asc_descSHOP;
+        
+       // alert(asc_desc);
+        
+        var url = "controller_servl?event=SHOPSORT&sortedTag="+sortedTable+"&ssa="+asc_descSHOP;
+        xmlHttp.onreadystatechange = sortedfuncTableSHOP;
+
+        xmlHttp.open("GET", url, true)
+        xmlHttp.send(null)
+        
+        
+    }
+    
+    
+    
+    
+}
+
+
+function sortedfuncTableSHOP(){
+    
+    
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete")
+    {
+        //getting response from server(Servlet)
+
+//                    var json = JSON.parse(xmlHttp.responseText);
+
+        var text = xmlHttp.responseText;
+
+        document.getElementById("changedTableSHOP").innerHTML = text;
+      
+
+    }
+    
+    
+    
+}
+
 
 
 

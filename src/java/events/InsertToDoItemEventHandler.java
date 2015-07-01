@@ -49,7 +49,7 @@ public class InsertToDoItemEventHandler extends EventHandlerBase{
         String assignedTo= request.getParameter("assignedTo");
         String dueDate=request.getParameter("dueDate");
         String createdBy= cur_user.getUsername();
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date dueDate_d = null;
         
         try {

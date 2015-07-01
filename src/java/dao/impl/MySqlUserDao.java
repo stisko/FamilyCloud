@@ -462,6 +462,47 @@ public class MySqlUserDao implements UserDao {
 
         return fmembers_list;
     }
+ 
+    @Override
+    public List<String> getforgottendetails(String email) {
+        PreparedStatement pst = null;
+            Connection conn = MySqlDaoFactory.createConnection();
+            List<String> forg_list = new ArrayList<String>();
+            
+        try {
+            
+            
+            
+            
+            
+            pst = conn.prepareStatement("SELECT * FROM user WHERE (email=?)");
+            
+            pst.setString(1, email);
+            ResultSet rs = pst.executeQuery();
+            
+            while (rs.next()) {
+                forg_list.add(rs.getString("username"));
+                forg_list.add(rs.getString("password"));
+            }
+            
+
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MySqlUserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+        
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                return null;
+            }
+        
+        }
+       return forg_list; 
+    }
+    
     
     public byte[] extractBytes (String ImageName) throws IOException {
  // open image

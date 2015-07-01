@@ -292,6 +292,87 @@ public class MySqlShoppingListDao implements ShoppingListDao {
         
     }
 
+    @Override
+    public List<ShoppingListItem> getSortedFamilyShoppingList(String username, String sortvalue, String asc_desc_tag) {
+       
+        
+        
+        
+        PreparedStatement pst = null;
+            Connection conn = MySqlDaoFactory.createConnection();
+            List<ShoppingListItem> item_list= new ArrayList<ShoppingListItem>();
+        
+        try {
+           
+           if( asc_desc_tag.equals("false")) {
+               
+               String qtemp="SELECT * FROM shopping_list WHERE director_username=? order by"+" "+sortvalue+" "+"DESC";
+               
+               pst = conn.prepareStatement(qtemp);
+           
+           }
+           
+           else{
+               String qtemp="SELECT * FROM shopping_list WHERE director_username=? order by"+" "+sortvalue+" "+"ASC";
+           
+           pst = conn.prepareStatement(qtemp);
+           
+           }
+            
+            
+            pst.setString(1, username);
+           // pst.setString(2, sortvalue);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while (rs.next()) {
+                ShoppingListItem item= new ShoppingListItem();
+                
+                item.setAssigned_to(rs.getString("assigned_to"));
+            item.setDirector_username(rs.getString("director_username"));
+            
+            item.setQuantity(rs.getInt("quantity"));
+            item.setPrice(rs.getInt("price"));
+            item.setShopitemID(rs.getInt("shopitemid"));
+            item.setShopstatus(rs.getString("status"));
+            item.setShoptitle(rs.getString("title"));
+            item.setCreated_by(rs.getString("created_by"));
+                
+                
+                item_list.add(item);
+                
+                
+             
+                
+                
+                
+                
+                
+                
+            }
+        } catch (SQLException ex) {
+           ex.printStackTrace();
+        }finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+         return item_list;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+
    
 
    
