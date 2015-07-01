@@ -2,12 +2,14 @@
     <div class="col-sm-4">
         <div class="fileinput fileinput-new" data-provides="fileinput">
             <div class="fileinput-new thumbnail" style="width: 150px; height: 150px;">
-                <img class="img-rounded" src="controller_servl?event=GETPIC&username=${json.selected_user.username}">
+                <img class="img-rounded"  src="controller_servl?event=GETPIC&username=${json.selected_user.username}&time=<%=System.currentTimeMillis()%>">
             </div>
-            <form action="upload_servl?username=${json.selected_user.username}" role="form"enctype="multipart/form-data" method="post"id="upload_form">
+            <form  role="form" enctype="multipart/form-data" method="post" id="upload_form">
                 <input type="file" name="file">
-                <button type="submit" form="upload_form" class="btn btn-success">Upload</button>
+                
+                
             </form>
+            
         </div>
     </div>
     <div class="col-sm-8">
@@ -54,5 +56,5 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary" data-dismiss="modal" value="${json.selected_user.username}" onclick="UpdateMemberProfile(this.value)">Save</button>
+    <button type="button" class="btn btn-primary" data-dismiss="modal" value="${json.selected_user.username}" onclick="initFullFormAjaxUploadMemberProfile(this.value)">Save</button>
 </div>

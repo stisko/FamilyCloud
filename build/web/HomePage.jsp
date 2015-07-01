@@ -31,6 +31,7 @@
         <script src="js/Notifications.js"></script>
         <script src="js/PersonalCalendar.js"></script>
         <script src="js/Shop.js"></script>
+        <script src="js/MyProfile.js"></script>
 
         <script src="js/moment.js"></script>
         <script src="js/fullcalendar.js"></script>
@@ -159,7 +160,7 @@
 
                         <li role="presentation"><a onclick="getMyFamily()">Home</a>
                         </li>
-                        <li role="presentation" data-toggle="modal" data-target="#myprofilemodal"><a href="#myprofilemodal">My Profile</a>
+                        <li role="presentation" data-toggle="modal" data-target="#myprofilemodal" onclick="getMyprofile('${json.cur_user.username}')"><a href="#myprofilemodal">My Profile</a>
                         </li>
                         <li role="presentation" data-toggle="modal" data-target="#logoutmodal"><a href="#logoutmodal">Logout</a>
                         </li>
@@ -238,73 +239,8 @@
             </div>
         </div>
         <div class="modal fade" id="myprofilemodal" tabindex="-1" role="dialog" aria-labelledby="editfamily" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">My Profile</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="thumbnail" style="width: 150px; height: 150px;">
-                                    <img data-src="holder.js/100%x100%" alt="...">
-                                </div>
-                            </div>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <label class="col-sm-4 col-sm-offset-1" for="lnam">Last Name:</label>
-                                    <p class="col-sm-7">${json.cur_user.lastName} </p>
-                                </div>
-                                <div class="row">
-                                    <label class="col-sm-4 col-sm-offset-1" for="fnam">First Name:</label>
-                                    <p class="col-sm-7">${json.cur_user.firstName}</p>
-                                </div>
-                                <div class="row">
-                                    <label class="col-sm-4 col-sm-offset-1" for="email">Email:</label>
-                                    <p class="col-sm-7">${json.cur_user.email}</p>
-                                </div>
-                                <div class="row">
-                                    <label class="col-sm-4 col-sm-offset-1" for="birth">Birth Date:</label>
-                                    <p class="col-sm-7">${json.cur_user.birthdate}</p>
-                                </div>
-                                <div class="row">
-                                    <label class="col-sm-4 col-sm-offset-1" for="birth">Town:</label>
-                                    <p class="col-sm-7">${json.cur_user.town}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="checkbox_changepassword">
-                                    <label>
-                                        <input type="checkbox" id="checkbox_changepasswordval" value="0">Change Password</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="repeat2" id="changepasswordview" style="display:none">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label for="oldpass">Old Password</label>
-                                    <input class="form-control" type="text" id="oldpass" placeholder="Old Password"></input>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="newpass">New Password</label>
-                                    <input class="form-control" type="text" id="newpass" placeholder="New Password"></input>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="retypenewpass">Retype Password</label>
-                                    <input class="form-control" type="text" id="retypenewpass" placeholder="Retype Password"></input>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button id="savepassmodal" type="button" style="display:none" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
+            <div class="modal-dialog" id="my_profile_modal_">
+                
             </div>
         </div>
     </body>

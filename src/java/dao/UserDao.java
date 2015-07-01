@@ -29,6 +29,7 @@ import model.User;
     
     public List<User> getFamilyMembersWithDirector(String username);
     
+    public boolean changePassword(User user);
     
 }
 

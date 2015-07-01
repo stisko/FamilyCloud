@@ -26,7 +26,7 @@
 
             <div class="col-sm-4 col-md-3 col-xs-4">
                 <div class="thumbnail family_director">
-                    <img class="img-rounded" src="controller_servl?event=GETPIC&username=${json.director.username}">
+                    <img class="img-rounded" id="imgs${json.director.username}" src="controller_servl?event=GETPIC&username=${json.director.username}&time=<%=System.currentTimeMillis()%>" >
                     <div class="caption">
                         <h4>${json.director.firstName} ${json.director.lastName}</h4>
 
@@ -56,7 +56,7 @@
                 <li>
                     <div class="col-sm-4 col-md-3 col-xs-4">
                         <div class="thumbnail family_members">
-                            <img class="img-rounded" src="controller_servl?event=GETPIC&username=${family_list.username}">
+                            <img class="img-rounded"  id="img${family_list.username}" src="controller_servl?event=GETPIC&username=${family_list.username}&time=<%=System.currentTimeMillis()%>">
                             <div class="caption">
                                 <h4>${family_list.lastName} ${family_list.firstName}</h4>
 
@@ -68,7 +68,7 @@
                                         <button style="${json.hidden}" class="btn btn-default btn-sm" role="button" data-toggle="modal" data-target="#editfamilymember" value="${family_list.username}" onclick="editMemberProfile(this.value)"><span class="glyphicon glyphicon-pencil" > Edit</span></button>
                                     </c:otherwise>
                                 </c:choose>
-                                
+
                                 <button class="btn btn-default btn-sm" type="button" data-toggle="modal" data-target="#viewfamilymembermodal" value="${family_list.username}" onclick="viewMemberProfile(this.value)"><span class="glyphicon glyphicon-eye-open"> View</span></button>
                                 <button style="${json.hidden}" class="btn btn-default btn-sm" role="button" data-toggle="modal" data-target="#deletemodal" value="${family_list.username}" onclick="load_member(this.value)"><span class="glyphicon glyphicon-trash" > Delete</span>
                                 </button>
@@ -240,22 +240,23 @@
                 <h4 class="modal-title" id="myModalLabel">Edit Family Director</h4>
             </div>
             <div class="modal-body">
-<div class="row">
-                <div class="col-sm-4">
-                    <div class="fileinput fileinput-new" data-provides="fileinput">
-                        <div class="fileinput-new thumbnail" style="width: 150px; height: 150px;">
-                            <img class="img-rounded" src="controller_servl?event=GETPIC&username=${json.director.username}">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail" style="width: 150px; height: 150px;">
+                                <img class="img-rounded"  src="controller_servl?event=GETPIC&username=${json.director.username}&time=<%=System.currentTimeMillis()%>">
+                            </div>
+                            <form  role="form" enctype="multipart/form-data" method="post" id="upload_form2">
+                                <input type="file" name="file">
+
+
+                            </form>
+
                         </div>
-                        <form action="upload_servl?username=${json.selected_user.username}" role="form"enctype="multipart/form-data" method="post"id="upload_form2">
-                            <input type="file" name="file">
-                            <button type="submit" form="upload_form2" class="btn btn-success">Upload</button>
-                        </form>
                     </div>
 
-                </div>
 
 
-                
 
 
 
@@ -293,7 +294,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary"   data-dismiss="modal" form="editfamilydirector_form" onclick="Update_profile()">Save</button>
+                    <button type="button" class="btn btn-primary"   data-dismiss="modal" form="editfamilydirector_form" onclick="initFullFormAjaxUploadDirectorProfile('${json.director.username}')">Save</button>
                 </div>
 
 

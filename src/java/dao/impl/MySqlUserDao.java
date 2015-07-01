@@ -206,19 +206,42 @@ public class MySqlUserDao implements UserDao {
         PreparedStatement pst = null;
         Connection conn = MySqlDaoFactory.createConnection();
         try {
-
-            pst = conn.prepareStatement("UPDATE user SET firstname=?, lastname=?, email=?, birthdate=?, town=?, picture=? WHERE username=?");
+//pst = conn.prepareStatement("UPDATE user SET firstname=?, lastname=?, email=?, birthdate=?, town=?,picture=? WHERE username=?");
+            pst = conn.prepareStatement("UPDATE user SET firstname=?, lastname=?, email=?, birthdate=?, town=?,picture=? WHERE username=?");
             pst.setString(1, user.getFirstName());
             pst.setString(2, user.getLastName());
             pst.setString(3, user.getEmail());
             pst.setDate(4, new java.sql.Date(user.getBirthdate().getTime()));
             pst.setString(5, user.getTown());
             if(user.getPicture().length!=0){
-            pst.setBinaryStream(6, new ByteArrayInputStream(user.getPicture()), user.getPicture().length);
+                pst.setBinaryStream(6, new ByteArrayInputStream(user.getPicture()), user.getPicture().length);
             }else{
                 pst.setNull(6, java.sql.Types.BLOB);
             }
             pst.setString(7, username);
+
+            validation = pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(MySqlUserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (validation == 1) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+    
+    public boolean changePassword(User user) {
+        int validation = 0;
+        PreparedStatement pst = null;
+        Connection conn = MySqlDaoFactory.createConnection();
+        try {
+
+            pst = conn.prepareStatement("UPDATE user SET password=? WHERE username=?");
+            pst.setString(1, user.getPassword());
+            pst.setString(2, user.getUsername());
+            
 
             validation = pst.executeUpdate();
         } catch (SQLException ex) {

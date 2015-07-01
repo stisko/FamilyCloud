@@ -2,7 +2,7 @@
     <div class="col-sm-4">
         <div class="fileinput fileinput-new" data-provides="fileinput">
             <div class="fileinput-new thumbnail" style="width: 150px; height: 150px;">
-                <img class="img-rounded" src="controller_servl?event=GETPIC&username=${json.selected_user.username}">
+                <img class="img-rounded" src="controller_servl?event=GETPIC&username=${json.selected_user.username}&time=<%=System.currentTimeMillis()%>">
             </div>
             <form  role="form" enctype="multipart/form-data" method="post" id="upload_form">
                 <input type="file" name="file">

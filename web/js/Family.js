@@ -3,7 +3,7 @@
 function Update_profile()
 {
 
-    xmlHttp=GetXmlHttpObject();
+    xmlHttp = GetXmlHttpObject();
     if (xmlHttp == null)
     {
         alert("Browser does not support HTTP Request")
@@ -11,7 +11,7 @@ function Update_profile()
     }
     else
     {
-        
+
         //sending selected country to servlet
         var url = "controller_servl?event=UPDATE_PROFILE&lastName=" + document.getElementById("lastnameeditdirector").value +
                 "&firstName=" + document.getElementById("firstnameeditdirector").value +
@@ -19,7 +19,9 @@ function Update_profile()
                 "&birthdate=" + document.getElementById("birtheditdirector").value +
                 "&town=" + document.getElementById("towndirector").value;
         //creating callback method.here countrychanged is callback method
-        xmlHttp.onreadystatechange = function(){profile_return(xmlHttp)};
+        xmlHttp.onreadystatechange = function () {
+            profile_return(xmlHttp)
+        };
 
         xmlHttp.open("GET", url, true)
         xmlHttp.send(null)
@@ -58,7 +60,7 @@ function UpdateMemberProfile(username)
     else
     {
         //sending selected country to servlet
-alert();
+        alert();
         var url = "controller_servl?event=UPDATE_MEMBER_PROFILE&username=" + username + "&lastName=" + document.getElementById("lastnameeditmember").value +
                 "&firstName=" + document.getElementById("firstnameeditmember").value +
                 "&email=" + document.getElementById("emaileditmember").value +
@@ -66,7 +68,9 @@ alert();
                 "&town=" + document.getElementById("towneditmember").value;
 
         //creating callback method.here countrychanged is callback method
-        xmlHttp.onreadystatechange = function(){profile_return(xmlHttp)};
+        xmlHttp.onreadystatechange = function () {
+            profile_return(xmlHttp)
+        };
 
         xmlHttp.open("GET", url, true)
         xmlHttp.send(null)
@@ -75,62 +79,127 @@ alert();
 }
 
 function initFullFormAjaxUploadMemberProfile(username) {
-        
-        var xhr = new XMLHttpRequest();
-        var form = document.getElementById('upload_form');
 
-        // FormData receives the whole form
-        var formData = new FormData(form);
-        
-        // We send the data where the form wanted
-        var action = "controller_servl?event=UPDATE_MEMBER_PROFILE&username=" + username + "&lastName=" + document.getElementById("lastnameeditmember").value +
-                "&firstName=" + document.getElementById("firstnameeditmember").value +
-                "&email=" + document.getElementById("emaileditmember").value +
-                "&birthdate=" + document.getElementById("birtheditmember").value +
-                "&town=" + document.getElementById("towneditmember").value;
+    var xhr = new XMLHttpRequest();
+    var form = document.getElementById('upload_form');
 
-        //creating callback method.here countrychanged is callback method
-        // Code common to both variants
-        sendXHRequest2(formData, action,xhr);
-        // Avoid normal form submission
+    // FormData receives the whole form
+    var formData = new FormData(form);
+
+    // We send the data where the form wanted
+    var action = "controller_servl?event=UPDATE_MEMBER_PROFILE&username=" + username + "&lastName=" + document.getElementById("lastnameeditmember").value +
+            "&firstName=" + document.getElementById("firstnameeditmember").value +
+            "&email=" + document.getElementById("emaileditmember").value +
+            "&birthdate=" + document.getElementById("birtheditmember").value +
+            "&town=" + document.getElementById("towneditmember").value;
+
+    //creating callback method.here countrychanged is callback method
+    // Code common to both variants
+    sendXHRequest2(formData, action, xhr);
+
+    //document.getElementById('img'+username).src="img/Calendar.png";
+    alert('apodw');
+    //document.getElementById('img' + username).removeAttribute("src");
+    // Avoid normal form submission
 
 
-    }
-    
+}
+
 // Once the FormData instance is ready and we know
 // where to send the data, the code is the same
 // for both variants of this technique
-    function sendXHRequest2(formData, uri,xhr) {
-        // Get an XMLHttpRequest instance
+function sendXHRequest2(formData, uri, xhr) {
+    // Get an XMLHttpRequest instance
 
-        // Set up events
-alert();
-        xhr.onreadystatechange = function(){onreadystatechangeHandlerMemPr(xhr)};
-        //xhr.onreadystatechange = wallPost_return
-        // Set up request
-        xhr.open('POST', uri, true);
-        // Fire!
-        xhr.send(formData);
-    }
+    // Set up events
+    alert();
+    xhr.onreadystatechange = function () {
+        onreadystatechangeHandlerMemPr(xhr)
+    };
+    //xhr.onreadystatechange = wallPost_return
+    // Set up request
+    xhr.open('POST', uri, true);
+    // Fire!
+    xhr.send(formData);
+}
 
 
 
 // Handle the response from the server
-    function onreadystatechangeHandlerMemPr(xhr) {
-        
-        if (xhr.readyState == 4 || xhr.readyState == "complete")
-        {
-            //getting response from server(Servlet)
+function onreadystatechangeHandlerMemPr(xhr) {
+
+    if (xhr.readyState == 4 || xhr.readyState == "complete")
+    {
+        //getting response from server(Servlet)
 
 //                    var json = JSON.parse(xmlHttp.responseText);
-            var text = xhr.responseText;
-            
-            document.getElementById("newpage").innerHTML = text;
-        }
+        var text = xhr.responseText;
+
+        document.getElementById("newpage").innerHTML = text;
     }
+}
+
+
+function initFullFormAjaxUploadDirectorProfile(username) {
+
+    var xhr = new XMLHttpRequest();
+    var form = document.getElementById('upload_form2');
+
+    // FormData receives the whole form
+    var formData = new FormData(form);
+
+    // We send the data where the form wanted
+    var action = "controller_servl?event=UPDATE_PROFILE&lastName=" + document.getElementById("lastnameeditdirector").value +
+            "&firstName=" + document.getElementById("firstnameeditdirector").value +
+            "&email=" + document.getElementById("emaileditdirector").value +
+            "&birthdate=" + document.getElementById("birtheditdirector").value +
+            "&town=" + document.getElementById("towndirector").value;
+
+    //creating callback method.here countrychanged is callback method
+    // Code common to both variants
+
+    sendXHRequest24(formData, action, xhr);
+
+    alert(username);
+    //document.getElementById('imgs' + username).removeAttribute("src");
+    //document.getElementById('img'+username).src="img/Calendar.png";
+
+
+    // Avoid normal form submission
+
+
+}
+
+function sendXHRequest24(formData, uri, xhr) {
+    // Get an XMLHttpRequest instance
+
+    // Set up events
+    alert();
+    xhr.onreadystatechange = function () {
+        onreadystatechangeHandlerMemPr4(xhr)
+    };
+    //xhr.onreadystatechange = wallPost_return
+    // Set up request
+    xhr.open('POST', uri, true);
+    // Fire!
+    xhr.send(formData);
+}
 
 
 
+// Handle the response from the server
+function onreadystatechangeHandlerMemPr4(xhr) {
+
+    if (xhr.readyState == 4 || xhr.readyState == "complete")
+    {
+        //getting response from server(Servlet)
+
+//                    var json = JSON.parse(xmlHttp.responseText);
+        var text = xhr.responseText;
+
+        document.getElementById("newpage").innerHTML = text;
+    }
+}
 
 function getMyFamily()
 {
@@ -146,8 +215,10 @@ function getMyFamily()
         var url = "controller_servl?event=MYFAMILY"
 
         //creating callback method.here countrychanged is callback method
-        
-xmlHttp.onreadystatechange = function(){familyreturn(xmlHttp)};
+
+        xmlHttp.onreadystatechange = function () {
+            familyreturn(xmlHttp)
+        };
         xmlHttp.open("GET", url, true)
         xmlHttp.send(null)
     }
@@ -191,7 +262,9 @@ function viewMemberProfile(username) {
         var url = "controller_servl?event=MEMBER_PROFILE&username=" + username + "&tag=view";
 
         //creating callback method.here countrychanged is callback method
-        xmlHttp.onreadystatechange = function(){member_return(xmlHttp)};
+        xmlHttp.onreadystatechange = function () {
+            member_return(xmlHttp)
+        };
 
         xmlHttp.open("GET", url, true)
         xmlHttp.send(null)
@@ -233,7 +306,9 @@ function editMemberProfile(username) {
         var url = "controller_servl?event=MEMBER_PROFILE&username=" + username + "&tag=go";
 
         //creating callback method.here countrychanged is callback method
-        xmlHttp.onreadystatechange =function(){ editmember_return(xmlHttp)};
+        xmlHttp.onreadystatechange = function () {
+            editmember_return(xmlHttp)
+        };
 
         xmlHttp.open("GET", url, true)
         xmlHttp.send(null)
@@ -275,7 +350,9 @@ function load_member(username) {
 
 
         //creating callback method.here countrychanged is callback method
-        xmlHttp.onreadystatechange = function(){load_member_return(xmlHttp)};
+        xmlHttp.onreadystatechange = function () {
+            load_member_return(xmlHttp)
+        };
 
         xmlHttp.open("GET", url, true)
         xmlHttp.send(null)
@@ -318,7 +395,9 @@ function delete_member(username) {
 
 
         //creating callback method.here countrychanged is callback method
-        xmlHttp.onreadystatechange = function(){profile_return(xmlHttp)};
+        xmlHttp.onreadystatechange = function () {
+            profile_return(xmlHttp)
+        };
 
         xmlHttp.open("GET", url, true)
         xmlHttp.send(null)
@@ -339,7 +418,9 @@ function AddMember() {
                 "&email=" + document.getElementById("emailaddmember").value +
                 "&birthdate=" + document.getElementById("birthaddmember").value;
         //creating callback method.here countrychanged is callback method
-        xmlHttp.onreadystatechange = function(){profile_return(xmlHttp)};
+        xmlHttp.onreadystatechange = function () {
+            profile_return(xmlHttp)
+        };
         xmlHttp.open("GET", url, true)
         xmlHttp.send(null)
     }

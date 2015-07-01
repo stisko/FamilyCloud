@@ -53,6 +53,9 @@ public class MemberProfileEventHandler extends EventHandlerBase {
                 path = "DeleteMember.jsp";
             } else if (tag.equals("view")) {
                 path = "ViewMemberProfileInactive.jsp";
+            } else if (tag.equals("viewMYprofile")){
+                path = "MyProfileModal.jsp";
+                
             }
         } else {
             if (tag.equals("go")) {
@@ -61,6 +64,8 @@ public class MemberProfileEventHandler extends EventHandlerBase {
                 path = "DeleteMember.jsp";
             } else if (tag.equals("view")) {
                 path = "ViewMemberProfile.jsp";
+            }else if (tag.equals("viewMYprofile")){
+                path = "MyProfileModal.jsp";
             }
         }
 
