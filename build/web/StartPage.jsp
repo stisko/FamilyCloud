@@ -295,14 +295,15 @@
                             <div class="form-group">
                                 <label for="registerdate" class="col-sm-2 control-label">Birth date</label>
                                 <div class="col-sm-8">
-                                    <input type="date" class="form-control" id="registerdate" name="birthdate_n" placeholder="YYYY-MM-DD" required>
+                                    <input type="date" class="form-control" id="registerdate" name="birthdate_n" placeholder="YYYY-MM-DD" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d
+" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="registeremail" class="col-sm-2 control-label">Email</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="registeremail" name="email_n" placeholder="someone@hotmail.com" onchange="getDuplicateEmails(this.value)" required>
+                                    <input type="text" class="form-control" id="registeremail" name="email_n" placeholder="someone@hotmail.com" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" onchange="getDuplicateEmails(this.value)" required>
                                     <div class="" id="apotelesma"></div>
 
                                 </div>

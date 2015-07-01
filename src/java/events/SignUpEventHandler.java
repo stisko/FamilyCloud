@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.User;
 import modelBO.UserBO;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -87,12 +88,20 @@ private String path;
         
         success_signup= myUserDAO.insertUser(myUser);
         if(success_signup){
-            path= "/HomePage.jsp";
+            JSONObject obj = new JSONObject();
+            User cur_user = myUserDAO.getUser(username);
+            mySession.setAttribute("curr_user", cur_user);
+            obj.put("cur_user", cur_user);
+            request.setAttribute("json", obj);
+            path="controller_servl?event=MYFAMILY";
+            //path="HomePage.jsp";
+            mySession.setAttribute("tag", 1);
+            //path= "/HomePage.jsp";
         }else{
             path= "/StartPage.jsp";
         }
         
-        mySession.setAttribute("curr_user",userbo);
+        
         
     }
 

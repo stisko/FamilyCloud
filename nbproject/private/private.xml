@@ -5,10 +5,14 @@
         <group>
             <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/web/js/Family.js</file>
             <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/web/UpdateMemberProfileInactive.jsp</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/events/getImageEventHandler.java</file>
             <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/web/MyFamily.jsp</file>
             <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/events/UpdateProfileEventHandler.java</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/events/getImagePostEventHandler.java</file>
             <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/web/UpdateMemberProfile.jsp</file>
             <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/Event.properties</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/events/getImageMessageEventHandler.java</file>
+            <file>file:/C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/src/java/dao/impl/MySqlUserDao.java</file>
         </group>
     </open-files>
 </project-private>
