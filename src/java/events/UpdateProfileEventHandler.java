@@ -107,7 +107,7 @@ public class UpdateProfileEventHandler extends EventHandlerBase{
                 //path="MyFamily.jsp";
                 
                 
-                path="controller_servl?event=MYFAMILY";
+                path="controller_servl?event=MYFAMILY&mtag=update";
                 
                 
             }else{

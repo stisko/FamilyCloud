@@ -21,88 +21,144 @@ function getFamilyCalendar()
 }
 
 function addEvent() {
-    xhr = GetXmlHttpObject();
-    if (xhr == null)
-    {
-        alert("Browser does not support HTTP Request")
-        return
-    }
-    else
-    {
-        
-        var InvForm = document.forms.addevfamform;
-        var SelBranchVal = "";
-        var x = 0;
-        var count=0;
-        
-        var temp=InvForm.addfamilyparticipating_members.length;
-        for (x=0;x<InvForm.addfamilyparticipating_members.length;x++)
-         {
-            if(InvForm.addfamilyparticipating_members[x].selected )
-            {
-                if(temp==1){
-                    
-                    SelBranchVal = InvForm.addfamilyparticipating_members[x].value;
-                }else{
-                    
-                    count=count+1;
-                    
-                    if(count==1){
-                        SelBranchVal = InvForm.addfamilyparticipating_members[x].value + SelBranchVal ;
-                        
-                    }else{
-                        
-                        SelBranchVal = InvForm.addfamilyparticipating_members[x].value + "," + SelBranchVal ;
-                        
-                    }
-                    
-                    
-                }
-               
-             //alert(InvForm.kb[x].value);
-             
-            }
-         }
-        
-        
-        
-        var radios = document.getElementsByName('optradio');
 
-        for (var i = 0, length = radios.length; i < length; i++) {
-            if (radios[i].checked) {
-                status = radios[i].value;
-                break;
-            }
+    var title = document.forms.addevfamform.addfamilyevent_title.value;
+
+    alert(title);
+    var dateadd = document.forms.addevfamform.datepickeraddeventfamilystart.value;
+    alert(dateadd);
+    var dateaddend = document.forms.addevfamform.datepickeraddeventfamilyend.value;
+    alert(dateaddend);
+
+
+    var notif_number = document.forms.addevfamform.addfamilyevent_notification_time.value;
+    alert(notif_number);
+    var start_date = document.forms.addevfamform.addfamilyrepeatstart.value;
+    alert(start_date);
+    var end_date = document.forms.addevfamform.addfamilyexpiresat.value;
+    alert(end_date);
+    var rpt_number = document.forms.addevfamform.addfamilyrepeatevery.value;
+    alert(rpt_number);
+    var checkbox_repeat = document.getElementById("addfamilycheckbox_repeat").checked;
+
+
+    var success = false;
+    if (checkbox_repeat) {
+        success = (notnull_validation(title) && datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && datetime_regex_validation(start_date) && positive_number_validation(notif_number) && datetime_regex_validation(end_date) && positive_number_validation(rpt_number));
+    } else {
+        success = (notnull_validation(title) && datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && positive_number_validation(notif_number));
+    }
+
+    if (success) {
+
+
+        document.getElementById("addfameventbut").setAttribute("data-dismiss", "modal");
+
+
+        xhr = GetXmlHttpObject();
+        if (xhr == null)
+        {
+            alert("Browser does not support HTTP Request")
+            return
         }
+        else
+        {
+
+            var InvForm = document.forms.addevfamform;
+            var SelBranchVal = "";
+            var x = 0;
+            var count = 0;
+
+            var temp = InvForm.addfamilyparticipating_members.length;
+            for (x = 0; x < InvForm.addfamilyparticipating_members.length; x++)
+            {
+                if (InvForm.addfamilyparticipating_members[x].selected)
+                {
+                    if (temp == 1) {
+
+                        SelBranchVal = InvForm.addfamilyparticipating_members[x].value;
+                    } else {
+
+                        count = count + 1;
+
+                        if (count == 1) {
+                            SelBranchVal = InvForm.addfamilyparticipating_members[x].value + SelBranchVal;
+
+                        } else {
+
+                            SelBranchVal = InvForm.addfamilyparticipating_members[x].value + "," + SelBranchVal;
+
+                        }
+
+
+                    }
+
+                    //alert(InvForm.kb[x].value);
+
+                }
+            }
+
+
+
+            var radios = document.getElementsByName('optradio');
+
+            for (var i = 0, length = radios.length; i < length; i++) {
+                if (radios[i].checked) {
+                    status = radios[i].value;
+                    break;
+                }
+            }
+
+
+            
+
+            //sending selected country to servlet
+            var url = "controller_servl?event=INSERTFAMCALEVENT&title=" + document.getElementById("addfamilyevent_title").value +
+                    "&start=" + document.getElementById("datepickeraddeventfamilystart").value +
+                    "&end=" + document.getElementById("datepickeraddeventfamilyend").value +
+                    "&category=" + document.getElementById("addfamilyevent_categories").value +
+                    "&visibility=" + status +
+                    "&location=" + document.getElementById("addfamilyevent_location").value +
+                    "&part_members=" + SelBranchVal +
+                    "&description=" + document.getElementById("addfamilyevent_desc").value +
+                    "&repeat-time=" + document.getElementById("addevent_repeat_time").value +
+                    "&repeat_every=" + document.getElementById("addfamilyrepeatevery").value +
+                    "&starts_at=" + document.getElementById("addfamilyrepeatstart").value +
+                    "&expiration_date=" + document.getElementById("addfamilyexpiresat").value +
+                    "&notification_time=" + document.getElementById("addfamilyevent_notification_time").value +
+                    "&notification_date=" + document.getElementById("addfamilyevent_notification_period").value +
+                    "&status=" + checkbox_repeat;
+
+            //creating callback method.here countrychanged is callback method
+            xhr.onreadystatechange = function () {
+                calendar_return(xhr);
+            };
+
+            xhr.open("GET", url, true)
+            xhr.send(null)
+        }
+
+    } else {
+
+
+        document.getElementById("addfameventbut").removeAttribute("data-dismiss");
+        
+        document.getElementById("suc_todo_mes_valid_F").style.display="block";
+        document.getElementById("suc_todo_mes_valid_F").setAttribute("class","alert alert-danger pull-left alert_messa");
+
+        alert(document.getElementById("suc_todo_mes_valid_F").innerHTML);
+        document.getElementById("suc_todo_mes_valid_F").innerHTML="Fill The Red Required Inputs";
         
         
-        var checkbox_repeat = document.getElementById("addfamilycheckbox_repeat").checked;
+        
+        
+        alert("poulos");
 
-        //sending selected country to servlet
-        var url = "controller_servl?event=INSERTFAMCALEVENT&title=" + document.getElementById("addfamilyevent-title").value +
-                "&start=" + document.getElementById("datepickeraddeventfamilystart").value +
-                "&end=" + document.getElementById("datepickeraddeventfamilyend").value +
-                "&category=" + document.getElementById("addfamilyevent_categories").value +
-                "&visibility=" + status+
-                "&location=" + document.getElementById("addfamilyevent_location").value +
-                "&part_members=" + SelBranchVal +
-                "&description=" + document.getElementById("addfamilyevent_desc").value +
-                "&repeat-time=" + document.getElementById("addevent_repeat_time").value +
-                "&repeat_every=" + document.getElementById("addfamilyrepeatevery").value +
-                "&starts_at=" + document.getElementById("addfamilyrepeatstart").value +
-                "&expiration_date=" + document.getElementById("addfamilyexpiresat").value +
-                "&notification_time=" + document.getElementById("addfamilyevent_notification_time").value +
-                "&notification_date=" + document.getElementById("addfamilyevent_notification_period").value +
-                "&status=" + checkbox_repeat;
-
-        //creating callback method.here countrychanged is callback method
-        xhr.onreadystatechange = function () {
-            calendar_return(xhr);
-        };
-
-        xhr.open("GET", url, true)
-        xhr.send(null)
     }
+
+
+
+
 }
 
 function viewFamCalbyMember(username) {
@@ -124,7 +180,7 @@ function viewFamCalbyMember(username) {
 
         //creating callback method.here countrychanged is callback method
         xhr.onreadystatechange = function () {
-            custom_view_calendar_return(xhr,username);
+            custom_view_calendar_return(xhr, username);
         };
 
         xhr.open("GET", url, true)
@@ -132,7 +188,7 @@ function viewFamCalbyMember(username) {
     }
 }
 
-function custom_view_calendar_return(xhr,username)
+function custom_view_calendar_return(xhr, username)
 {
 
     if (xhr.readyState == 4 || xhr.readyState == "complete")
@@ -144,7 +200,7 @@ function custom_view_calendar_return(xhr,username)
         var text = xhr.responseText;
 
         document.getElementById("newpage").innerHTML = text;
-        fullFamCal('controller_servl?event=FAMCALEVENTS&username='+username);
+        fullFamCal('controller_servl?event=FAMCALEVENTS&username=' + username);
 
         //displaying response in select box by using that id
 //                    document.getElementById("apotelesma2").innerHTML = json.message;
@@ -215,7 +271,43 @@ function editEvent(id) {
 }
 
 function UpdateFamCalEvent(id) {
-    xhr = GetXmlHttpObject();
+    
+    
+    var title = document.forms.editevfamform.editfamilyevent_title.value;
+
+    alert(title);
+    var dateadd = document.forms.editevfamform.datepickerediteventfamilystart.value;
+    alert(dateadd);
+    var dateaddend = document.forms.editevfamform.datepickerediteventfamilyend.value;
+    alert(dateaddend);
+
+
+    var notif_number = document.forms.editevfamform.editfamilyevent_notification_time.value;
+    alert(notif_number);
+    var start_date = document.forms.editevfamform.editfamilyrepeatstart.value;
+    alert(start_date);
+    var end_date = document.forms.editevfamform.editfamilyexpiresat.value;
+    alert(end_date);
+    var rpt_number = document.forms.editevfamform.editfamilyrepeatevery.value;
+    alert(rpt_number);
+    var checkbox_repeat = document.getElementById("editfamilycheckbox_repeat").checked;
+    
+    
+    var radios = document.getElementsByName('optradio');
+
+
+    var success = false;
+    if (checkbox_repeat) {
+        success = (notnull_validation(title) && radio_validation(radios)&& datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && datetime_regex_validation(start_date) && positive_number_validation(notif_number) && datetime_regex_validation(end_date) && positive_number_validation(rpt_number));
+    } else {
+        success = (notnull_validation(title) && radio_validation(radios)&& datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && positive_number_validation(notif_number));
+    }
+    
+    if(success){
+        
+        document.getElementById("editsaveFameve").setAttribute("data-dismiss","modal");
+        
+        xhr = GetXmlHttpObject();
     if (xhr == null)
     {
         alert("Browser does not support HTTP Request")
@@ -223,45 +315,45 @@ function UpdateFamCalEvent(id) {
     }
     else
     {
-        
-        
+
+
         var InvForm = document.forms.editevfamform;
         var SelBranchVal = "";
         var x = 0;
-        var count=0;
-        
-        var temp=InvForm.editfamilyparticipating_members.length;
-        for (x=0;x<InvForm.editfamilyparticipating_members.length;x++)
-         {
-            if(InvForm.editfamilyparticipating_members[x].selected )
+        var count = 0;
+
+        var temp = InvForm.editfamilyparticipating_members.length;
+        for (x = 0; x < InvForm.editfamilyparticipating_members.length; x++)
+        {
+            if (InvForm.editfamilyparticipating_members[x].selected)
             {
-                if(temp==1){
-                    
+                if (temp == 1) {
+
                     SelBranchVal = InvForm.editfamilyparticipating_members[x].value;
-                }else{
-                    
-                    count=count+1;
-                    
-                    if(count==1){
-                        SelBranchVal = InvForm.editfamilyparticipating_members[x].value + SelBranchVal ;
-                        
-                    }else{
-                        
-                        SelBranchVal = InvForm.editfamilyparticipating_members[x].value + "," + SelBranchVal ;
-                        
+                } else {
+
+                    count = count + 1;
+
+                    if (count == 1) {
+                        SelBranchVal = InvForm.editfamilyparticipating_members[x].value + SelBranchVal;
+
+                    } else {
+
+                        SelBranchVal = InvForm.editfamilyparticipating_members[x].value + "," + SelBranchVal;
+
                     }
-                    
-                    
+
+
                 }
-               
-             //alert(InvForm.kb[x].value);
-             
+
+                //alert(InvForm.kb[x].value);
+
             }
-         }
+        }
+
+
+
         
-        
-        
-        var radios = document.getElementsByName('optradio');
 
         for (var i = 0, length = radios.length; i < length; i++) {
             if (radios[i].checked) {
@@ -269,17 +361,17 @@ function UpdateFamCalEvent(id) {
                 break;
             }
         }
+
         
-        var checkbox_repeat = document.getElementById("editfamilycheckbox_repeat").checked;
 
 
 
         //sending selected country to servlet
-        var url = "controller_servl?event=UPDATEFAMCALEVENT&id=" + id + "&title=" + document.getElementById("editfamilyevent-title").value +
+        var url = "controller_servl?event=UPDATEFAMCALEVENT&id=" + id + "&title=" + document.getElementById("editfamilyevent_title").value +
                 "&start=" + document.getElementById("datepickerediteventfamilystart").value +
                 "&end=" + document.getElementById("datepickerediteventfamilyend").value +
                 "&category=" + document.getElementById("editfamilyevent_categories").value +
-                "&visibility=" + status+
+                "&visibility=" + status +
                 "&location=" + document.getElementById("editfamilyevent_location").value +
                 "&part_members=" + SelBranchVal +
                 "&description=" + document.getElementById("editfamilyevent_desc").value +
@@ -298,6 +390,26 @@ function UpdateFamCalEvent(id) {
         xhr.open("GET", url, true)
         xhr.send(null)
     }
+    }else{
+        
+        document.getElementById("editsaveFameve").removeAttribute("data-dismiss");
+        
+        
+        
+        
+        document.getElementById("suc_todo_mes_valid_Fed").style.display="block";
+        document.getElementById("suc_todo_mes_valid_Fed").setAttribute("class","alert alert-danger pull-left alert_messa");
+
+        alert(document.getElementById("suc_todo_mes_valid_Fed").innerHTML);
+        document.getElementById("suc_todo_mes_valid_Fed").innerHTML="Fill The Red Required Inputs";
+        
+        
+        
+        alert("poulos");
+        
+    }
+    
+    
 }
 
 function deleteEvent(id) {
@@ -360,7 +472,7 @@ function modal_return(xhr)
     }
 }
 
-function viewFamCalbyCategory(color){
+function viewFamCalbyCategory(color) {
     xhr = GetXmlHttpObject();
     if (xhr == null)
     {
@@ -373,14 +485,14 @@ function viewFamCalbyCategory(color){
         var url = "controller_servl?event=FAMCAL";
         //creating callback method.here countrychanged is callback method
         xhr.onreadystatechange = function () {
-            customCategory_view_calendar_return(xhr,color);
+            customCategory_view_calendar_return(xhr, color);
         };
         xhr.open("GET", url, true)
         xhr.send(null)
     }
 }
 
-function customCategory_view_calendar_return(xhr, color){
+function customCategory_view_calendar_return(xhr, color) {
     if (xhr.readyState == 4 || xhr.readyState == "complete")
     {
         //getting response from server(Servlet)
@@ -390,7 +502,7 @@ function customCategory_view_calendar_return(xhr, color){
         var text = xhr.responseText;
 
         document.getElementById("newpage").innerHTML = text;
-        fullFamCal('controller_servl?event=FAMCALEVENTS&category='+color);
+        fullFamCal('controller_servl?event=FAMCALEVENTS&category=' + color);
 
         //displaying response in select box by using that id
 //                    document.getElementById("apotelesma2").innerHTML = json.message;

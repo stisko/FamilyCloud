@@ -42,7 +42,8 @@ public class getImageEventHandler extends EventHandlerBase{
         User user = myUserDAO.getUser(username);
         response.setContentType("image/jpeg");
         
-        response.getOutputStream().write(scale(user.getPicture(), 500, 500));
+        response.getOutputStream().write(user.getPicture());
+        //response.getOutputStream().write(scale(user.getPicture(), 500, 500));
         
         path=null;
         

@@ -34,7 +34,7 @@ public class DeletePersonalCalendarEventHandler extends EventHandlerBase{
         
         success= myEventDao.deletePerCalEvent(ID);
         if(success){
-            path="controller_servl?event=PERCAL";
+            path="controller_servl?event=PERCAL&mtag=delete";
         }else{
             
         }

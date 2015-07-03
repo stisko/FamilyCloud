@@ -71,10 +71,12 @@ public class InsertInactiveUserEventHandler extends EventHandlerBase {
         userbo.setBirthdate(birthdate_d);
         
         User myUser= new User();
+        boolean ck=false;
         if (email.isEmpty()) {
             inactive = true;
-            email = cur_user.getEmail()+"_inactivemember" + generate_random_number();
+            email = cur_user.getUsername()+"_inactivemember" + generate_random_number()+"@ex.com";
             
+            ck=true;
             userbo.setUsername(email);
             userbo.setPassword(email);
             userbo.setEmail(email);
@@ -100,18 +102,18 @@ public class InsertInactiveUserEventHandler extends EventHandlerBase {
             myUser.setDirector(userbo.getDirector());
         
         success_insert= myUserDAO.insertUser(myUser, cur_user.getUsername());
-        if (success_insert){
+        if (success_insert && ck==false){
             
             try {
                 invitation_user(myUser.getEmail(),myUser.getUsername(),myUser.getPassword());
                 
                 
-                path="controller_servl?event=MYFAMILY";
+                path="controller_servl?event=MYFAMILY&mtag=insert";
             } catch (MessagingException ex) {
                 Logger.getLogger(InsertInactiveUserEventHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
-            
+            path="controller_servl?event=MYFAMILY&mtag=insert";
         }
 
     }

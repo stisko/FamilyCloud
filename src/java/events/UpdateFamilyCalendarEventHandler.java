@@ -89,7 +89,7 @@ public class UpdateFamilyCalendarEventHandler extends EventHandlerBase{
 
             success = myFamCalEvent.updateFamCalEvent(event);
             
-            path="controller_servl?event=FAMCAL";
+            path="controller_servl?event=FAMCAL&mtag=update";
         } catch (ParseException ex) {
             Logger.getLogger(UpdateFamilyCalendarEventHandler.class.getName()).log(Level.SEVERE, null, ex);
         }

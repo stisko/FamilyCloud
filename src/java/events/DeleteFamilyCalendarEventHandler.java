@@ -34,7 +34,7 @@ public class DeleteFamilyCalendarEventHandler extends EventHandlerBase{
         
         success= myEventDao.deleteFamCalEvent(ID);
         if(success){
-            path="controller_servl?event=FAMCAL";
+            path="controller_servl?event=FAMCAL&mtag=delete";
         }else{
             
         }

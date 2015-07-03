@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.User;
 import model.WallPost;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -41,6 +42,33 @@ public class WallPostEventHandler extends EventHandlerBase{
         request.setAttribute("cur_user", cur_user);
         request.setAttribute("familyPosts", familyPosts);
         
+        
+        JSONObject jsme = new JSONObject();
+
+        if (request.getParameter("mtag") != null) {
+
+            String temp = request.getParameter("mtag");
+
+            if (temp.equals("insert")) {
+
+                jsme.put("classs", "alert alert-success alert_messa col-sm-8 ");
+                jsme.put("message", "Wall Post Item Has Succefully Added!");
+
+            } else if (temp.equals("update")) {
+
+                jsme.put("classs", "alert alert-success alert_messa col-sm-8 ");
+                jsme.put("message", "Wall Post Item Has Succefully Updated!");
+
+            } else if (temp.equals("delete")) {
+
+                jsme.put("classs", "alert alert-success alert_messa col-sm-8 ");
+                jsme.put("message", "Wall Post Item Has Succefully Deleted!");
+
+            }
+
+            request.setAttribute("noti_message", jsme);
+
+        }
         
         path="FamilyWall.jsp";
         

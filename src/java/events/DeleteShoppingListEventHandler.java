@@ -39,7 +39,7 @@ public class DeleteShoppingListEventHandler extends EventHandlerBase {
 
         if (success) {
             
-            path = "controller_servl?event=SHOPP";
+            path = "controller_servl?event=SHOPP&mtag=delete";
 
         }
 

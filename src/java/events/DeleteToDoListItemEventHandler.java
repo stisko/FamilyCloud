@@ -35,7 +35,7 @@ String path;
         success= myItemDAO.deleteItem(itemID);
         
         if(success){
-            path="controller_servl?event=TODO";
+            path="controller_servl?event=TODO&mtag=delete";
 
         }
     }

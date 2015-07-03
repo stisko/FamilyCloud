@@ -5,12 +5,12 @@
         <h4 class="modal-title" id="myModalLabel">Edit Meal</h4>
     </div>
 
-    <form id="editmealform">
+    <form id="editmealform" name="editmeal_form">
         <div class="modal-body">
             <div class="row">
                 <div class="col-sm-6">
                     <label for="editmealtitle">Meal Title</label>
-                    <input type="text" class="form-control" id="editmealtitle" placeholder="Enter Title" value="${mealsEvent.title}">
+                    <input type="text" class="form-control" id="editmealtitle" name="editmealtitle" placeholder="Enter Title" value="${mealsEvent.title}" required><span>You have to enter a title</span>
                 </div>
                 <div class="col-sm-6">
                     <label for="editmeallocation">Location</label>
@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <label for="editmealdatefrom">Meal Date</label>
-                    <input type="datetime" class="form-control" id="editmealdatefrom" placeholder="YYYY-MM-DD HH:MM:SS" value="${mealsEvent.start_date}">
+                    <input type="datetime" class="form-control" id="editmealdatefrom" name="editmealdatefrom" placeholder="YYYY-MM-DD HH:MM:SS" value="${mealsEvent.start_date}" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required><span>Invalid Datetime input</span>
                 </div>
                 <div class="col-sm-6">
                     <label for="editmealtype">Meal Type</label>
@@ -40,7 +40,7 @@
                 <div class="col-sm-6">
                     <label for="editmealnotification">Notifications before</label>
                     <div class="input-group" role="group" id="editmealnotification">
-                        <input type="number" class="form-control input-sm" id="editmealnotification_time" placeholder="0" value="${mealsEvent.notificationTime}">
+                        <input type="number" class="form-control input-sm" id="editmealnotification_time" name="editmealnotification_time" placeholder="0" value="${mealsEvent.notificationTime}">
                         <span class="input-group-btn" style="width:0px;"></span>
                         <select class="form-control input-sm" id="editmealnotification_period">
                             <option>Minutes</option>
@@ -57,7 +57,7 @@
                 <div class="col-sm-6">
                     <div class="checkbox_repeat">
                         <label>
-                            <input type="checkbox" id="editmealcheckbox_repeat" value="0">Repeat</label>
+                            <input type="checkbox" id="editmealcheckbox_repeat" onchange="toggle_repeat_edit_meal()" value="0">Repeat</label>
                     </div>
                 </div>
             </div>
@@ -77,24 +77,25 @@
                     </div>
                     <div class="col-sm-6">
                         <label>Starts at:</label>
-                        <input type="datetime" class="form-control" id="editmealstartsat" placeholder="YYYY-MM-DD HH:MM:SS" value="${mealsEvent.startRepeatDate}">
+                        <input type="datetime" class="form-control" id="editmealstartsat" name="editmealstartsat" placeholder="YYYY-MM-DD HH:MM:SS" value="${mealsEvent.startRepeatDate}" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required><span>Invalid Datetime input</span>
                     </div>
 
                     <div class="col-sm-6">
                         <label>Repeat every:</label>
-                        <input type="number" class="form-control input-mir" id="editmealrepeatevery" placeholder="0" value="${mealsEvent.repeat_every}">
+                        <input type="number" class="form-control input-mir" id="editmealrepeatevery" placeholder="0" name="editmealrepeatevery" value="${mealsEvent.repeat_every}" min="1" required><span>Invalid number input</span>
                         <!--- prepei na prosthesw days/ months/ weeks analoga me tin proigoumeni epilogi ---->
                     </div>
 
                     <div class="col-sm-6">
                         <label>Expires on:</label>
-                        <input type="datetime" class="form-control" id="editmealexpiresat" placeholder="YYYY-MM-DD HH:MM:SS" value="${mealsEvent.endRepeatDate}">
+                        <input type="datetime" class="form-control" id="editmealexpiresat" name="editmealexpiresat" placeholder="YYYY-MM-DD HH:MM:SS" value="${mealsEvent.endRepeatDate}" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required><span>Invalid Datetime input</span>
                     </div>
                 </div>
             </div>
             <!---  edw kleinei kai kala to repeat---->
         </div>
         <div class="modal-footer">
+            <div id="suc_todo_mes_valid_Med" style=" width:100%"></div>
             <div class="btn-toolbar">
                 <div class="btn-group">
                     <button type="button" class="btn btn-default" id="event_view" onclick="viewMealsEvent('${mealsEvent.idMealsPlanEvent}')"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"  ></span> View</button>
@@ -102,7 +103,7 @@
                     <button type="button" class="btn btn-default" id="event_delete" onclick="deleteMealsEvent('${mealsEvent.idMealsPlanEvent}')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
                 </div>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="UpdateMealsPlanEvent('${mealsEvent.idMealsPlanEvent}')">Update</button>
+                <button type="button" class="btn btn-primary" id="editsavemealbutton" data-dismiss="modal" onclick="UpdateMealsPlanEvent('${mealsEvent.idMealsPlanEvent}')">Update</button>
             </div>
         </div>
     </form>

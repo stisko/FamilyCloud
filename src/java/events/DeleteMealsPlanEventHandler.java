@@ -33,7 +33,7 @@ public class DeleteMealsPlanEventHandler extends EventHandlerBase{
         
         success= myEventDao.deleteMealsPlanEvent(ID);
         if(success){
-            path="controller_servl?event=MEALSPLAN";
+            path="controller_servl?event=MEALSPLAN&mtag=delete";
         }else{
             
         }

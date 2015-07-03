@@ -77,7 +77,7 @@ public class InsertShoppingListEventHandler extends EventHandlerBase {
         
         
         if(myshopDAO.insertShoppingItem(spi)){
-            path="controller_servl?event=SHOPP";
+            path="controller_servl?event=SHOPP&mtag=insert";
         }else{
             path=null;
         }

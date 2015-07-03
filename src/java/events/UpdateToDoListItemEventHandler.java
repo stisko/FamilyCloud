@@ -69,7 +69,7 @@ public class UpdateToDoListItemEventHandler extends EventHandlerBase{
         success= myItemDAO.updateItem(item);
         
         if(success){
-            path="controller_servl?event=TODO";
+            path="controller_servl?event=TODO&mtag=update";
         }
         
         

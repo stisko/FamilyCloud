@@ -88,7 +88,7 @@ public class UpdatePersonalCalendarEventHandler extends EventHandlerBase{
 
             success = myPerCalEvent.updatePerCalEvent(event);
             
-            path="controller_servl?event=PERCAL";
+            path="controller_servl?event=PERCAL&mtag=update";
         } catch (ParseException ex) {
             Logger.getLogger(UpdateFamilyCalendarEventHandler.class.getName()).log(Level.SEVERE, null, ex);
         }

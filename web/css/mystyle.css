@@ -943,7 +943,7 @@ input:required, textarea:required{
 
 
 }
-input:focus:invalid, textarea:focus:invalid{
+input:focus:invalid, textarea:focus:invalid, input:invalid, textarea:invalid{
 
     border-color: #FF0000;
     box-shadow: 0 0 5px #FF0000;
@@ -1006,3 +1006,79 @@ option.purple:after { background: #bce8f1; }
     
     
 }
+
+
+.alert_messa{
+    
+    
+    
+    
+
+    animation: fadeinal 2s;
+    -moz-animation: fadeinal 2s; /* Firefox */
+    -webkit-animation: fadeinal 2s; /* Safari and Chrome */
+    -o-animation: fadeinal 2s; /* Opera */
+
+
+
+}
+
+@keyframes fadeinal {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadeinal { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadeinal { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadeinal { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+.rotate_notif{
+    
+    
+    -webkit-animation:spin 2s ;
+    -moz-animation:spin 2s ;
+    animation:spin 2s ;
+    
+
+/*    animation: rot 2s;
+    -moz-animation: rot 6s;  Firefox 
+    -webkit-animation: rot 2s;  Safari and Chrome 
+    -o-animation: rot 2s;  Opera */
+
+
+
+}
+
+
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+

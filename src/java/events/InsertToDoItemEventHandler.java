@@ -76,7 +76,12 @@ public class InsertToDoItemEventHandler extends EventHandlerBase{
         item.setTitle(itemBO.getTitle());
         
         if(myItemDAO.insertItem(item)){
-            path="controller_servl?event=TODO";
+           
+            
+            
+            
+                    
+            path="controller_servl?event=TODO&mtag=insert";
         }else{
             path=null;
         }

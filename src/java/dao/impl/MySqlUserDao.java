@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Blob;
@@ -80,7 +81,7 @@ public class MySqlUserDao implements UserDao {
         Connection conn = MySqlDaoFactory.createConnection();
 
         try {
-            pst = conn.prepareStatement("INSERT INTO user(username,password,firstname,lastname,birthdate,email,town,director) VALUES(?,?,?,?,?,?,?,?)");
+            pst = conn.prepareStatement("INSERT INTO user(username,password,firstname,lastname,birthdate,email,town,director,picture) VALUES(?,?,?,?,?,?,?,?,?)");
             pst.setString(1, user.getUsername());
             pst.setString(2, user.getPassword());
             pst.setString(3, user.getFirstName());
@@ -89,6 +90,8 @@ public class MySqlUserDao implements UserDao {
             pst.setString(6, user.getEmail());
             pst.setString(7, user.getTown());
             pst.setString(8, user.getDirector());
+            byte[] picture= extractBytes();
+            pst.setBinaryStream(9, new ByteArrayInputStream(picture), picture.length);
 
             validation = pst.executeUpdate();
 
@@ -132,7 +135,7 @@ public class MySqlUserDao implements UserDao {
         Connection conn = MySqlDaoFactory.createConnection();
 
         try {
-            pst = conn.prepareStatement("INSERT INTO user(username,password,firstname,lastname,birthdate,email,town,director) VALUES(?,?,?,?,?,?,?,?)");
+            pst = conn.prepareStatement("INSERT INTO user(username,password,firstname,lastname,birthdate,email,town,director,picture) VALUES(?,?,?,?,?,?,?,?,?)");
             pst.setString(1, user.getUsername());
             pst.setString(2, user.getPassword());
             pst.setString(3, user.getFirstName());
@@ -141,8 +144,9 @@ public class MySqlUserDao implements UserDao {
             pst.setString(6, user.getEmail());
             pst.setString(7, user.getTown());
             pst.setString(8, user.getDirector());
-            
-            
+            byte[] picture= extractBytes();
+            pst.setBinaryStream(9, new ByteArrayInputStream(picture), picture.length);
+
             validation = pst.executeUpdate();
 
             if (validation == 1) {
@@ -206,20 +210,41 @@ public class MySqlUserDao implements UserDao {
         PreparedStatement pst = null;
         Connection conn = MySqlDaoFactory.createConnection();
         try {
-//pst = conn.prepareStatement("UPDATE user SET firstname=?, lastname=?, email=?, birthdate=?, town=?,picture=? WHERE username=?");
-            pst = conn.prepareStatement("UPDATE user SET firstname=?, lastname=?, email=?, birthdate=?, town=?,picture=? WHERE username=?");
-            pst.setString(1, user.getFirstName());
-            pst.setString(2, user.getLastName());
-            pst.setString(3, user.getEmail());
-            pst.setDate(4, new java.sql.Date(user.getBirthdate().getTime()));
-            pst.setString(5, user.getTown());
-            if(user.getPicture().length!=0){
-                pst.setBinaryStream(6, new ByteArrayInputStream(user.getPicture()), user.getPicture().length);
-            }else{
-                pst.setNull(6, java.sql.Types.BLOB);
-            }
-            pst.setString(7, username);
 
+            if (user.getPicture().length != 0) {
+
+                pst = conn.prepareStatement("UPDATE user SET firstname=?, lastname=?, email=?, birthdate=?, town=?,picture=? WHERE username=?");
+
+                pst.setString(1, user.getFirstName());
+                pst.setString(2, user.getLastName());
+                pst.setString(3, user.getEmail());
+                pst.setDate(4, new java.sql.Date(user.getBirthdate().getTime()));
+                pst.setString(5, user.getTown());
+
+                pst.setBinaryStream(6, new ByteArrayInputStream(user.getPicture()), user.getPicture().length);
+                pst.setString(7, username);
+            } else {
+
+                pst = conn.prepareStatement("UPDATE user SET firstname=?, lastname=?, email=?, birthdate=?, town=? WHERE username=?");
+
+                pst.setString(1, user.getFirstName());
+                pst.setString(2, user.getLastName());
+                pst.setString(3, user.getEmail());
+                pst.setDate(4, new java.sql.Date(user.getBirthdate().getTime()));
+                pst.setString(5, user.getTown());
+
+             //   pst.setBinaryStream(6, new ByteArrayInputStream(user.getPicture()), user.getPicture().length);
+                pst.setString(6, username);
+
+            }
+//pst = conn.prepareStatement("UPDATE user SET firstname=?, lastname=?, email=?, birthdate=?, town=?,picture=? WHERE username=?");
+
+//            if(user.getPicture().length!=0){
+//               
+//            }else{
+////                byte[] picture= extractBytes();
+////                pst.setBinaryStream(6, new ByteArrayInputStream(picture), picture.length);
+//            }
             validation = pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(MySqlUserDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -231,7 +256,7 @@ public class MySqlUserDao implements UserDao {
         }
 
     }
-    
+
     public boolean changePassword(User user) {
         int validation = 0;
         PreparedStatement pst = null;
@@ -241,7 +266,6 @@ public class MySqlUserDao implements UserDao {
             pst = conn.prepareStatement("UPDATE user SET password=? WHERE username=?");
             pst.setString(1, user.getPassword());
             pst.setString(2, user.getUsername());
-            
 
             validation = pst.executeUpdate();
         } catch (SQLException ex) {
@@ -462,58 +486,58 @@ public class MySqlUserDao implements UserDao {
 
         return fmembers_list;
     }
- 
+
     @Override
     public List<String> getforgottendetails(String email) {
         PreparedStatement pst = null;
-            Connection conn = MySqlDaoFactory.createConnection();
-            List<String> forg_list = new ArrayList<String>();
-            
+        Connection conn = MySqlDaoFactory.createConnection();
+        List<String> forg_list = new ArrayList<String>();
+
         try {
-            
-            
-            
-            
-            
+
             pst = conn.prepareStatement("SELECT * FROM user WHERE (email=?)");
-            
+
             pst.setString(1, email);
             ResultSet rs = pst.executeQuery();
-            
+
             while (rs.next()) {
                 forg_list.add(rs.getString("username"));
                 forg_list.add(rs.getString("password"));
             }
-            
 
-            
-            
-            
         } catch (SQLException ex) {
             Logger.getLogger(MySqlUserDao.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-        
+        } finally {
+
             try {
                 conn.close();
             } catch (SQLException ex) {
                 return null;
             }
-        
+
         }
-       return forg_list; 
+        return forg_list;
     }
-    
-    
-    public byte[] extractBytes (String ImageName) throws IOException {
- // open image
- File imgPath = new File(ImageName);
- BufferedImage bufferedImage = ImageIO.read(imgPath);
 
- // get DataBufferBytes from Raster
- WritableRaster raster = bufferedImage .getRaster();
- DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
+    public byte[] extractBytes() {
+        try {
+            // open image
+            File imgPath = new File("C:/Users/costi_000/Documents/NetBeansProjects/FamilyCloud_start/web/img/default.png");
+            BufferedImage bufferedImage = ImageIO.read(imgPath);
 
- return ( data.getData() );
-}
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(bufferedImage, "png", baos);
+            baos.flush();
+            return baos.toByteArray();
+            // get DataBufferBytes from Raster
+//            WritableRaster raster = bufferedImage .getRaster();
+//            DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
+//            
+//            return ( data.getData() );
+        } catch (IOException ex) {
+            Logger.getLogger(MySqlUserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
 }

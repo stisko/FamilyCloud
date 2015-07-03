@@ -80,27 +80,62 @@ function UpdateMemberProfile(username)
 
 function initFullFormAjaxUploadMemberProfile(username) {
 
-    var xhr = new XMLHttpRequest();
-    var form = document.getElementById('upload_form');
+    var last_mem = document.getElementById("lastnameeditmember").value;
 
-    // FormData receives the whole form
-    var formData = new FormData(form);
+    var first_mem = document.getElementById("firstnameeditmember").value;
 
-    // We send the data where the form wanted
-    var action = "controller_servl?event=UPDATE_MEMBER_PROFILE&username=" + username + "&lastName=" + document.getElementById("lastnameeditmember").value +
-            "&firstName=" + document.getElementById("firstnameeditmember").value +
-            "&email=" + document.getElementById("emaileditmember").value +
-            "&birthdate=" + document.getElementById("birtheditmember").value +
-            "&town=" + document.getElementById("towneditmember").value;
+    var mail_mem = document.getElementById("emaileditmember").value;
 
-    //creating callback method.here countrychanged is callback method
-    // Code common to both variants
-    sendXHRequest2(formData, action, xhr);
+    var birth_mem = document.getElementById("birtheditmember").value;
 
-    //document.getElementById('img'+username).src="img/Calendar.png";
-    alert('apodw');
-    //document.getElementById('img' + username).removeAttribute("src");
-    // Avoid normal form submission
+    var success = false;
+
+    success = (date_regex_validation(birth_mem) && notnull_validation(last_mem) && notnull_validation(first_mem) && email_val(mail_mem));
+
+    if (success) {
+
+        document.getElementById("memsaveup").setAttribute("data-dismiss", "modal");
+
+        var xhr = new XMLHttpRequest();
+        var form = document.getElementById('upload_form');
+
+        // FormData receives the whole form
+        var formData = new FormData(form);
+
+        // We send the data where the form wanted
+        var action = "controller_servl?event=UPDATE_MEMBER_PROFILE&username=" + username + "&lastName=" + document.getElementById("lastnameeditmember").value +
+                "&firstName=" + document.getElementById("firstnameeditmember").value +
+                "&email=" + document.getElementById("emaileditmember").value +
+                "&birthdate=" + document.getElementById("birtheditmember").value +
+                "&town=" + document.getElementById("towneditmember").value;
+
+        //creating callback method.here countrychanged is callback method
+        // Code common to both variants
+        sendXHRequest2(formData, action, xhr);
+
+        //document.getElementById('img'+username).src="img/Calendar.png";
+        alert('apodw');
+        //document.getElementById('img' + username).removeAttribute("src");
+        // Avoid normal form submission
+    } else {
+
+        document.getElementById("memsaveup").removeAttribute("data-dismiss");
+
+
+        document.getElementById("suc_todo_mes_valid_FamMem").style.display = "block";
+        document.getElementById("suc_todo_mes_valid_FamMem").setAttribute("class", "alert alert-danger pull-left alert_messa");
+
+        alert(document.getElementById("suc_todo_mes_valid_FamMem").innerHTML);
+        document.getElementById("suc_todo_mes_valid_FamMem").innerHTML = "Fill The Red Required Inputs";
+
+
+        alert("poulos");
+
+
+    }
+
+
+
 
 
 }
@@ -142,25 +177,67 @@ function onreadystatechangeHandlerMemPr(xhr) {
 
 function initFullFormAjaxUploadDirectorProfile(username) {
 
-    var xhr = new XMLHttpRequest();
-    var form = document.getElementById('upload_form2');
+    var lastn_dir = document.getElementById("lastnameeditdirector").value;
 
-    // FormData receives the whole form
-    var formData = new FormData(form);
+    var first_dir = document.getElementById("firstnameeditdirector").value;
 
-    // We send the data where the form wanted
-    var action = "controller_servl?event=UPDATE_PROFILE&lastName=" + document.getElementById("lastnameeditdirector").value +
-            "&firstName=" + document.getElementById("firstnameeditdirector").value +
-            "&email=" + document.getElementById("emaileditdirector").value +
-            "&birthdate=" + document.getElementById("birtheditdirector").value +
-            "&town=" + document.getElementById("towndirector").value;
+    var mail_di = document.getElementById("emaileditdirector").value;
 
-    //creating callback method.here countrychanged is callback method
-    // Code common to both variants
+    var birth_di = document.getElementById("birtheditdirector").value
 
-    sendXHRequest24(formData, action, xhr);
 
-    alert(username);
+
+
+    var success = false;
+
+    success = (date_regex_validation(birth_di) && notnull_validation(lastn_dir) && notnull_validation(first_dir) && email_val(mail_di));
+
+    if (success) {
+
+
+        document.getElementById("edit_dir_button").setAttribute("data-dismiss", "modal");
+
+        var xhr = new XMLHttpRequest();
+        var form = document.getElementById('upload_form2');
+
+        // FormData receives the whole form
+        var formData = new FormData(form);
+
+        // We send the data where the form wanted
+        var action = "controller_servl?event=UPDATE_PROFILE&lastName=" + document.getElementById("lastnameeditdirector").value +
+                "&firstName=" + document.getElementById("firstnameeditdirector").value +
+                "&email=" + document.getElementById("emaileditdirector").value +
+                "&birthdate=" + document.getElementById("birtheditdirector").value +
+                "&town=" + document.getElementById("towndirector").value;
+
+        //creating callback method.here countrychanged is callback method
+        // Code common to both variants
+
+        sendXHRequest24(formData, action, xhr);
+
+        alert(username);
+
+
+    } else {
+
+
+        document.getElementById("edit_dir_button").removeAttribute("data-dismiss");
+        
+        
+        
+        alert("poulos");
+        
+        
+        document.getElementById("suc_todo_mes_valid_FamDr").style.display = "block";
+        document.getElementById("suc_todo_mes_valid_FamDr").setAttribute("class", "alert alert-danger pull-left alert_messa");
+
+        alert(document.getElementById("suc_todo_mes_valid_FamDr").innerHTML);
+        document.getElementById("suc_todo_mes_valid_FamDr").innerHTML = "Fill The Red Required Inputs";
+
+    }
+
+
+
     //document.getElementById('imgs' + username).removeAttribute("src");
     //document.getElementById('img'+username).src="img/Calendar.png";
 
@@ -405,6 +482,71 @@ function delete_member(username) {
 }
 
 function AddMember() {
+
+    alert();
+    var lastn = document.getElementById("lastnameaddmember").value;
+    alert(lastn);
+    var firstn = document.getElementById("firstnameaddmember").value;
+    alert(firstn);
+    var bir_dat = document.getElementById("birthaddmember").value;
+    alert(bir_dat);
+    var success = false;
+
+    success = (notnull_validation(lastn) && notnull_validation(firstn) && date_regex_validation(bir_dat));
+
+
+    if (success) {
+
+        document.getElementById("addmembut").setAttribute("data-dismiss", "modal");
+
+        xmlHttp = GetXmlHttpObject();
+        if (xmlHttp == null)
+        {
+            alert("Browser does not support HTTP Request")
+            return
+        }
+        else
+        {
+            var url = "controller_servl?event=INSERT_INACTIVE_USER&lastName=" + document.getElementById("lastnameaddmember").value +
+                    "&firstName=" + document.getElementById("firstnameaddmember").value +
+                    "&email=" + document.getElementById("emailaddmember").value +
+                    "&birthdate=" + document.getElementById("birthaddmember").value;
+            //creating callback method.here countrychanged is callback method
+            xmlHttp.onreadystatechange = function () {
+                profile_return(xmlHttp)
+            };
+            xmlHttp.open("GET", url, true)
+            xmlHttp.send(null)
+        }
+
+    } else {
+
+
+
+        document.getElementById("addmembut").removeAttribute("data-dismiss");
+
+        alert("poulos");
+
+
+        document.getElementById("suc_todo_mes_valid_Fam").style.display = "block";
+        document.getElementById("suc_todo_mes_valid_Fam").setAttribute("class", "alert alert-danger pull-left alert_messa");
+
+        alert(document.getElementById("suc_todo_mes_valid_Fam").innerHTML);
+        document.getElementById("suc_todo_mes_valid_Fam").innerHTML = "Fill The Red Required Inputs";
+
+
+
+
+
+    }
+
+
+}
+
+
+function getDuplicateEmailsMyFam(registeremail)
+{
+
     xmlHttp = GetXmlHttpObject();
     if (xmlHttp == null)
     {
@@ -413,15 +555,29 @@ function AddMember() {
     }
     else
     {
-        var url = "controller_servl?event=INSERT_INACTIVE_USER&lastName=" + document.getElementById("lastnameaddmember").value +
-                "&firstName=" + document.getElementById("firstnameaddmember").value +
-                "&email=" + document.getElementById("emailaddmember").value +
-                "&birthdate=" + document.getElementById("birthaddmember").value;
+        //sending selected country to servlet
+        var url = "controller_servl?event=AJAX&Addregisteremail=" + registeremail;
         //creating callback method.here countrychanged is callback method
-        xmlHttp.onreadystatechange = function () {
-            profile_return(xmlHttp)
-        };
+        xmlHttp.onreadystatechange = emailReturnfam
+
         xmlHttp.open("GET", url, true)
         xmlHttp.send(null)
+    }
+
+}
+function emailReturnfam()
+{
+
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete")
+    {
+        //getting response from server(Servlet)
+
+        var json = JSON.parse(xmlHttp.responseText);
+
+
+
+        //displaying response in select box by using that id
+        document.getElementById("famemailret").innerHTML = json.message;
+        document.getElementById("addmembut").setAttribute("class", json.disabled);
     }
 }

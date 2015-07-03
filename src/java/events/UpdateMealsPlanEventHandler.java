@@ -55,7 +55,7 @@ public class UpdateMealsPlanEventHandler extends EventHandlerBase {
             String meal_type = request.getParameter("meal_type");
             String location = request.getParameter("location");
             String description = request.getParameter("description");
-            String repeat_time = request.getParameter("repeat-time");
+            String repeat_time = request.getParameter("repeat_time");
             String repeat_every = request.getParameter("repeat_every");
             String starts_at = request.getParameter("starts_at");
             String expiration = request.getParameter("expiration_date");
@@ -85,7 +85,7 @@ public class UpdateMealsPlanEventHandler extends EventHandlerBase {
 
             success = myMealsPlanEvent.updateMealsPlanEvent(event);
             if (success) {
-                path = "controller_servl?event=MEALSPLAN";
+                path = "controller_servl?event=MEALSPLAN&mtag=update";
             } else {
 
             }

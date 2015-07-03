@@ -16,21 +16,21 @@
         <div class="row">
             <div class="col-sm-6">
                 <label for="lastnameeditmember">Last Name</label>
-                <input type="text" class="form-control" id="lastnameeditmember" name="lastName" placeholder="Last Name" value="${json.selected_user.lastName}" required>
+                <input type="text" class="form-control" id="lastnameeditmember" name="lastName" placeholder="Last Name" value="${json.selected_user.lastName}" required><span>Invalid input</span>
             </div>
             <div class="col-sm-6">
                 <label for="firstnameeditmember">First Name</label>
-                <input type="text" class="form-control" id="firstnameeditmember" name="firstName" placeholder="First Name" value="${json.selected_user.firstName}" required>
+                <input type="text" class="form-control" id="firstnameeditmember" name="firstName" placeholder="First Name" value="${json.selected_user.firstName}" required><span>Invalid input</span>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6" hidden>
                 <label for="emaileditmember">Email</label>
-                <input type="text" class="form-control" id="emaileditmember" name="email" placeholder="Email" value="${json.selected_user.email}" required>
+                <input type="text" class="form-control" id="emaileditmember" name="email" placeholder="Email" value="${json.selected_user.email}" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><span>Invalid mail input</span>
             </div>
             <div class="col-sm-6">
                 <label for="birtheditmember">Birth Date</label>
-                <input type="text" class="form-control" id="birtheditmember" name="birthdate" placeholder="MM-DD-YYYY" value="${json.selected_user.birthdate}" required>
+                <input type="text" class="form-control" id="birtheditmember" name="birthdate" placeholder="yyyy-mm-dd" value="${json.selected_user.birthdate}" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid date input</span>
             </div>
         </div>
         <div class="row">
@@ -40,21 +40,11 @@
             </div>
         </div>
 
-        <div class="col-sm-6">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="">Adult
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="">Kid *(Under 18)
-                </label>
-            </div>
-        </div>
+        
     </div>
 </div>
 <div class="modal-footer">
+     <div id="suc_todo_mes_valid_FamMem" style=" width:70%"></div>
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary" data-dismiss="modal" value="${json.selected_user.username}" onclick="initFullFormAjaxUploadMemberProfile(this.value)">Save</button>
+    <button type="button" id="memsaveup" class="btn btn-primary" data-dismiss="modal" value="${json.selected_user.username}" onclick="initFullFormAjaxUploadMemberProfile(this.value)">Save</button>
 </div>

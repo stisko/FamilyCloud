@@ -93,7 +93,7 @@ public class insertPersonalCalendarEventHandler extends EventHandlerBase{
             
             success = myPerCalEvent.insertPerCalEvent(event);
             if (success) {
-                path = "controller_servl?event=PERCAL";
+                path = "controller_servl?event=PERCAL&mtag=insert";
             } else {
 
             }

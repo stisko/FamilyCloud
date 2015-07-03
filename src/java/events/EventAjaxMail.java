@@ -9,6 +9,8 @@ import dao.DaoFactory;
 import dao.UserDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,12 +49,49 @@ public class EventAjaxMail extends EventHandlerBase {
             checkDuplicateEmail(mySession, request, response);
         }else if(request.getParameter("registerusername")!=null){
             checkDuplicateUsername(mySession, request, response);
+        }else if(request.getParameter("changePassword")!=null){
+            checkPassword(mySession, request, response);
+        }else if(request.getParameter("Addregisteremail")!=null){
+        
+            checkAddDuplicateEmail(mySession,request,response);
         }
       
       
         //request.setAttribute("status", "true");
         
      
+    }
+    
+    
+    public void checkAddDuplicateEmail(HttpSession mySession, HttpServletRequest request, HttpServletResponse response){
+    
+    
+        PrintWriter out= null;
+        try {
+            JSONObject obj= new JSONObject();
+            out = response.getWriter();
+            DaoFactory mySqlFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL);
+            UserDao myUserDAO = mySqlFactory.getUserDao();
+            String email=request.getParameter("Addregisteremail");
+            boolean invalid_mail=myUserDAO.isDuplicateMail(email);
+            if(invalid_mail){
+                obj.put("message", "The <b>"+email+"</b> is invalid. Please write another");
+                obj.put("disabled", "btn btn-primary disabled");
+                //out.println("The <b>"+email+"</b> is invalid. Please write another");
+                out.println(obj);
+            }else{
+                obj.put("message", "The <b>"+email+"</b> is valid.");
+                obj.put("disabled","btn btn-primary");
+                out.println(obj);
+                //out.println("The <b>"+email+"</b> is valid.");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(EventAjaxMail.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            out.close();
+        }
+    
+    
     }
     
     public void checkDuplicateEmail(HttpSession mySession, HttpServletRequest request, HttpServletResponse response) throws IOException{
@@ -98,16 +137,24 @@ public class EventAjaxMail extends EventHandlerBase {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-  
+    public void checkPassword(HttpSession mySession, HttpServletRequest request, HttpServletResponse response){
+        PrintWriter out = null;
+        try {
+            DaoFactory mySqlFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL);
+            UserDao myUserDAO = mySqlFactory.getUserDao();
+            out = response.getWriter();
+            User cur_user = (User) mySession.getAttribute("curr_user");
+            if(cur_user.getPassword().equals(request.getParameter("changePassword"))){
+                out.println("1");
+            }else{
+                out.println("0");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(EventAjaxMail.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            out.close();
+        }
+    }
     
     @Override
     protected String getURL() {

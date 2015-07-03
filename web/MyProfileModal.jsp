@@ -45,26 +45,27 @@
             <form id="myprofile_form">
                 <div class="row">
                     <div class="col-sm-6">
-                        <label for="oldpass">Old Password</label>
-                        <input class="form-control" type="text" id="oldpass" placeholder="Old Password"></input>
+                        <label for="oldpass">Old Password</label><div id="checkpasswords" style="display: none"></div>
+                        <input class="form-control" type="text" id="oldpass" oninput="checkPassword(this.value)" placeholder="Old Password" pattern="(?=^.{6,}$)((?=.*[A-Z])|(?=.*[a-z])|(?=.*[0-9])).*$" required/><span id="passspan">Invalid input</span>
                     </div>
                     <div class="col-sm-6">
                         <label for="newpass">New Password</label>
-                        <input class="form-control" type="text" id="newpass" placeholder="New Password"></input>
+                        <input class="form-control" type="text" id="newpass" placeholder="New Password" pattern="(?=^.{6,}$)((?=.*[A-Z])|(?=.*[a-z])|(?=.*[0-9])).*$" required/><span>Invalid input</span>
                     </div>
                     <div class="col-sm-6">
                         <label for="retypenewpass">Retype Password</label>
-                        <input class="form-control" type="text" id="retypenewpass" placeholder="Retype Password"></input>
+                        <input class="form-control" type="text" id="retypenewpass" placeholder="Retype Password" pattern="(?=^.{6,}$)((?=.*[A-Z])|(?=.*[a-z])|(?=.*[0-9])).*$" required/><span>Invalid input</span>
                     </div>
                 </div>
             </form>
         </div>
     </div>
     <div class="modal-footer">
+        <div id="suc_todo_mes_valid_MYPROF" style=" width:70%"></div>
         <div class="btn-group">
 
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button id="savepassmodal" type="button" style="display:none" onclick="ChangePassword()" class="btn btn-primary" >Save</button>
+            <button id="savepassmodal_prof"  type="button" style="display:none"  data-dismiss="modal" onclick="ChangePassword()" class="btn btn-primary" >Save</button>
         </div>
     </div>
 </div>

@@ -95,6 +95,7 @@ public class getPersonalCalendarEventsEventHandler extends EventHandlerBase {
             eventJSON.put("start", df.format(temp.getStart_date()));//"2015-06-19");//
             eventJSON.put("end", df.format(temp.getEnd_date()));
             eventJSON.put("description", "Description= " + temp.getDescription() + " Location= " + temp.getLocation());
+           // eventJSON.put("tooltip","EEEEEEE");
             jsonar.add(eventJSON);
 
             Date tmp_Date = temp.getStartRepeatDate();

@@ -99,7 +99,7 @@ function getUnreadNotificationsCount(){
         xmlHttp1.send(null)
     }
 }
-
+mem=0;
 function unread_counter_return(xmlHttp)
 {
 
@@ -107,11 +107,21 @@ function unread_counter_return(xmlHttp)
     {
         //getting response from server(Servlet)
 
-//                    var json = JSON.parse(xmlHttp.responseText);
-
+//      var json = JSON.parse(xmlHttp.responseText);
+        
         var text = xmlHttp.responseText;
+        if(text>mem){
+            document.getElementById("notifanime").setAttribute("class","dropdown-toggle rotate_notif");
+        }else{
+            document.getElementById("notifanime").removeAttribute("class");
+        }
 
+        mem=xmlHttp.responseText;
         document.getElementById("badge_counter").innerHTML = text;
+        
+        
+        
+        
         setTimeout(function(){getUnreadNotificationsCount();},10000);
         //displaying response in select box by using that id
 //                    document.getElementById("apotelesma2").innerHTML = json.message;

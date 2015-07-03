@@ -4,7 +4,7 @@
         </button>
         <h4 class="modal-title" id="myModalLabel">Edit Event</h4>
     </div>
-    <form id="addpersonalcalendarform">
+    <form id="editpersonalcalendarform" name="editpersonalcalendarform" >
         <div class="modal-body">
 
 
@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <label for="editpersonalevent-title">Event Title</label>
-                    <input type="text" class="form-control" id="editpersonalevent-title" placeholder="Enter Title" value="${handleevent.title}">
+                    <input type="text" class="form-control" id="editpersonalevent-title" name="editpersonalevent_title" placeholder="Enter Title" value="${handleevent.title}" required><span>You have to enter a title</span>
                 </div>
                 <div class="col-sm-6">
                     <label for="editpersonalevent_location">Location</label>
@@ -27,9 +27,9 @@
                 <div class="col-sm-6">
                     <label for="datepickeraddeventpersonal">Event Range</label>
                     <div class="input-daterange input-group" id="datepickeraddeventpersonal">
-                        <input type="datetime" class="input-sm form-control" name="start" id="datepickerediteventpersonalstart" placeholder="YYYY-MM-DD HH:MM:SS" value="${handleevent.start_date}" />
+                        <input type="datetime" class="input-sm form-control" name="start" id="datepickerediteventpersonalstart" name="datepickerediteventpersonalstart" placeholder="YYYY-MM-DD HH:MM:SS" value="${handleevent.start_date}" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required/><span>Invalid datetime input</span>
                         <span class="input-group-addon">to</span>
-                        <input type="datetime" class="input-sm form-control" name="end" id="datepickerediteventpersonalend" placeholder="YYYY-MM-DD HH:MM:SS" value="${handleevent.end_date}"/>
+                        <input type="datetime" class="input-sm form-control" name="end" id="datepickerediteventpersonalend" name="datepickerediteventpersonalend" placeholder="YYYY-MM-DD HH:MM:SS" value="${handleevent.end_date}" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required/><span>Invalid datetime input</span>
                     </div>
                 </div>
 
@@ -53,7 +53,7 @@
                 <div class="col-sm-6">
                     <label for="addpersonalevent_notification">Notifications before</label>
                     <div class="input-group" role="group" id="addpersonalevent_notification">
-                        <input type="number" class="form-control input-sm" id="editpersonalevent_notification_time" placeholder="0" value="${handleevent.notificationTime}">
+                        <input type="number" class="form-control input-sm" id="editpersonalevent_notification_time" placeholder="0" name="editpersonalevent_notification_time" value="${handleevent.notificationTime}">
                         <span class="input-group-btn" style="width:0px;"></span>
                         <select class="form-control input-sm" id="editpersonalevent_notification_period">
                             <option>Minutes</option>
@@ -99,26 +99,27 @@
 
                     <div class="col-sm-6">
                         <label>Starts at:</label>
-                        <input type="datetime" class="form-control" id="editpersonalrepeatstart" placeholder="YYYY-MM-DD HH:MM:SS" value="${handleevent.startRepeatDate}">
+                        <input type="datetime" class="form-control" id="editpersonalrepeatstart" name="editpersonalrepeatstart" placeholder="YYYY-MM-DD HH:MM:SS" value="${handleevent.startRepeatDate}" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required/><span>Invalid datetime input</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <label>Repeat every:</label>
-                        <input type="number" class="form-control input-mir" id="editpersonalrpeatevery" placeholder="0" value="${handleevent.repeat_every}">
+                        <input type="number" class="form-control input-mir" id="editpersonalrpeatevery" placeholder="0" name="editpersonalrpeatevery" value="${handleevent.repeat_every}" min="1" required><span>Invalid number input</span>
                         <!--- prepei na prosthesw days/ months/ weeks analoga me tin proigoumeni epilogi ---->
                     </div>
 
                     <div class="col-sm-6">
 
                         <label>Expiration:</label>
-                        <input type="datetime" class="form-control" id="editpersonalexpiresat" placeholder="YYYY-MM-DD HH:MM:SS" value="${handleevent.endRepeatDate}">
+                        <input type="datetime" class="form-control" id="editpersonalexpiresat" name="editpersonalexpiresat" placeholder="YYYY-MM-DD HH:MM:SS" value="${handleevent.endRepeatDate}" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required/><span>Invalid datetime input</span>
                     </div>
                 </div>
             </div>
         </div>
         <!---  edw kleinei kai kala to repeat---->
         <div class="modal-footer">
+            <div id="suc_todo_mes_valid_Ped" style=" width:100%"></div>
             <div class="btn-toolbar">
                 <div class="btn-group">
                     <button type="button" class="btn btn-default" id="event_view" onclick="viewEventper('${handleevent.idPerCalEvent}')"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"  ></span> View</button>
@@ -126,7 +127,7 @@
                     <button type="button" class="btn btn-default" id="event_delete" onclick="deletePersonalEvent('${handleevent.idPerCalEvent}')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
                 </div>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary"data-dismiss="modal" onclick="UpdatePerCalEvent('${handleevent.idPerCalEvent}')">Update</button>
+                <button type="button" id="editsaveupdatebut" class="btn btn-primary"data-dismiss="modal" onclick="UpdatePerCalEvent('${handleevent.idPerCalEvent}')">Update</button>
             </div>
         </div>
     </form>

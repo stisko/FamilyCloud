@@ -3,16 +3,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="col-sm-8 col-xs-12 " id="maincontent">
     <div class="col-sm-12" id="contentheader">
-        <div class="media">
-            <div class="media-left media-middle">
+        <div class="media col-sm-4">
+            <div class="media-left media-middle ">
                 <a href="#">
                     <img class="media-object" width="45" height="45" src="img/Todo_list.png">
                 </a>
             </div>
-            <div class="media-body">
+            <div class="media-body " >
                 <h4 class="media-heading">To-Do List</h4>
+                 
             </div>
+            
+            
+           
         </div>
+        
+        <div id="suc_todo_mes" class="${noti_message.classs}">${noti_message.message}</div>
+        
     </div>
     <div class="col-sm-12" id="contentcontent">
 
@@ -120,11 +127,9 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Edit Task</h4>
             </div>
-            <form id="editaskform" name="edittodoform">
-                <div class="modal-body" id="editToDo_modal_body">
-
-                </div>
-            </form>
+            <div id="editToDo_modal_body" >
+                
+            </div>
         </div>
     </div>
 </div>
@@ -137,18 +142,19 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Add Task</h4>
             </div>
-            <div class="modal-body">
+            
 
                 <form id="addtaskform" name="formaddToDo" action="controller_servl" method="post">
+                    <div class="modal-body">
 
                     <div class="row">									
                         <div class="col-sm-6">				
                             <label for="titleaddtask">Task Title</label>
-                            <input type="text" class="form-control" id="titleaddtask" placeholder="Enter Title" >										
+                            <input type="text" name="addtodotitle" class="form-control" id="titleaddtask" placeholder="Enter Title" required><span>You have to enter a title</span>
                         </div>									
                         <div class="col-sm-6">				
                             <label for="duedateaddtask">Due Date</label>
-                            <input type="date" class="form-control" id="duedateaddtask" placeholder="MM/DD/YYYY">										
+                            <input type="date" class="form-control" name="addtododuedatetask" id="duedateaddtask" placeholder="yyyy-MM-dd" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid Date Input</span>
                         </div>								
                     </div>
 
@@ -174,7 +180,7 @@
                             </div>
                             <div class="radio" id="checkaddcomplete">
                                 <label>
-                                    <input name="statusradio" type="radio" value="Completed">
+                                    <input name="statusradio" type="radio" value="Completed" >
                                     Completed
                                 </label>
                             </div>
@@ -183,15 +189,20 @@
                     </div>
 
 
-
+                    
                    
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" form="addtaskform" onclick="insertToDoItem()">Save</button>
-                    </div>
-                </form>			
+                    
+               			
             </div>
+            
+            <div class="modal-footer">
+                        
+                        <div id="suc_todo_mes_valid" style=" width:70%"></div>                        
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="addtodobutton" form="addtaskform" onclick="insertToDoItem()">Save</button>
+                    </div>
+             </form>
         </div>
     </div>
 </div>	

@@ -102,7 +102,7 @@ public class ImportAndSaveCheckedEventsEventHandler extends EventHandlerBase{
         
         
         
-        path="controller_servl?event=PERCAL";
+        path="controller_servl?event=PERCAL&mtag=import";
         
         
     }

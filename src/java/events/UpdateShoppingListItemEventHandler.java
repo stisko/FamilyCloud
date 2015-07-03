@@ -86,7 +86,7 @@ public class UpdateShoppingListItemEventHandler extends EventHandlerBase{
         
         
         if(success){
-            path="controller_servl?event=SHOPP";
+            path="controller_servl?event=SHOPP&mtag=update";
         }
         
         

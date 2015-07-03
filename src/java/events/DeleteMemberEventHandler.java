@@ -31,7 +31,7 @@ public class DeleteMemberEventHandler extends EventHandlerBase{
         String username= request.getParameter("username");
         
         if(delete_member(username)==true){
-            path="controller_servl?event=MYFAMILY";
+            path="controller_servl?event=MYFAMILY&mtag=delete";
         }
         
         

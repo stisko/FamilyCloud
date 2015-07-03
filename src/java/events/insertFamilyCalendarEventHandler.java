@@ -88,7 +88,7 @@ public class insertFamilyCalendarEventHandler extends EventHandlerBase {
 
             success = myFamCalEvent.insertFamCalEvent(event);
             if (success) {
-                path = "controller_servl?event=FAMCAL";
+                path = "controller_servl?event=FAMCAL&mtag=insert";
             } else {
 
             }

@@ -101,7 +101,7 @@ public class insertWallPostEventHandler extends EventHandlerBase {
             success = myPostWallDAO.insertPost(post);
 
             if (success) {
-                path = "controller_servl?event=WALLPOST";
+                path = "controller_servl?event=WALLPOST&mtag=insert";
             } else {
 
             }

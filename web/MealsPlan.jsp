@@ -1,6 +1,6 @@
 <div class="col-sm-8 col-xs-12 " id="maincontent">
     <div class="col-sm-12" id="contentheader">
-        <div class="media">
+        <div class="media col-sm-4">
             <div class="media-left media-middle">
                 <a href="#">
                     <img class="media-object" width="45" height="45" src="img/Meals.png">
@@ -10,6 +10,7 @@
                 <h4 class="media-heading">Meals Plan</h4>
             </div>
         </div>
+        <div id="suc_todo_mes" class="${noti_message.classs}">${noti_message.message}</div>
     </div>
     <div class="col-sm-12" id="contentcontent">	
         <div class="btn-group" role="group">
@@ -75,12 +76,12 @@
                 <h4 class="modal-title" id="myModalLabel">Add Meal</h4>
             </div>
             
-            <form id="addmealform">
+            <form id="addmealform" name="addmealform">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="addmealtitle">Meal Title</label>
-                            <input type="text" class="form-control" id="addmealtitle" placeholder="Enter Title">
+                            <input type="text" class="form-control" name="titleaddmeal" id="addmealtitle" placeholder="Enter Title" required><span>You have to enter a title</span>
                         </div>
                         <div class="col-sm-6">
                             <label for="addmeallocation">Location</label>
@@ -90,7 +91,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="addmealdatefrom">Meal Date</label>
-                            <input type="datetime" class="form-control" id="addmealdatefrom" placeholder="YYYY-MM-DD HH:MM:SS">
+                            <input type="datetime" class="form-control" id="addmealdatefrom" name="dateaddmeal" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" placeholder="YYYY-MM-DD HH:MM:SS" required><span>Invalid Datetime input</span>
                         </div>
                         <div class="col-sm-6">
                             <label for="addmealtype">Meal Type</label>
@@ -110,7 +111,7 @@
                         <div class="col-sm-6">
                             <label for="addmealnotification">Notifications before</label>
                             <div class="input-group" role="group" id="addmealnotification">
-                                <input type="number" class="form-control input-sm" id="addmealnotification_time" placeholder="0">
+                                <input type="number" class="form-control input-sm" name="notificationnumberaddmeal" id="addmealnotification_time" placeholder="0" >
                                 <span class="input-group-btn" style="width:0px;"></span>
                                 <select class="form-control input-sm" id="addmealnotification_period">
                                     <option>Minutes</option>
@@ -147,26 +148,27 @@
                             </div>
                             <div class="col-sm-6">
                                 <label>Starts at:</label>
-                                <input type="datetime" class="form-control" id="addmealstartsat" placeholder="YYYY-MM-DD HH:MM:SS">
+                                <input type="datetime" class="form-control" id="addmealstartsat" name="startdateaddmeal" placeholder="YYYY-MM-DD HH:MM:SS" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required><span>Invalid Datetime input</span>
                             </div>
 
                             <div class="col-sm-6">
                                 <label>Repeat every:</label>
-                                <input type="number" class="form-control input-mir" id="addmealrepeatevery" placeholder="0">
+                                <input type="number" class="form-control input-mir" name="repeatnumberaddmeal" id="addmealrepeatevery" placeholder="0" required><span>Invalid number input</span>
                                 <!--- prepei na prosthesw days/ months/ weeks analoga me tin proigoumeni epilogi ---->
                             </div>
 
                             <div class="col-sm-6">
                                 <label>Expires on:</label>
-                                <input type="datetime" class="form-control" id="addmealexpiresat" placeholder="YYYY-MM-DD HH:MM:SS">
+                                <input type="datetime" class="form-control" id="addmealexpiresat" name="enddateaddmeal" placeholder="YYYY-MM-DD HH:MM:SS" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required><span>Invalid Datetime input</span>
                             </div>
                         </div>
                     </div>
                     <!---  edw kleinei kai kala to repeat---->
                 </div>
                 <div class="modal-footer">
+                    <div id="suc_todo_mes_valid_M" style=" width:70%"></div>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="addMeal()">Add</button>
+                    <button type="button" class="btn btn-primary" id="insertmealbutton" data-dismiss="modal" onclick="addMeal()">Add</button>
                 </div>
             </form>
             

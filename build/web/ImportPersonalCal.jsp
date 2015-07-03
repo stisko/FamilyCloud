@@ -10,7 +10,7 @@
             <!--                       ---------------- edw grafoume sto modal ------------->
 
 
-            <div class="well" id="well_events">Pick events by clicking on them</div>
+            <div class="well" id="well_eventsImp">Pick events by clicking on them</div>
 
             <div id='calendar_import'></div>
 

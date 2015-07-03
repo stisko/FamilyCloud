@@ -17,6 +17,7 @@ import model.ShoppingListItem;
 import model.User;
 import modelBO.ShoppingListBO;
 import modelBO.UserBO;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -48,13 +49,40 @@ public class ShoppingListEventHandler extends EventHandlerBase{
         User cur_user = (User) mySession.getAttribute("curr_user");
         User director = myUserDAO.getFamilyDirector(cur_user.getUsername());
     
-    List<ShoppingListBO> famshoplist= new ArrayList<ShoppingListBO>();
+        List<ShoppingListBO> famshoplist= new ArrayList<ShoppingListBO>();
         
         
         ShoppingListDao ishpDao=mySqlFactory.getShoppingListDao();
         
         
         famshoplist=lshl.family_toShoppingListBO(ishpDao.getFamilyShoppingList(director.getUsername()));
+        
+        JSONObject jsme = new JSONObject();
+
+        if (request.getParameter("mtag") != null) {
+
+            String temp = request.getParameter("mtag");
+
+            if (temp.equals("insert")) {
+
+                jsme.put("classs", "alert alert-success alert_messa col-sm-8 ");
+                jsme.put("message", "ShoppinList Item Has Succefully Added!");
+
+            } else if (temp.equals("update")) {
+
+                jsme.put("classs", "alert alert-success alert_messa col-sm-8 ");
+                jsme.put("message", "ShoppinList Item Has Succefully Updated!");
+
+            } else if (temp.equals("delete")) {
+
+                jsme.put("classs", "alert alert-success alert_messa col-sm-8 ");
+                jsme.put("message", "ShoppinList Item Has Succefully Deleted!");
+
+            }
+
+            request.setAttribute("noti_message", jsme);
+
+        }
         
         
         UserBO usBo=new UserBO();

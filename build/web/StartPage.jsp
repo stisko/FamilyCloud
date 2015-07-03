@@ -166,6 +166,15 @@
 
 
             }
+            
+            function checkretype_signup(retype_passw){
+                var retype_chk= (document.getElementById("registerpassword").value==retype_passw);
+                if(retype_chk){
+                    document.getElementById("signup_btn").setAttribute("class","btn btn-primary");
+                }else{
+                    document.getElementById("signup_btn").setAttribute("class","btn btn-primary disabled");
+                }
+            }
 
         </script>
 
@@ -302,7 +311,7 @@
                             <div class="form-group ">
                                 <label for="registername" class="col-sm-2 control-label">First name</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="registername" name="firstname_n" placeholder="First Name" required>
+                                    <input type="text" class="form-control" id="registername" name="firstname_n" placeholder="First Name" required><span>You have to enter first name</span>
                                 </div>
 
 
@@ -311,7 +320,7 @@
                             <div class="form-group">
                                 <label for="registerlname" class="col-sm-2 control-label">Last name</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="registerlname" name="lastname_n" placeholder="Last Name" required>
+                                    <input type="text" class="form-control" id="registerlname" name="lastname_n" placeholder="Last Name" required><span>You have to enter last name</span>
                                 </div>
                             </div>
 
@@ -326,29 +335,28 @@
                             <div class="form-group">
                                 <label for="registerpassword" class="col-sm-2 control-label">Password</label>
                                 <div class="col-sm-8">
-                                    <input type="password" class="form-control" id="registerpassword" name="password_n" placeholder="6 digits at least" required>
+                                    <input type="password" class="form-control" id="registerpassword" name="password_n" placeholder="6 digits at least" required pattern="(?=^.{6,}$)((?=.*[A-Z])|(?=.*[a-z])|(?=.*[0-9])).*$"><span>You have to enter valid password</span>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="registerretypepassword" class="col-sm-2 control-label">Retype Password</label>
                                 <div class="col-sm-8">
-                                    <input type="password" class="form-control" id="registerretypepassword" name="passwordrep_n" placeholder="6 digits at least" required>
+                                    <input type="password" class="form-control" id="registerretypepassword" name="passwordrep_n" onchange="checkretype_signup(this.value)" placeholder="6 digits at least" required pattern="(?=^.{6,}$)((?=.*[A-Z])|(?=.*[a-z])|(?=.*[0-9])).*$"><span>You have to reenter valid password</span>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="registerdate" class="col-sm-2 control-label">Birth date</label>
                                 <div class="col-sm-8">
-                                    <input type="date" class="form-control" id="registerdate" name="birthdate_n" placeholder="YYYY-MM-DD" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d
-                                           " required>
+                                    <input type="date" class="form-control" id="registerdate" name="birthdate_n" placeholder="YYYY-MM-DD" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid Date input</span>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="registeremail" class="col-sm-2 control-label">Email</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="registeremail" name="email_n" placeholder="someone@hotmail.com" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" onchange="getDuplicateEmails(this.value)" required>
+                                    <input type="text" class="form-control" id="registeremail" name="email_n" placeholder="someone@hotmail.com" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" onchange="getDuplicateEmails(this.value)" required><span>You have to enter a valid email address</span>
                                     <div class="" id="apotelesma"></div>
 
                                 </div>

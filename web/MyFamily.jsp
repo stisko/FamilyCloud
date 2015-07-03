@@ -2,7 +2,7 @@
 <div class="col-sm-8 col-xs-12 " id="maincontent">
 
     <div class="col-sm-12" id="contentheader">
-        <div class="media">
+        <div class="media col-sm-4">
             <div class="media-left media-middle">
                 <a href="#">
                     <img class="media-object" width="45" height="45" src="img/my_family.png">
@@ -12,6 +12,7 @@
                 <h4 class="media-heading">My Family</h4>
             </div>
         </div>
+        <div id="suc_todo_mes" class="${noti_message.classs}">${noti_message.message}</div>
     </div>
 
     <div class="col-sm-12" id="contentcontent">
@@ -97,42 +98,34 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="lastnameaddmember">Last Name</label>
-                                <input type="text" class="form-control" id="lastnameaddmember" placeholder="Last Name">
+                                <input type="text" class="form-control" id="lastnameaddmember" placeholder="Last Name" required><span>Invalid input</span>
                             </div>
                             <div class="col-sm-6">
                                 <label for="firstnameaddmember">First Name</label>
-                                <input type="text" class="form-control" id="firstnameaddmember" placeholder="First Name">
+                                <input type="text" class="form-control" id="firstnameaddmember" placeholder="First Name" required><span>Invalid input</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="emailaddmember">Email</label>
-                                <input type="text" class="form-control" id="emailaddmember" placeholder="Email">
+                                <input type="text" class="form-control" id="emailaddmember" placeholder="Email" oninput="getDuplicateEmailsMyFam(this.value)"><div id="famemailret"></div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="birthaddmember">Birth Date</label>
-                                <input type="date" class="form-control" id="birthaddmember" placeholder="MM-DD-YYYY">
+                                <input type="date" class="form-control" id="birthaddmember" placeholder="yyyy-MM-dd" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid Date input</span>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="">Adult
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="">Kid *(Under 18)
-                                </label>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal"  onclick="AddMember()">Add</button>
-                </div>
+                
             </div>
+            
+            <div class="modal-footer">
+                    <div id="suc_todo_mes_valid_Fam" style=" width:70%"></div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="addmembut" class="btn btn-primary" data-dismiss="modal"  onclick="AddMember()">Add</button>
+                </div>
 
         </div>
     </div>
@@ -265,21 +258,21 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label for="lastnameeditdirector">Last Name</label>
-                                    <input type="text" class="form-control" id="lastnameeditdirector" name="lastName" placeholder="Last Name" value="${json.director.lastName}"  required>
+                                    <input type="text" class="form-control" id="lastnameeditdirector" name="lastName" placeholder="Last Name" value="${json.director.lastName}"  required><span>Invalid input</span>
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="firstnameeditdirector">First Name</label>
-                                    <input type="text" class="form-control" id="firstnameeditdirector" name="firstName" placeholder="First Name" value="${json.director.firstName}"  required>
+                                    <input type="text" class="form-control" id="firstnameeditdirector" name="firstName" placeholder="First Name" value="${json.director.firstName}"  required><span>Invalid input</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label for="emaileditdirector">Email</label>
-                                    <input type="text" class="form-control" id="emaileditdirector" name="email" placeholder="Email" value="${json.director.email}"  required>
+                                    <input type="text" class="form-control" id="emaileditdirector" name="email" placeholder="Email" value="${json.director.email}" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><span>Invalid email input</span>
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="birtheditdirector">Birth Date</label>
-                                    <input type="date" class="form-control" id="birtheditdirector" name="birthdate" placeholder="MM-DD-YYYY" value="${json.director.birthdate}"  required>
+                                    <input type="date" class="form-control" id="birtheditdirector" name="birthdate" placeholder="yyyy-mm-dd" value="${json.director.birthdate}" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid date input</span>
                                 </div>
                             </div>
                             <div class="row">
@@ -293,8 +286,10 @@
                 </div>
 
                 <div class="modal-footer">
+                    <div id="suc_todo_mes_valid_FamDr" style=" width:70%"></div>
+                    
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary"   data-dismiss="modal" form="editfamilydirector_form" onclick="initFullFormAjaxUploadDirectorProfile('${json.director.username}')">Save</button>
+                    <button type="button" class="btn btn-primary"  id="edit_dir_button" data-dismiss="modal" form="editfamilydirector_form" onclick="initFullFormAjaxUploadDirectorProfile('${json.director.username}')">Save</button>
                 </div>
 
 

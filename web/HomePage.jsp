@@ -32,6 +32,7 @@
         <script src="js/PersonalCalendar.js"></script>
         <script src="js/Shop.js"></script>
         <script src="js/MyProfile.js"></script>
+        <script src="js/Validation.js"></script>
 
         <script src="js/moment.js"></script>
         <script src="js/fullcalendar.js"></script>
@@ -76,6 +77,53 @@
                     document.getElementById(id).style.display = 'none';
                 } else {
                     document.getElementById(id).style.display = 'block';
+                }
+            }
+
+            function checkPassword(password) {
+
+
+                xmlHttp = GetXmlHttpObject();
+                if (xmlHttp == null)
+                {
+                    alert("Browser does not support HTTP Request")
+                    return
+                }
+                else
+                {
+                    //sending selected country to servlet
+                    var url = "controller_servl?event=AJAX&changePassword=" + password;
+                    //creating callback method.here countrychanged is callback method
+                    xmlHttp.onreadystatechange = password_return
+
+                    xmlHttp.open("GET", url, true)
+                    xmlHttp.send(null)
+                }
+
+            }
+
+            function password_return() {
+                if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete")
+                {
+                    //getting response from server(Servlet)
+
+                    var json = xmlHttp.responseText;
+
+
+
+                    //displaying response in select box by using that id
+                    document.getElementById("checkpasswords").innerHTML = json;
+                    if (document.getElementById("checkpasswords").innerHTML==1) {
+                        
+                        document.getElementById("passspan").style.display = "block";
+                        
+                        document.getElementById("passspan").innerHTML = "This is your old password";
+                    } else {
+                        document.getElementById("passspan").style.display = "block";
+                        document.getElementById("passspan").innerHTML = "Wrong old password";
+                    }
+
+
                 }
             }
 
@@ -135,7 +183,7 @@
                                                     <li>malakies</li>
                                                 </ul>-->
                         <li class="dropdown">
-                            <a href="" onclick="getMessageNotifications()" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span><span class="badge backg" id="badge_counter_msg"></span></a>
+                            <a href="" onclick="getMessageNotifications()" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span><span class="badge backg" id="badge_counter_msg"></span></a>
                             <ul class="dropdown-menu scroll" id="dropdown_messages">
                                 <li><a href="#">Action</a></li>
                                 <li><a href="#">Another action</a></li>
@@ -147,7 +195,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="" onclick="getNotifications()" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="glyphicon glyphicon-bell" aria-hidden="true"></span><span class="badge backg" id="badge_counter"></span></a>
+                            <a href="" onclick="getNotifications()" class="dropdown-toggle" id="notifanime" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="glyphicon glyphicon-bell" aria-hidden="true"></span><span class="badge backg" id="badge_counter"></span></a>
                             <ul class="dropdown-menu scroll" role="menu" id="dropdown_notifications">
 
                             </ul>
@@ -240,7 +288,7 @@
         </div>
         <div class="modal fade" id="myprofilemodal" tabindex="-1" role="dialog" aria-labelledby="editfamily" aria-hidden="true">
             <div class="modal-dialog" id="my_profile_modal_">
-                
+
             </div>
         </div>
     </body>

@@ -3,7 +3,7 @@
 
 <div class="col-sm-8 col-xs-12 " id="maincontent">
     <div class="col-sm-12" id="contentheader">
-        <div class="media">
+        <div class="media col-sm-4">
             <div class="media-left media-middle">
                 <a href="#">
                     <img class="media-object" width="45" height="45" src="img/family_wall.png">
@@ -13,6 +13,8 @@
                 <h4 class="media-heading">Family Wall</h4>
             </div>
         </div>
+        
+        <div id="suc_todo_mes" class="${noti_message.classs}">${noti_message.message}</div>
     </div>
     <div class="col-sm-12" id="contentcontent">
         <div class="col-sm-10 col-sm-offset-1 panelpost">

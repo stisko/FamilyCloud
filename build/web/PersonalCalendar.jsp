@@ -10,7 +10,7 @@
 
 
     <div class="col-sm-12" id="contentheader">
-        <div class="media">
+        <div class="media col-sm-4">
             <div class="media-left media-middle">
                 <a href="#">
                     <img class="media-object" width="45" height="45" src="img/Calendar.png">
@@ -19,10 +19,12 @@
             <div class="media-body">
                 <h4 class="media-heading">Personal Calendar</h4>
             </div>
+
+
         </div>
 
 
-
+        <div id="suc_todo_mes" class="${noti_message.classs}">${noti_message.message}</div>
 
 
     </div>
@@ -123,16 +125,16 @@
                 </button>
                 <h4 class="modal-title" id="myModalLabel">Create Event</h4>
             </div>
-             <form id="addpersonalcalendarform">
-            <div class="modal-body">
-                
+            <form id="addpersonalcalendarform" name="addpersonalcalendarform">
+                <div class="modal-body">
 
-               
+
+
 
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="addpersonalevent-title">Event Title</label>
-                            <input type="text" class="form-control" id="addpersonalevent-title" placeholder="Enter Title">
+                            <input type="text" class="form-control" id="addpersonalevent-title" name="addpersonalevent_title" placeholder="Enter Title" required><span>You have to enter a title</span>
                         </div>
                         <div class="col-sm-6">
                             <label for="addpersonalevent_location">Location</label>
@@ -146,9 +148,9 @@
                         <div class="col-sm-6">
                             <label for="datepickeraddeventpersonal">Event Range</label>
                             <div class="input-daterange input-group" id="datepickeraddeventpersonal">
-                                <input type="datetime" class="input-sm form-control" name="start" id="datepickeraddeventpersonalstart" placeholder="YYYY-MM-DD HH:MM:SS"  />
+                                <input type="datetime" class="input-sm form-control"  id="datepickeraddeventpersonalstart" name="datepickeraddeventpersonalstart" placeholder="YYYY-MM-DD HH:MM:SS" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required /><span>Invalid Datetime input</span>
                                 <span class="input-group-addon">to</span>
-                                <input type="datetime" class="input-sm form-control" name="end" id="datepickeraddeventpersonalend" placeholder="YYYY-MM-DD HH:MM:SS"/>
+                                <input type="datetime" class="input-sm form-control"  id="datepickeraddeventpersonalend" name="datepickeraddeventpersonalend" placeholder="YYYY-MM-DD HH:MM:SS" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required/><span>Invalid Datetime input</span>
                             </div>
                         </div>
 
@@ -172,9 +174,9 @@
                         <div class="col-sm-6">
                             <label for="addpersonalevent_notification">Notifications before</label>
                             <div class="input-group" role="group" id="addpersonalevent_notification">
-                                <input type="number" class="form-control input-sm" id="addpersonalevent_notification_time" placeholder="0">
+                                <input type="number" class="form-control input-sm" id="addpersonalevent_notification_time" name="addpersonalevent_notification_time" placeholder="0">
                                 <span class="input-group-btn" style="width:0px;"></span>
-                                <select class="form-control input-sm" id="addpersonalevent_notification_period">
+                                <select class="form-control input-sm" id="addpersonalevent_notification_period" name="addpersonalevent_notification_period">
                                     <option>Minutes</option>
                                     <option>Hours</option>
                                     <option>Days</option>
@@ -202,60 +204,61 @@
                     <div class="repeat" id="addpersonalrepeat" style="display:none">
                         <div class="row">
                             <div class="col-sm-6">
-                              
-                                    <div class="control-group">
-                                        <label class="control-label">Repeat time</label>
-                                        <div class="controls">
-                                            <select class="form-control" id="addeventpersonal_repeat_time">
-                                                <option>Daily</option>
-                                                <option>Weekly</option>
-                                                <option>Monthly</option>
-                                            </select>
-                                        </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">Repeat time</label>
+                                    <div class="controls">
+                                        <select class="form-control" id="addeventpersonal_repeat_time">
+                                            <option>Daily</option>
+                                            <option>Weekly</option>
+                                            <option>Monthly</option>
+                                        </select>
                                     </div>
-                               
+                                </div>
+
                             </div>
 
                             <div class="col-sm-6">
                                 <label>Starts at:</label>
-                                <input type="datetime" class="form-control" id="addpersonalrepeatstart" placeholder="YYYY-MM-DD HH:MM:SS">
+                                <input type="datetime" class="form-control" id="addpersonalrepeatstart" placeholder="YYYY-MM-DD HH:MM:SS" name="addpersonalrepeatstart" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label>Repeat every:</label>
-                                <input type="number" class="form-control input-mir" id="addpersonalrpeatevery" placeholder="0">
+                                <input type="number" class="form-control input-mir" id="addpersonalrpeatevery" name="addpersonalrpeatevery" placeholder="0" min="1" required><span>Invalid number input</span>
                                 <!--- prepei na prosthesw days/ months/ weeks analoga me tin proigoumeni epilogi ---->
                             </div>
 
                             <div class="col-sm-6">
 
                                 <label>Expiration:</label>
-                                <input type="datetime" class="form-control" id="addpersonalexpiresat" placeholder="YYYY-MM-DD HH:MM:SS">
+                                <input type="datetime" class="form-control" id="addpersonalexpiresat" name="addpersonalexpiresat" placeholder="YYYY-MM-DD HH:MM:SS" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required>
                             </div>
                         </div>
                     </div>
-            </div>
-            <!---  edw kleinei kai kala to repeat---->
+                </div>
+                <!---  edw kleinei kai kala to repeat---->
                 <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="addperEvent()">Add</button>
-        </div>
+                    <div id="suc_todo_mes_valid_P" style=" width:70%"></div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="addpercalbut" class="btn btn-primary" data-dismiss="modal" onclick="addperEvent()">Add</button>
+                </div>
             </form>
 
 
         </div>
-        
+
     </div>
 </div>
 </div>
 
 
 <div class="modal fade bs-example-modal-lg" id="import_cal_modal" tabindex="-1" role="dialog" aria-labelledby="addtasklabel" aria-hidden="true">
-        <div class="modal-dialog" id="imp_cale_per">
-            
-        
-        
-        </div>
+    <div class="modal-dialog" id="imp_cale_per">
+
+
 
     </div>
+
+</div>

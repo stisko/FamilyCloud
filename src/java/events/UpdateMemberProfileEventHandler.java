@@ -34,42 +34,40 @@ import org.json.simple.JSONObject;
  *
  * @author costi_000
  */
-public class UpdateMemberProfileEventHandler extends EventHandlerBase{
+public class UpdateMemberProfileEventHandler extends EventHandlerBase {
+
     private String path;
-    
-    
+
     @Override
     protected String getURL() {
         return path;
     }
-    
+
     @Override
-    public void process(HttpSession mySession, HttpServletRequest request, HttpServletResponse response) throws IOException{
-       
+    public void process(HttpSession mySession, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
         try {
-            
-            UserBO myuser= new UserBO();
-            
-            String firstName =request.getParameter("firstName");
-            String lastName =request.getParameter("lastName");
-            
-            String email =request.getParameter("email");
-            
-            String birthdate =request.getParameter("birthdate");
-            String town =request.getParameter("town");
+
+            UserBO myuser = new UserBO();
+
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+
+            String email = request.getParameter("email");
+
+            String birthdate = request.getParameter("birthdate");
+            String town = request.getParameter("town");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date birthdate_d = null;
-            
+
             try {
                 birthdate_d = sdf.parse(birthdate);
             } catch (ParseException ex) {
                 Logger.getLogger(UpdateProfileEventHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
-            String username= request.getParameter("username");
-            
-            
+
+            String username = request.getParameter("username");
+
             List<String> list = new ArrayList<String>();
             List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
             for (FileItem item : items) {
@@ -78,7 +76,6 @@ public class UpdateMemberProfileEventHandler extends EventHandlerBase{
                     // Process regular form field (input type="text|radio|checkbox|etc", select, etc).
                     String fieldName = item.getFieldName();
                     String fieldValue = item.getString();
-                    
 
                     // ... (do your job here)
                 } else {
@@ -87,54 +84,40 @@ public class UpdateMemberProfileEventHandler extends EventHandlerBase{
                     String fileName = FilenameUtils.getName(item.getName());
                     InputStream fileContent = item.getInputStream();
                     byte[] bytes = IOUtils.toByteArray(fileContent);
+                    
+                        myuser.setPicture(bytes);
+                    
+                        
+                    
 
-                    myuser.setPicture(bytes);
-                    
-                    
-                    
                     // ... (do your job here)
                 }
             }
 
-            
-            
-            
-            
-                    
-            
-            
-            
             myuser.setFirstName(firstName);
             myuser.setLastName(lastName);
             myuser.setEmail(email);
             myuser.setTown(town);
             myuser.setBirthdate(birthdate_d);
-            
-            if(updateUser(myuser, username)== true){
-                
-                path="controller_servl?event=MYFAMILY";
-                
-                
-            }else{
-                
-                
+
+            if (updateUser(myuser, username) == true) {
+
+                path = "controller_servl?event=MYFAMILY&mtag=update";
+
+            } else {
+
             }
-            
-            
-            
+
         } catch (FileUploadException ex) {
             Logger.getLogger(UpdateMemberProfileEventHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-               
+
     }
-    
-    public boolean updateUser(UserBO userbo, String username){
+
+    public boolean updateUser(UserBO userbo, String username) {
         DaoFactory mySqlFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL);
         UserDao userdao = mySqlFactory.getUserDao();
-        
-        
+
         User user = new User();
         user.setEmail(userbo.getEmail());
         user.setFirstName(userbo.getFirstName());

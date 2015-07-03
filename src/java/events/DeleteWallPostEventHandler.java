@@ -36,7 +36,7 @@ public class DeleteWallPostEventHandler extends EventHandlerBase{
         success= myPostDAO.deletePost(itemID);
         
         if(success){
-            path="controller_servl?event=WALLPOST";
+            path="controller_servl?event=WALLPOST&mtag=delete";
 
         }
     }

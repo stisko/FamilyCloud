@@ -111,10 +111,23 @@ public class getMealsPlanEventsEventHandler extends EventHandlerBase {
                     eventJSON.put("title", temp.getTitle());
                     df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
 
-                    eventJSON.put("start", df.format(calculateDate(start_date, temp.getRepeatTime(), temp.getRepeat_every())));
+                   
+                    
+                    
+                    if (temp.getMealType().equals("Lunch")) {
+                        eventJSON.put("color", "#51B749");
+                        df = new SimpleDateFormat("yyyy-MM-dd'T'00:00Z");
+                        eventJSON.put("start", df.format(calculateDate(start_date, temp.getRepeatTime(), temp.getRepeat_every())));
+                    } else if (temp.getMealType().equals("Dinner")) {
+                        df = new SimpleDateFormat("yyyy-MM-dd'T'12:00Z");
+                        eventJSON.put("start", df.format(calculateDate(start_date, temp.getRepeatTime(), temp.getRepeat_every())));
+                        eventJSON.put("color", "#DC2127");
+                    }
+                    
                     eventJSON.put("description", "Description= " + temp.getDescription() + " Location= " + temp.getLocation());
                     jsonar.add(eventJSON);
-
+                    
+                    
                     DateTime datet = new DateTime(tmp_Date);
                     tmp_Date = calculateDate(tmp_Date, temp.getRepeatTime(), temp.getRepeat_every());
                     start_date = calculateDate(start_date, temp.getRepeatTime(), temp.getRepeat_every());

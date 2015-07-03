@@ -174,8 +174,45 @@ function modal_return_per(xhr)
 
 
 function addperEvent() {
-
-    xhr = GetXmlHttpObject();
+    
+    
+   
+    
+    
+    var title = document.forms.addpersonalcalendarform.addpersonalevent_title.value;
+    
+     alert(title);
+    var dateadd = document.forms.addpersonalcalendarform.datepickeraddeventpersonalstart.value;
+    alert(dateadd);
+    var dateaddend=document.forms.addpersonalcalendarform.datepickeraddeventpersonalend.value;
+    alert(dateaddend);
+    
+    
+    var notif_number = document.forms.addpersonalcalendarform.addpersonalevent_notification_time.value;
+    alert(notif_number);
+    var start_date = document.forms.addpersonalcalendarform.addpersonalrepeatstart.value;
+    alert(start_date);
+    var end_date = document.forms.addpersonalcalendarform.addpersonalexpiresat.value;
+    alert(end_date);
+    var rpt_number = document.forms.addpersonalcalendarform.addpersonalrpeatevery.value;
+    alert(rpt_number);
+    var checkbox_repeat = document.getElementById("addpersonalcheckbox_repeat").checked;
+    
+    
+    var success = false;
+    if (checkbox_repeat) {
+        success = (notnull_validation(title) && datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && datetime_regex_validation(start_date) && positive_number_validation(notif_number) && datetime_regex_validation(end_date) && positive_number_validation(rpt_number));
+    } else {
+        success = (notnull_validation(title) && datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && positive_number_validation(notif_number));
+    }
+    
+    if (success){
+        
+        
+        document.getElementById("addpercalbut").setAttribute("data-dismiss","modal");
+        
+        
+        xhr = GetXmlHttpObject();
     if (xhr == null)
     {
         alert("Browser does not support HTTP Request")
@@ -183,7 +220,7 @@ function addperEvent() {
     }
     else
     {
-        var checkbox_repeat = document.getElementById("addpersonalcheckbox_repeat").checked;
+        
 
 
 
@@ -211,6 +248,23 @@ function addperEvent() {
         xhr.send(null)
     }
 
+    }else{
+        
+        document.getElementById("addpercalbut").removeAttribute("data-dismiss");
+        
+        document.getElementById("suc_todo_mes_valid_P").style.display="block";
+        document.getElementById("suc_todo_mes_valid_P").setAttribute("class","alert alert-danger pull-left alert_messa");
+
+        alert(document.getElementById("suc_todo_mes_valid_P").innerHTML);
+        document.getElementById("suc_todo_mes_valid_P").innerHTML="Fill The Red Required Inputs";
+        
+        
+        alert("poulos");
+        
+        
+    }
+
+    
 
 
 
@@ -292,9 +346,40 @@ function deletedeletePersonalEvent(id) {
 
 
 function UpdatePerCalEvent(id) {
-
-
-    xhr = GetXmlHttpObject();
+    
+    var title = document.forms.editpersonalcalendarform.editpersonalevent_title.value;
+    
+     alert(title);
+    var dateadd = document.forms.editpersonalcalendarform.datepickerediteventpersonalstart.value;
+    alert(dateadd);
+    var dateaddend=document.forms.editpersonalcalendarform.datepickerediteventpersonalend.value;
+    alert(dateaddend);
+    
+    
+    var notif_number = document.forms.editpersonalcalendarform.editpersonalevent_notification_time.value;
+    alert(notif_number);
+    var start_date = document.forms.editpersonalcalendarform.editpersonalrepeatstart.value;
+    alert(start_date);
+    var end_date = document.forms.editpersonalcalendarform.editpersonalexpiresat.value;
+    alert(end_date);
+    var rpt_number = document.forms.editpersonalcalendarform.editpersonalrpeatevery.value;
+    alert(rpt_number);
+    var checkbox_repeat = document.getElementById("editpersonalcheckbox_repeat").checked;
+    
+    
+    var success = false;
+    if (checkbox_repeat) {
+        success = (notnull_validation(title) && datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && datetime_regex_validation(start_date) && positive_number_validation(notif_number) && datetime_regex_validation(end_date) && positive_number_validation(rpt_number));
+    } else {
+        success = (notnull_validation(title) && datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && positive_number_validation(notif_number));
+    }
+    
+    if(success){
+        
+        
+        document.getElementById("editsaveupdatebut").setAttribute("data-dismiss","modal");
+        
+        xhr = GetXmlHttpObject();
     if (xhr == null)
     {
         alert("Browser does not support HTTP Request")
@@ -302,7 +387,7 @@ function UpdatePerCalEvent(id) {
     }
     else
     {
-        var checkbox_repeat = document.getElementById("editpersonalcheckbox_repeat").checked;
+        
 
 
 
@@ -330,6 +415,25 @@ function UpdatePerCalEvent(id) {
         xhr.send(null)
     }
 
+    }else{
+        
+        
+        document.getElementById("editsaveupdatebut").removeAttribute("data-dismiss");
+        
+       
+        
+        document.getElementById("suc_todo_mes_valid_Ped").style.display="block";
+        document.getElementById("suc_todo_mes_valid_Ped").setAttribute("class","alert alert-danger pull-left alert_messa");
+
+        alert(document.getElementById("suc_todo_mes_valid_Ped").innerHTML);
+        document.getElementById("suc_todo_mes_valid_Ped").innerHTML="Fill The Red Required Inputs";
+        alert("poulos");
+        
+    }
+    
+
+
+    
 
 
 
@@ -426,8 +530,8 @@ function impevents(src) {
 
 function choosedevent(id) {
 
-
-
+ 
+ document.getElementById("well_eventsImp").innerHTML="Pick Events From Checkbox To Import";
 
     alert("MPHKA");
 
@@ -468,11 +572,13 @@ function wellevents(xhr) {
 //                alert(labels[i].innerHTML);
 //        }
 
+
+
         var text = xhr.responseText;
 
         var newElement = document.createElement('div');
         newElement.innerHTML = text;
-        document.getElementById("well_events").appendChild(newElement);
+        document.getElementById("well_eventsImp").appendChild(newElement);
 
         // old_html = document.getElementById("imp_cale_per").innerHTML;
         // document.getElementById("imp_cale_per").innerHTML = old_html+text;
@@ -566,13 +672,9 @@ function EnableImportBut() {
             if (inputs[i].checked) {
 
                     oo=true;
-
-
             }
 
         }
-
-
 
     }
     
