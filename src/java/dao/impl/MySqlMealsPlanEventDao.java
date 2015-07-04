@@ -41,12 +41,9 @@ public class MySqlMealsPlanEventDao implements MealsPlanEventDao {
             pst.setString(2, event.getDirector_username());
             pst.setString(3, event.getTitle());
 
-            java.util.Date dt = new java.util.Date();
+            
 
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            String currentTime = sdf.format(event.getStart_date());
-            pst.setString(4, currentTime);
+            pst.setDate(4, new java.sql.Date(event.getStart_date().getTime()));
             pst.setString(5, event.getMealType());
             pst.setString(6, event.getLocation());
             pst.setString(7, event.getDescription());
@@ -60,10 +57,8 @@ public class MySqlMealsPlanEventDao implements MealsPlanEventDao {
             } else {
                 pst.setInt(8, event.getRepeat_every());
                 pst.setString(9, event.getRepeatTime());
-                currentTime = sdf.format(event.getStartRepeatDate());
-                pst.setString(10, currentTime);
-                currentTime = sdf.format(event.getEndRepeatDate());
-                pst.setString(11, currentTime);
+                pst.setDate(10, new java.sql.Date(event.getStartRepeatDate().getTime()));
+                pst.setDate(11, new java.sql.Date(event.getEndRepeatDate().getTime()));
             }
             pst.setInt(12, event.getNotificationTime());
             pst.setString(13, event.getNotificationDate());
@@ -99,10 +94,7 @@ public class MySqlMealsPlanEventDao implements MealsPlanEventDao {
 
             java.util.Date dt = new java.util.Date();
 
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            String currentTime = sdf.format(event.getStart_date());
-            pst.setString(4, currentTime);
+            pst.setDate(4, new java.sql.Date(event.getStart_date().getTime()));
             pst.setString(5, event.getMealType());
             pst.setString(6, event.getLocation());
             pst.setString(7, event.getDescription());
@@ -116,10 +108,8 @@ public class MySqlMealsPlanEventDao implements MealsPlanEventDao {
             } else {
                 pst.setInt(8, event.getRepeat_every());
                 pst.setString(9, event.getRepeatTime());
-                currentTime = sdf.format(event.getStartRepeatDate());
-                pst.setString(10, currentTime);
-                currentTime = sdf.format(event.getEndRepeatDate());
-                pst.setString(11, currentTime);
+                pst.setDate(10, new java.sql.Date(event.getStartRepeatDate().getTime()));
+                pst.setDate(11, new java.sql.Date(event.getEndRepeatDate().getTime()));
             }
             pst.setInt(12, event.getNotificationTime());
             pst.setString(13, event.getNotificationDate());
@@ -179,8 +169,7 @@ public class MySqlMealsPlanEventDao implements MealsPlanEventDao {
                 event.setCreated_by(rs.getString("created_by"));
                 event.setDirector_username(rs.getString("director_username"));
                 event.setTitle(rs.getString("title"));
-                Timestamp timestamp = rs.getTimestamp("start_date");
-                event.setStart_date(timestamp);
+                event.setStart_date(new java.sql.Date(rs.getDate("start_date").getTime()));
                 event.setMealType(rs.getString("meal_type"));
                 event.setLocation(rs.getString("location"));
                 event.setDescription(rs.getString("description"));
@@ -219,15 +208,16 @@ public class MySqlMealsPlanEventDao implements MealsPlanEventDao {
                 event.setCreated_by(rs.getString("created_by"));
                 event.setDirector_username(rs.getString("director_username"));
                 event.setTitle(rs.getString("title"));
-                Timestamp timestamp = rs.getTimestamp("start_date");
-                event.setStart_date(timestamp);
+                event.setStart_date(new java.sql.Date(rs.getDate("start_date").getTime()));
                 event.setMealType(rs.getString("meal_type"));
                 event.setLocation(rs.getString("location"));
                 event.setDescription(rs.getString("description"));
                 event.setRepeat_every(rs.getInt("repeat_frequency"));
                 event.setRepeatTime(rs.getString("repeat_time"));
-                event.setStartRepeatDate(rs.getTimestamp("starts_at"));
-                event.setEndRepeatDate(rs.getTimestamp("expiration"));
+                if (rs.getDate("starts_at") != null) {
+                    event.setStartRepeatDate(new java.sql.Date(rs.getDate("starts_at").getTime()));
+                    event.setEndRepeatDate(new java.sql.Date(rs.getDate("expiration").getTime()));
+                }
                 event.setNotificationTime(rs.getInt("notification_time"));
                 event.setNotificationDate(rs.getString("notification_date"));
             }
@@ -260,8 +250,7 @@ public class MySqlMealsPlanEventDao implements MealsPlanEventDao {
                 event.setCreated_by(rs.getString("created_by"));
                 event.setDirector_username(rs.getString("director_username"));
                 event.setTitle(rs.getString("title"));
-                Timestamp timestamp = rs.getTimestamp("start_date");
-                event.setStart_date((Date) timestamp);
+                event.setStart_date(new java.sql.Date(rs.getDate("start_date").getTime()));
                 event.setMealType(rs.getString("meal_type"));
                 event.setLocation(rs.getString("location"));
                 event.setDescription(rs.getString("description"));

@@ -133,7 +133,7 @@
                             <label for="addfamilyevent_visibility">Visibility</label>
                             <div class="radio" id="addfamilyevent_visibility">
                                 <label>
-                                    <input type="radio" name="optradio" value="Adults">Adults
+                                    <input type="radio" name="optradio" value="Adults" required>Adults
                                 </label>
                             </div>
                             <div class="radio">

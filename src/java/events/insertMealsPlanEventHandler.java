@@ -39,7 +39,7 @@ public class insertMealsPlanEventHandler extends EventHandlerBase{
             MealsPlanEventDao myMealsPlanEvent = mySqlFactory.getMealsPlanEventDao();
             UserDao myUserDAO = mySqlFactory.getUserDao();
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date date = null;
 
             MealsPlanEventBO eventBO = new MealsPlanEventBO();

@@ -7,8 +7,43 @@
     </div>
     <div id="modalBody" class="modal-body">
 
-        ${event.description}
-        ${event.start_date}
+        <div class=" row">
+            <div class="row">
+                <label class="col-sm-4 col-sm-offset-1" for="lnam">Event Title: </label>
+                <p class="col-sm-7">${event.title} </p>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-sm-offset-1" for="fnam">Meal Type: </label>
+                <p class="col-sm-7">${event.mealType}</p>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-sm-offset-1" for="fnam">Start Date: </label>
+                <p class="col-sm-7">${event.start_date}</p>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-sm-offset-1" for="birth">Location: </label>
+                <p class="col-sm-7">${event.location}</p>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-sm-offset-1" for="birth">Description: </label>
+                <p class="col-sm-7">${event.description}</p>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-sm-offset-1" for="birth">Notifications Before:</label>
+                <p class="col-sm-7">${event.notificationTime} ${event.notificationDate}</p>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-sm-offset-1" for="birth">Repeat Every: </label>
+                <p class="col-sm-7">${event.repeatTime} ${event.repeat_every}</p>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-sm-offset-1" for="birth">Repeat Until: </label>
+                <p class="col-sm-7">${event.endRepeatDate}</p>
+            </div>
+        </div>
+        
+        
+       
     </div>
     <div class="modal-footer">
         <div class="btn-toolbar">

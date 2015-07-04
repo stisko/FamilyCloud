@@ -35,7 +35,7 @@
                     <label for="editfamilyevent_visibility">Visibility</label>
                     <div class="radio" id="editfamilyevent_visibility">
                         <label>
-                            <input type="radio" name="optradio" value="Adults" ${visibility.adults}>Adults
+                            <input type="radio" name="optradio" value="Adults" ${visibility.adults} required>Adults
                         </label>
                     </div>
                     <div class="radio">
@@ -83,13 +83,13 @@
 
                                 <c:if test="${flag}">
 
-                                    <option selected>${all_U.username}</option>
+                                    <option>${all_U.lastName} ${all_U.firstName}</option>
                                 </c:if>
 
 
                                 <c:if test="${!flag}">
 
-                                    <option>${all_U.username}</option>
+                                    <option>${all_U.lastName} ${all_U.firstName}</option>
                                 </c:if>
 
                             </c:forEach>
@@ -101,14 +101,14 @@
             </div>
 
             <div class="row">
+                
                 <div class="col-sm-6">
                     <label for="editfamilyevent_categories">Category</label>
-                    <select id="editfamilyevent_categories" name="multiselect[]" multiple="multiple">
-                        <option value="1">Category 1</option>
-                        <option value="2">Category 2</option>
-                        <option value="3">Category 3</option>
-                        <option value="4">Category 4</option>
-                        <option value="5">Category 5</option>
+                    <select class="form-control" id="editfamilyevent_categories">
+                        <option class="red" value="red">Red</option>
+                        <option class="green" value="green">Green</option>
+                        <option class="blue" value="blue">Blue</option>
+                        <option class="purple" value="purple">Purple</option>
                     </select>
                 </div>
                 <div class="col-sm-6">

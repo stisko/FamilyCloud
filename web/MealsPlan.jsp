@@ -38,7 +38,7 @@
         </div>
         <a class="btn btn-primary" id="mealsprint" href="javascript:window.print()" role="button"><span class="glyphicon glyphicon-print" aria-hidden="true"></span>Print Week Meal</a>
         <div class="col-sm-12">
-            <div id='mealscalendar'></div>
+            <div class="meals"id='mealscalendar'></div>
         </div>
     </div>
 </div>
@@ -91,14 +91,15 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="addmealdatefrom">Meal Date</label>
-                            <input type="datetime" class="form-control" id="addmealdatefrom" name="dateaddmeal" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" placeholder="YYYY-MM-DD HH:MM:SS" required><span>Invalid Datetime input</span>
+                            <input type="date" class="form-control" id="addmealdatefrom" name="dateaddmeal" placeholder="yyyy-MM-dd" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid Date Input</span>
                         </div>
                         <div class="col-sm-6">
                             <label for="addmealtype">Meal Type</label>
                             <div class="radio" id="addmealtype">
                                 <label>
-                                    <input type="radio" value="Lunch" name="optradio">Lunch
+                                    <input type="radio" value="Lunch" name="optradio" required>Lunch
                                 </label>
+                                
                             </div>
                             <div class="radio">
                                 <label>
@@ -111,7 +112,7 @@
                         <div class="col-sm-6">
                             <label for="addmealnotification">Notifications before</label>
                             <div class="input-group" role="group" id="addmealnotification">
-                                <input type="number" class="form-control input-sm" name="notificationnumberaddmeal" id="addmealnotification_time" placeholder="0" >
+                                <input type="number" class="form-control input-sm" name="notificationnumberaddmeal" id="addmealnotification_time" placeholder="Enter a number" required min="1"><span>Invalid Number input</span>
                                 <span class="input-group-btn" style="width:0px;"></span>
                                 <select class="form-control input-sm" id="addmealnotification_period">
                                     <option>Minutes</option>
@@ -148,7 +149,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label>Starts at:</label>
-                                <input type="datetime" class="form-control" id="addmealstartsat" name="startdateaddmeal" placeholder="YYYY-MM-DD HH:MM:SS" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required><span>Invalid Datetime input</span>
+                                <input type="date" class="form-control" id="addmealstartsat" name="startdateaddmeal" placeholder="yyyy-MM-dd" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid Date Input</span>
                             </div>
 
                             <div class="col-sm-6">
@@ -159,7 +160,7 @@
 
                             <div class="col-sm-6">
                                 <label>Expires on:</label>
-                                <input type="datetime" class="form-control" id="addmealexpiresat" name="enddateaddmeal" placeholder="YYYY-MM-DD HH:MM:SS" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required><span>Invalid Datetime input</span>
+                                <input type="date" class="form-control" id="addmealexpiresat" name="enddateaddmeal" placeholder="yyyy-MM-dd" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid Date Input</span>
                             </div>
                         </div>
                     </div>

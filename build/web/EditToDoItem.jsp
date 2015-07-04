@@ -18,22 +18,6 @@
 <div class="row">
 
     <div class="col-sm-6">				
-        <label for="checkaddpending">Status</label>
-        <div class="radio" id="checkaddpending">
-            <label>
-                <input name="statusradio" type="radio" value="Pending" ${json.pending}>
-                Pending
-            </label>
-        </div>
-        <div class="radio" id="checkaddcomplete">
-            <label>
-                <input name="statusradio" type="radio" value="Completed" ${json.completed}>
-                Completed
-            </label>
-        </div>
-    </div>
-
-    <div class="col-sm-4">				
 
         <label>Assigned To</label>		
         <select class="form-control" id="assignedTo_edittodo" onfocus="antegeia()" multiple>
@@ -66,6 +50,24 @@
         </select>
 
     </div>
+    
+    <div class="col-sm-6">				
+        <label for="checkaddpending">Status</label>
+        <div class="radio" id="checkaddpending">
+            <label>
+                <input name="statusradio" type="radio" value="Pending" ${json.pending} required>
+                Pending
+            </label>
+        </div>
+        <div class="radio" id="checkaddcomplete">
+            <label>
+                <input name="statusradio" type="radio" value="Completed" ${json.completed}>
+                Completed
+            </label>
+        </div>
+    </div>
+
+    
 </div>
 </div>
 

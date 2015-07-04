@@ -79,7 +79,7 @@
 
                 <div class="radio">
                     <label>
-                        <input name="statusradio2" type="radio" value="Pending" ${json.pending}>
+                        <input name="statusradio2" type="radio" value="Pending" ${json.pending} required>
                         Pending
                     </label>
                 </div>

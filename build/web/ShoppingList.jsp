@@ -221,7 +221,7 @@
                             <label for="checkaddpending">Status</label>
                             <div class="radio" id="checkaddpending">
                                 <label>
-                                    <input name="statusradio" type="radio" value="Pending">
+                                    <input name="statusradio" type="radio" value="Pending" required>
                                     Pending
                                 </label>
                             </div>

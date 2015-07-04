@@ -37,7 +37,6 @@ public class ImportPersonalCalendarCheckedEventHandler extends EventHandlerBase{
         
         famcalev=mfam.getFamCalEvent(evId);
         
-        
         request.setAttribute("chec_ev", famcalev);
          
         path="ImportPersonalChecked.jsp";

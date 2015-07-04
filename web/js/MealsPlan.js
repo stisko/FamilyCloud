@@ -30,9 +30,9 @@ function UpdateMealsPlanEvent(id) {
 
     var success = false;
     if (checkbox_repeat) {
-        success = (notnull_validation(title) && datetime_regex_validation(dateadd) && datetime_regex_validation(start_date) && positive_number_validation(notif_number) && datetime_regex_validation(end_date) && positive_number_validation(rpt_number));
+        success = (notnull_validation(title) && date_regex_validation(dateadd) && date_regex_validation(start_date) && positive_number_validation(notif_number) && date_regex_validation(end_date) && positive_number_validation(rpt_number));
     } else {
-        success = (notnull_validation(title) && datetime_regex_validation(dateadd) && positive_number_validation(notif_number));
+        success = (notnull_validation(title) && date_regex_validation(dateadd) && positive_number_validation(notif_number));
     }
 
     if (success) {
@@ -291,9 +291,9 @@ function addMeal() {
 
     var success = false;
     if (checkbox_repeat) {
-        success = (notnull_validation(title) && datetime_regex_validation(dateadd) && datetime_regex_validation(start_date) && positive_number_validation(notif_number) && datetime_regex_validation(end_date) && positive_number_validation(rpt_number));
+        success = (notnull_validation(title) && date_regex_validation(dateadd) && date_regex_validation(start_date) && positive_number_validation(notif_number) && date_regex_validation(end_date) && positive_number_validation(rpt_number));
     } else {
-        success = (notnull_validation(title) && datetime_regex_validation(dateadd) && positive_number_validation(notif_number));
+        success = (notnull_validation(title) && date_regex_validation(dateadd) && positive_number_validation(notif_number));
     }
 
     if (success) {

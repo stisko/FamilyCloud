@@ -90,7 +90,7 @@ public class getPersonalCalendarEventsEventHandler extends EventHandlerBase {
             temp = events.get(i);
             eventJSON.put("id", temp.getidPerCalEvent());
             eventJSON.put("title", temp.getTitle());
-            //eventJSON.put("color", "red");
+            eventJSON.put("color", temp.getCategory());
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
             eventJSON.put("start", df.format(temp.getStart_date()));//"2015-06-19");//
             eventJSON.put("end", df.format(temp.getEnd_date()));
@@ -106,6 +106,7 @@ public class getPersonalCalendarEventsEventHandler extends EventHandlerBase {
                     eventJSON = new JSONObject();
                     eventJSON.put("id", temp.getidPerCalEvent());
                     eventJSON.put("title", temp.getTitle());
+                    eventJSON.put("color", temp.getCategory());
                     df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
 
                     eventJSON.put("start", df.format(calculateDate(start_date, temp.getRepeatTime(), temp.getRepeat_every())));

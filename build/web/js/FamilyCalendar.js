@@ -364,7 +364,7 @@ function UpdateFamCalEvent(id) {
 
         
 
-
+alert(document.getElementById("editfamilyevent_categories").value);
 
         //sending selected country to servlet
         var url = "controller_servl?event=UPDATEFAMCALEVENT&id=" + id + "&title=" + document.getElementById("editfamilyevent_title").value +
@@ -522,7 +522,7 @@ function fullFamCal(src) {
             center: 'title',
             left: '',
             right: '',
-            slotDuration: '01:15:00'
+            
         },
         events: src
 

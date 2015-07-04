@@ -926,11 +926,11 @@ hr.style-eight:after {
     background: #FDE3A7;
 }
 
-.fc-view{
+.meals .fc-view{
     margin-bottom: 20px;
 }
 
-.fc-agendaWeek-view .fc-widget-content tr{
+.meals .fc-agendaWeek-view .fc-widget-content tr{
     height: 100px; 
 }
 
@@ -1014,45 +1014,70 @@ option.purple:after { background: #bce8f1; }
     
     
 
-    animation: fadeinal 2s;
-    -moz-animation: fadeinal 2s; /* Firefox */
-    -webkit-animation: fadeinal 2s; /* Safari and Chrome */
-    -o-animation: fadeinal 2s; /* Opera */
-
+    animation: fadeinal 5s;
+    -moz-animation: fadeinal 7s; /* Firefox */
+    -webkit-animation: fadeinal 5s; /* Safari and Chrome */
+    -o-animation: fadeinal 5s; /* Opera */
+     
+/*    -moz-animation: ;*/
+    opacity: 0;
+    
+    
+    
+   
+    
+    
 
 
 }
 
 @keyframes fadeinal {
-    from {
+    0% {
         opacity:0;
     }
-    to {
+    10% {
         opacity:1;
+    }90%{
+        opacity:1;
+    }100%{
+        opacity:0;
     }
 }
 @-moz-keyframes fadeinal { /* Firefox */
-    from {
+    0% {
         opacity:0;
     }
-    to {
+    10% {
         opacity:1;
+    }90%{
+        opacity:1;
+    }100%{
+        opacity:0;
     }
 }
 @-webkit-keyframes fadeinal { /* Safari and Chrome */
-    from {
+    0% {
         opacity:0;
     }
-    to {
+    10% {
         opacity:1;
+    }90%{
+        opacity:1;
+    }100%{
+        opacity:0;
     }
+    
 }
 @-o-keyframes fadeinal { /* Opera */
-    from {
+    0% {
         opacity:0;
     }
-    to {
-        opacity: 1;
+    10% {
+        opacity:1;
+    }90%{
+        opacity:1;
+    }100%{
+        opacity:0;
     }
 }
 
@@ -1081,4 +1106,9 @@ option.purple:after { background: #bce8f1; }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
+
+/*.fc-event {
+  min-height: 25px;
+  
+}*/
 

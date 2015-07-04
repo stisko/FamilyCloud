@@ -33,19 +33,17 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6">
-                    <label for="addpersonalevent_categories">Category</label>
 
-                    <div>
-                        <select id="editpersonalevent_categories" class="form-control input-sm" name="multise" >
-                            <option value="1">Category 1</option>
-                            <option value="2">Category 2</option>
-                            <option value="3">Category 3</option>
-                            <option value="4">Category 4</option>
-                            <option value="5">Category 5</option>
-                        </select>
-                    </div>
+                <div class="col-sm-6">
+                    <label for="editpersonalevent_categories">Category</label>
+                    <select class="form-control" id="editpersonalevent_categories">
+                        <option class="red" value="red">Red</option>
+                        <option class="green" value="green">Green</option>
+                        <option class="blue" value="blue">Blue</option>
+                        <option class="purple" value="purple">Purple</option>
+                    </select>
                 </div>
+
 
             </div>
 
@@ -53,7 +51,7 @@
                 <div class="col-sm-6">
                     <label for="addpersonalevent_notification">Notifications before</label>
                     <div class="input-group" role="group" id="addpersonalevent_notification">
-                        <input type="number" class="form-control input-sm" id="editpersonalevent_notification_time" placeholder="0" name="editpersonalevent_notification_time" value="${handleevent.notificationTime}">
+                        <input type="number" class="form-control input-sm" id="editpersonalevent_notification_time" placeholder="Enter a number" name="editpersonalevent_notification_time" value="${handleevent.notificationTime}"required min="1"><span>Invalid Number input</span>
                         <span class="input-group-btn" style="width:0px;"></span>
                         <select class="form-control input-sm" id="editpersonalevent_notification_period">
                             <option>Minutes</option>

@@ -156,16 +156,12 @@
 
                         <div class="col-sm-6">
                             <label for="addpersonalevent_categories">Category</label>
-
-                            <div>
-                                <select id="addpersonalevent_categories" class="form-control input-sm" name="multise" >
-                                    <option value="1">Category 1</option>
-                                    <option value="2">Category 2</option>
-                                    <option value="3">Category 3</option>
-                                    <option value="4">Category 4</option>
-                                    <option value="5">Category 5</option>
-                                </select>
-                            </div>
+                            <select class="form-control" id="addpersonalevent_categories">
+                                <option class="red" value="red">Red</option>
+                                <option class="green" value="green">Green</option>
+                                <option class="blue" value="blue">Blue</option>
+                                <option class="purple" value="purple">Purple</option>
+                            </select>
                         </div>
 
                     </div>
@@ -174,7 +170,7 @@
                         <div class="col-sm-6">
                             <label for="addpersonalevent_notification">Notifications before</label>
                             <div class="input-group" role="group" id="addpersonalevent_notification">
-                                <input type="number" class="form-control input-sm" id="addpersonalevent_notification_time" name="addpersonalevent_notification_time" placeholder="0">
+                                <input type="number" class="form-control input-sm" id="addpersonalevent_notification_time" name="addpersonalevent_notification_time" placeholder="Enter a number" min="1" required><span>Invalid Input number</span>
                                 <span class="input-group-btn" style="width:0px;"></span>
                                 <select class="form-control input-sm" id="addpersonalevent_notification_period" name="addpersonalevent_notification_period">
                                     <option>Minutes</option>
@@ -254,8 +250,8 @@
 </div>
 
 
-<div class="modal fade bs-example-modal-lg" id="import_cal_modal" tabindex="-1" role="dialog" aria-labelledby="addtasklabel" aria-hidden="true">
-    <div class="modal-dialog" id="imp_cale_per">
+<div class="modal fade " id="import_cal_modal" tabindex="-1" role="dialog" aria-labelledby="addtasklabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" id="imp_cale_per">
 
 
 

@@ -4,7 +4,7 @@
     <c:forEach items="${members}" var="members">
 
         <div class="collapse chat_box" id="chat${members.username}" style="display: none" >
-            <div class="chat_head" data-toggle="collapse"  data-target="#chat_wrap${members.username}">${members.username}
+            <div class="chat_head" data-toggle="collapse"  data-target="#chat_wrap${members.username}">${members.lastName} ${members.firstName}
                 <div class="chat_close" onclick="show_chatbox('chat${members.username}')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </div>
             </div>

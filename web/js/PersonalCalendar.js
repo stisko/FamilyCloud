@@ -174,20 +174,20 @@ function modal_return_per(xhr)
 
 
 function addperEvent() {
-    
-    
-   
-    
-    
+
+
+
+
+
     var title = document.forms.addpersonalcalendarform.addpersonalevent_title.value;
-    
-     alert(title);
+
+    alert(title);
     var dateadd = document.forms.addpersonalcalendarform.datepickeraddeventpersonalstart.value;
     alert(dateadd);
-    var dateaddend=document.forms.addpersonalcalendarform.datepickeraddeventpersonalend.value;
+    var dateaddend = document.forms.addpersonalcalendarform.datepickeraddeventpersonalend.value;
     alert(dateaddend);
-    
-    
+
+
     var notif_number = document.forms.addpersonalcalendarform.addpersonalevent_notification_time.value;
     alert(notif_number);
     var start_date = document.forms.addpersonalcalendarform.addpersonalrepeatstart.value;
@@ -197,74 +197,74 @@ function addperEvent() {
     var rpt_number = document.forms.addpersonalcalendarform.addpersonalrpeatevery.value;
     alert(rpt_number);
     var checkbox_repeat = document.getElementById("addpersonalcheckbox_repeat").checked;
-    
-    
+
+
     var success = false;
     if (checkbox_repeat) {
         success = (notnull_validation(title) && datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && datetime_regex_validation(start_date) && positive_number_validation(notif_number) && datetime_regex_validation(end_date) && positive_number_validation(rpt_number));
     } else {
         success = (notnull_validation(title) && datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && positive_number_validation(notif_number));
     }
-    
-    if (success){
-        
-        
-        document.getElementById("addpercalbut").setAttribute("data-dismiss","modal");
-        
-        
+
+    if (success) {
+
+
+        document.getElementById("addpercalbut").setAttribute("data-dismiss", "modal");
+
+
         xhr = GetXmlHttpObject();
-    if (xhr == null)
-    {
-        alert("Browser does not support HTTP Request")
-        return
-    }
-    else
-    {
-        
+        if (xhr == null)
+        {
+            alert("Browser does not support HTTP Request")
+            return
+        }
+        else
+        {
 
 
 
-        //sending selected country to servlet
-        var url = "controller_servl?event=INSERTPERCALEVENT&title=" + document.getElementById("addpersonalevent-title").value +
-                "&start=" + document.getElementById("datepickeraddeventpersonalstart").value +
-                "&end=" + document.getElementById("datepickeraddeventpersonalend").value +
-                "&category=" + document.getElementById("addpersonalevent_categories").value +
-                "&location=" + document.getElementById("addpersonalevent_location").value +
-                "&description=" + document.getElementById("addpersonalevent_desc").value +
-                "&repeat-time=" + document.getElementById("addeventpersonal_repeat_time").value +
-                "&repeat_every=" + document.getElementById("addpersonalrpeatevery").value +
-                "&starts_at=" + document.getElementById("addpersonalrepeatstart").value +
-                "&expiration_date=" + document.getElementById("addpersonalexpiresat").value +
-                "&notification_time=" + document.getElementById("addpersonalevent_notification_time").value +
-                "&notification_date=" + document.getElementById("addpersonalevent_notification_period").value +
-                "&status=" + checkbox_repeat;
 
-        //creating callback method.here countrychanged is callback method
-        xhr.onreadystatechange = function () {
-            personalcalendar_return(xhr);
-        };
+            //sending selected country to servlet
+            var url = "controller_servl?event=INSERTPERCALEVENT&title=" + document.getElementById("addpersonalevent-title").value +
+                    "&start=" + document.getElementById("datepickeraddeventpersonalstart").value +
+                    "&end=" + document.getElementById("datepickeraddeventpersonalend").value +
+                    "&category=" + document.getElementById("addpersonalevent_categories").value +
+                    "&location=" + document.getElementById("addpersonalevent_location").value +
+                    "&description=" + document.getElementById("addpersonalevent_desc").value +
+                    "&repeat-time=" + document.getElementById("addeventpersonal_repeat_time").value +
+                    "&repeat_every=" + document.getElementById("addpersonalrpeatevery").value +
+                    "&starts_at=" + document.getElementById("addpersonalrepeatstart").value +
+                    "&expiration_date=" + document.getElementById("addpersonalexpiresat").value +
+                    "&notification_time=" + document.getElementById("addpersonalevent_notification_time").value +
+                    "&notification_date=" + document.getElementById("addpersonalevent_notification_period").value +
+                    "&status=" + checkbox_repeat;
 
-        xhr.open("GET", url, true)
-        xhr.send(null)
-    }
+            //creating callback method.here countrychanged is callback method
+            xhr.onreadystatechange = function () {
+                personalcalendar_return(xhr);
+            };
 
-    }else{
-        
+            xhr.open("GET", url, true)
+            xhr.send(null)
+        }
+
+    } else {
+
         document.getElementById("addpercalbut").removeAttribute("data-dismiss");
-        
-        document.getElementById("suc_todo_mes_valid_P").style.display="block";
-        document.getElementById("suc_todo_mes_valid_P").setAttribute("class","alert alert-danger pull-left alert_messa");
+
+        document.getElementById("suc_todo_mes_valid_P").style.display = "block";
+        document.getElementById("suc_todo_mes_valid_P").setAttribute("class", "alert alert-danger pull-left alert_messa");
 
         alert(document.getElementById("suc_todo_mes_valid_P").innerHTML);
-        document.getElementById("suc_todo_mes_valid_P").innerHTML="Fill The Red Required Inputs";
-        
-        
+        document.getElementById("suc_todo_mes_valid_P").innerHTML = "Fill The Red Required Inputs";
+
+
         alert("poulos");
-        
-        
+
+
     }
 
-    
+
 
 
 
@@ -346,16 +346,16 @@ function deletedeletePersonalEvent(id) {
 
 
 function UpdatePerCalEvent(id) {
-    
+
     var title = document.forms.editpersonalcalendarform.editpersonalevent_title.value;
-    
-     alert(title);
+
+    alert(title);
     var dateadd = document.forms.editpersonalcalendarform.datepickerediteventpersonalstart.value;
     alert(dateadd);
-    var dateaddend=document.forms.editpersonalcalendarform.datepickerediteventpersonalend.value;
+    var dateaddend = document.forms.editpersonalcalendarform.datepickerediteventpersonalend.value;
     alert(dateaddend);
-    
-    
+
+
     var notif_number = document.forms.editpersonalcalendarform.editpersonalevent_notification_time.value;
     alert(notif_number);
     var start_date = document.forms.editpersonalcalendarform.editpersonalrepeatstart.value;
@@ -365,75 +365,75 @@ function UpdatePerCalEvent(id) {
     var rpt_number = document.forms.editpersonalcalendarform.editpersonalrpeatevery.value;
     alert(rpt_number);
     var checkbox_repeat = document.getElementById("editpersonalcheckbox_repeat").checked;
-    
-    
+
+
     var success = false;
     if (checkbox_repeat) {
         success = (notnull_validation(title) && datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && datetime_regex_validation(start_date) && positive_number_validation(notif_number) && datetime_regex_validation(end_date) && positive_number_validation(rpt_number));
     } else {
         success = (notnull_validation(title) && datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && positive_number_validation(notif_number));
     }
-    
-    if(success){
-        
-        
-        document.getElementById("editsaveupdatebut").setAttribute("data-dismiss","modal");
-        
+
+    if (success) {
+
+
+        document.getElementById("editsaveupdatebut").setAttribute("data-dismiss", "modal");
+
         xhr = GetXmlHttpObject();
-    if (xhr == null)
-    {
-        alert("Browser does not support HTTP Request")
-        return
-    }
-    else
-    {
-        
+        if (xhr == null)
+        {
+            alert("Browser does not support HTTP Request")
+            return
+        }
+        else
+        {
 
 
 
-        //sending selected country to servlet
-        var url = "controller_servl?event=UPDATEPERCALEVENT&id=" + id + "&title=" + document.getElementById("editpersonalevent-title").value +
-                "&start=" + document.getElementById("datepickerediteventpersonalstart").value +
-                "&end=" + document.getElementById("datepickerediteventpersonalend").value +
-                "&category=" + document.getElementById("editpersonalevent_categories").value +
-                "&location=" + document.getElementById("editpersonalevent_location").value +
-                "&description=" + document.getElementById("editpersonalevent_desc").value +
-                "&repeat-time=" + document.getElementById("editeventpersonal_repeat_time").value +
-                "&repeat_every=" + document.getElementById("editpersonalrpeatevery").value +
-                "&starts_at=" + document.getElementById("editpersonalrepeatstart").value +
-                "&expiration_date=" + document.getElementById("editpersonalexpiresat").value +
-                "&notification_time=" + document.getElementById("editpersonalevent_notification_time").value +
-                "&notification_date=" + document.getElementById("editpersonalevent_notification_period").value +
-                "&status=" + checkbox_repeat;
 
-        //creating callback method.here countrychanged is callback method
-        xhr.onreadystatechange = function () {
-            personalcalendar_return(xhr);
-        };
+            //sending selected country to servlet
+            var url = "controller_servl?event=UPDATEPERCALEVENT&id=" + id + "&title=" + document.getElementById("editpersonalevent-title").value +
+                    "&start=" + document.getElementById("datepickerediteventpersonalstart").value +
+                    "&end=" + document.getElementById("datepickerediteventpersonalend").value +
+                    "&category=" + document.getElementById("editpersonalevent_categories").value +
+                    "&location=" + document.getElementById("editpersonalevent_location").value +
+                    "&description=" + document.getElementById("editpersonalevent_desc").value +
+                    "&repeat-time=" + document.getElementById("editeventpersonal_repeat_time").value +
+                    "&repeat_every=" + document.getElementById("editpersonalrpeatevery").value +
+                    "&starts_at=" + document.getElementById("editpersonalrepeatstart").value +
+                    "&expiration_date=" + document.getElementById("editpersonalexpiresat").value +
+                    "&notification_time=" + document.getElementById("editpersonalevent_notification_time").value +
+                    "&notification_date=" + document.getElementById("editpersonalevent_notification_period").value +
+                    "&status=" + checkbox_repeat;
 
-        xhr.open("GET", url, true)
-        xhr.send(null)
-    }
+            //creating callback method.here countrychanged is callback method
+            xhr.onreadystatechange = function () {
+                personalcalendar_return(xhr);
+            };
 
-    }else{
-        
-        
+            xhr.open("GET", url, true)
+            xhr.send(null)
+        }
+
+    } else {
+
+
         document.getElementById("editsaveupdatebut").removeAttribute("data-dismiss");
-        
-       
-        
-        document.getElementById("suc_todo_mes_valid_Ped").style.display="block";
-        document.getElementById("suc_todo_mes_valid_Ped").setAttribute("class","alert alert-danger pull-left alert_messa");
+
+
+
+        document.getElementById("suc_todo_mes_valid_Ped").style.display = "block";
+        document.getElementById("suc_todo_mes_valid_Ped").setAttribute("class", "alert alert-danger pull-left alert_messa");
 
         alert(document.getElementById("suc_todo_mes_valid_Ped").innerHTML);
-        document.getElementById("suc_todo_mes_valid_Ped").innerHTML="Fill The Red Required Inputs";
+        document.getElementById("suc_todo_mes_valid_Ped").innerHTML = "Fill The Red Required Inputs";
         alert("poulos");
-        
+
     }
-    
 
 
-    
+
+
 
 
 
@@ -489,7 +489,8 @@ function importfrom_return(xhr) {
         var text = xhr.responseText;
 
         document.getElementById("imp_cale_per").innerHTML = text;
-        impevents('controller_servl?event=PERIMPORTEVENTS');
+        //impevents('controller_servl?event=PERIMPORTEVENTS');
+        impevents('controller_servl?event=FAMCALEVENTS');
 
         //displaying response in select box by using that id
 //                    document.getElementById("apotelesma2").innerHTML = json.message;
@@ -514,10 +515,15 @@ function impevents(src) {
             center: 'title',
             right: 'month,agendaWeek,agendaDay',
             slotDuration: '01:15:00'
+                
         },
-        defaultView: 'month',
+        
+//        defaultView: 'month',
+        
         events: src
         ,
+
+        
         eventClick: function (calEvent) {
 
             choosedevent(calEvent.id)
@@ -525,13 +531,14 @@ function impevents(src) {
 
         },
     });
+   
 }
 
 
 function choosedevent(id) {
 
- 
- document.getElementById("well_eventsImp").innerHTML="Pick Events From Checkbox To Import";
+
+    //document.getElementById("well_eventsImp").innerHTML = "Pick Events From Checkbox To Import";
 
     alert("MPHKA");
 
@@ -547,7 +554,7 @@ function choosedevent(id) {
         var url = "controller_servl?event=PERIMPORTCHECKED&id=" + id;
         //creating callback method.here countrychanged is callback method
         xhr.onreadystatechange = function () {
-            wellevents(xhr);
+            wellevents(xhr, id);
         };
         xhr.open("GET", url, true)
         xhr.send(null)
@@ -555,7 +562,7 @@ function choosedevent(id) {
 }
 
 
-function wellevents(xhr) {
+function wellevents(xhr, id) {
 
 
 
@@ -576,9 +583,20 @@ function wellevents(xhr) {
 
         var text = xhr.responseText;
 
-        var newElement = document.createElement('div');
-        newElement.innerHTML = text;
-        document.getElementById("well_eventsImp").appendChild(newElement);
+        var checkboxes = document.getElementsByName("work_checked");
+        var flag = true;
+        for (var i = 0, length = checkboxes.length; i < length; i++) {
+            if (checkboxes[i].value == id) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            var newElement = document.createElement('div');
+            newElement.innerHTML = text;
+            document.getElementById("well_eventsImp").appendChild(newElement);
+        }
+
 
         // old_html = document.getElementById("imp_cale_per").innerHTML;
         // document.getElementById("imp_cale_per").innerHTML = old_html+text;
@@ -663,33 +681,33 @@ function EnableImportBut() {
 
 
     var inputs = document.getElementsByName("work_checked");
-    
-    var sbmt= document.getElementById("importcheck");
 
-    var oo=false;
+    var sbmt = document.getElementById("importcheck");
+
+    var oo = false;
     for (var i = 0; i < inputs.length; i++) {
         if (inputs[i].type == "checkbox") {
             if (inputs[i].checked) {
 
-                    oo=true;
+                oo = true;
             }
 
         }
 
     }
-    
-    if(oo){
-        
-        
-         sbmt.setAttribute("class", "btn btn-primary");
-       
-        
+
+    if (oo) {
+
+
+        sbmt.setAttribute("class", "btn btn-primary");
+
+
     }
-    else{
-       
-      
-      sbmt.setAttribute("class", "btn btn-primary disabled");
-        
+    else {
+
+
+        sbmt.setAttribute("class", "btn btn-primary disabled");
+
     }
 
 

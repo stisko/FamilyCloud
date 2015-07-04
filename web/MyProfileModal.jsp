@@ -48,6 +48,9 @@
                         <label for="oldpass">Old Password</label><div id="checkpasswords" style="display: none"></div>
                         <input class="form-control" type="text" id="oldpass" oninput="checkPassword(this.value)" placeholder="Old Password" pattern="(?=^.{6,}$)((?=.*[A-Z])|(?=.*[a-z])|(?=.*[0-9])).*$" required/><span id="passspan">Invalid input</span>
                     </div>
+                    
+                </div>
+                <div class="row">
                     <div class="col-sm-6">
                         <label for="newpass">New Password</label>
                         <input class="form-control" type="text" id="newpass" placeholder="New Password" pattern="(?=^.{6,}$)((?=.*[A-Z])|(?=.*[a-z])|(?=.*[0-9])).*$" required/><span>Invalid input</span>
