@@ -10,17 +10,22 @@
             </div>
             <div class="chat_wrap collapse panel-collapse" id="chat_wrap${members.username}">
                 <div class="chat_body" id="chat_body${members.username}">
-                   
-                    
-                    
+
+
+
                 </div>
                 <div class="chat_footer">
                     <form id="formmessage${members.username}" name="formmessage${members.username}" enctype="multipart/form-data" >   
-                        
-                        <textarea id="postareatext" name="postareatext" rows="1"form="formmessage${members.username}" class="form-control msg_input" onkeyup=""  onkeypress="if (event.keyCode === 13 && !event.ctrlKey) {
-                            initFullFormAjaxUploadChat('${members.username}'); this.value='';  }"></textarea>
+                        <div>
+                            <textarea id="postareatext" name="postareatext" rows="2" form="formmessage${members.username}" class="form-control msg_input" onkeyup=""  onkeypress="if (event.keyCode === 13 && !event.ctrlKey) {
+                                    initFullFormAjaxUploadChat('${members.username}');
+                                    this.value = '';
+                                }"></textarea>
 
-                        <input id="file-id" type="file" name="our-file" style="background-color: white"/>
+                            <div class="btn btn-primary fileUpload uploadpos"><span class="glyphicon glyphicon-paperclip"></span>
+                                <input id="file-id" class="upload" type="file" name="our-file" style="background-color: white"/>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

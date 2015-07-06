@@ -67,6 +67,11 @@ public class MyFamilyEventHandler extends EventHandlerBase {
 
         int i = (int) mySession.getAttribute("tag");
         if (i == 1) {
+             if(family_list.isEmpty()){
+                request.setAttribute("emptya", 1);
+            }else{
+                request.setAttribute("emptya", 0);
+            }
             mySession.setAttribute("tag", 0);
             request.setAttribute("jsp", "Myfamily.jsp");
             path = "HomePage.jsp";
@@ -98,6 +103,14 @@ public class MyFamilyEventHandler extends EventHandlerBase {
                 request.setAttribute("noti_message", jsme);
 
             }
+            
+           
+            if(family_list.isEmpty()){
+                request.setAttribute("emptya", 1);
+            }else{
+                request.setAttribute("emptya", 0);
+            }
+            
             path = "MyFamily.jsp";
         }
 

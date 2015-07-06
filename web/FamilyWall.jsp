@@ -13,7 +13,7 @@
                 <h4 class="media-heading">Family Wall</h4>
             </div>
         </div>
-        
+
         <div id="suc_todo_mes" class="${noti_message.classs}">${noti_message.message}</div>
     </div>
     <div class="col-sm-12" id="contentcontent">
@@ -30,25 +30,25 @@
                     <form id="formpost" name="formpost"  enctype="multipart/form-data" >
                         <div class="panel-body">
                             <textarea id="postareatext" name="postareatext" form="formpost" class="form-control blacktextarea" rows="3"></textarea>
-<!--                            <a class="btn fileUpload" type="file" href="#">-->
-                                
-                                <input id="file-id" type="file" name="our-file" />
+                            <!--                            <a class="btn fileUpload" type="file" href="#">-->
+
+                            <input id="file-id" type="file" name="our-file" />
 
                             <!--</a>-->
-                            
-                            
+
+
                             <div class=""> 
-                            <div class="btn-toolbar pull-right">
-                                <div class="btn-group ">
-                                    <button type="button" class="btn btn-default" id="closepost">Close</button>
-                                </div>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary" onclick="initFullFormAjaxUpload()" id="postbutton" >Post</button>
+                                <div class="btn-toolbar pull-right">
+                                    <div class="btn-group ">
+                                        <button type="button" class="btn btn-default" id="closepost">Close</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary" onclick="initFullFormAjaxUpload()" id="postbutton" >Post</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        </div>
-                        
+
                     </form>
                 </div>
             </div>
@@ -98,34 +98,16 @@
                     </li>
 
                 </c:forEach>
-                <li>
-                    <div class="col-sm-12" id="post_box">
-                        <div class="col-sm-2 col-xs-2 post_user">
-                            <img class="img-rounded img-responsive pull-right" alt="Notifications" width="50px" height="50px" src="https://lh3.googleusercontent.com/-JPvWwfCDN38/TYPdmxi49zI/AAAAAAAAL_w/kgJgXv8_vhk/s1600/%25CF%2584%25CF%2583%25CE%25B1%25CE%25BA%25CE%25B1%25CE%25BB%25CE%25BF%25CF%2582+%25CF%2587%25CF%2581%25CE%25B9%25CF%2583%25CF%2584%25CE%25BF%25CF%25823.JPG">
-                        </div>
-                        <div class="col-sm-10 col-xs-10 post_body" id="post_body">
-                            <div class="bubble">
-                                <div class="bubble_head">
-                                    <div class="btn-toolbar pull-right" role="toolbar" aria-label="true">
-                                        <div class="btn-group btn-group-xs" role="group" aria-label="true">
-                                            <button type="button" id="post_edit_button" class="btn btn-default pedit_button">Edit</button>
-                                            <button type="button" id="post_delete_button" class="btn btn-default pdelete_button">Delete</button>
-                                        </div>
-                                    </div>
-                                    <div class="post_username pull-left">Username</div>
-                                    <div class="post_timestamp pull-left">Thu 15/04 2:33pm</div>
-                                </div>
-                                <div class="bubble_content">
-                                    <p>?????? ???? ??? ????????? ???? ??????!!!!!
-                                        <3</p>
-                                    <div class="img-responsive">
-                                        <img class="img-responsive" src="http://fc02.deviantart.net/fs70/i/2010/331/7/3/wolf_howls_by_nine2doublej-d33pxxw.png">
-                                    </div>
-                                </div>
+                    
+                    <c:choose>
+                        <c:when test="${emptya eq '1'}">
+                            <div class="col-sm-12">
+                            <img class="img-responsive" src="img/emptyWall.png">
                             </div>
-                        </div>
-                    </div>
-                </li>
+                        </c:when>
+                    </c:choose>
+
+
 
             </ul>
         </div>

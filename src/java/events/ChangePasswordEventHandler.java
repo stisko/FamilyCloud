@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.User;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -44,7 +45,7 @@ public class ChangePasswordEventHandler extends EventHandlerBase{
         
         success= userdao.changePassword(cur_user);
         if(success){
-            
+                        
         }else{
             
         }

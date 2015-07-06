@@ -84,7 +84,11 @@ public class ToDoListEventHandler extends EventHandlerBase {
         request.setAttribute("famToDo", famToDoList);
 
         request.setAttribute("cur", cur_user);
-
+        if(famToDoList.isEmpty()){
+            request.setAttribute("emptya", 1);
+        }else{
+            request.setAttribute("emptya", 0);
+        }
         path = "ToDoList.jsp";
     }
 }

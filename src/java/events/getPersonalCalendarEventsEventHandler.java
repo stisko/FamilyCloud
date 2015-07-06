@@ -52,12 +52,17 @@ public class getPersonalCalendarEventsEventHandler extends EventHandlerBase {
             User director = myUserDAO.getFamilyDirector(cur_user.getUsername());
 
             List<PerCalEvent> events_list = null;
-            String viewbyUsername = request.getParameter("username");
-            if (viewbyUsername != null) {
-                //   events_list=myFamCalEventDao.getFamCalEventsByUser(viewbyUsername);  //ola ta events gia kathe xristi
+            //String viewbyUsername = request.getParameter("username");
+            
+            String category= request.getParameter("category");
+            
+            if (category != null) {
+                
+                   events_list=myPerCalEventDao.getPerCalEventsByCateg(cur_user.getUsername(), category);
+                           
             } else {
 
-                events_list = myPerCalEventDao.getPerCalEvents(director.getUsername());                                        //ola ta events tis oikogeneias
+                events_list = myPerCalEventDao.getPerCalEvents(cur_user.getUsername());                                        //ola ta events tis oikogeneias
             }
 
             JSONArray obj = new JSONArray();

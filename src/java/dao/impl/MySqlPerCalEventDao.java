@@ -91,7 +91,7 @@ public class MySqlPerCalEventDao implements PerCalEventDao{
 
             List<PerCalEvent> events = new ArrayList<PerCalEvent>();
 
-            pst = conn.prepareStatement("SELECT * FROM perscalevents WHERE director_username=?");
+            pst = conn.prepareStatement("SELECT * FROM perscalevents WHERE created_by=?");
             pst.setString(1, username);
 
             ResultSet rs = pst.executeQuery();
@@ -268,4 +268,69 @@ public class MySqlPerCalEventDao implements PerCalEventDao{
         
     }
     
+    
+    
+    
+    @Override
+    public List<PerCalEvent> getPerCalEventsByCateg(String username,String cat) {
+        
+        
+        try {
+            PreparedStatement pst = null;
+            Connection conn = MySqlDaoFactory.createConnection();
+
+            List<PerCalEvent> events = new ArrayList<PerCalEvent>();
+
+            pst = conn.prepareStatement("SELECT * FROM perscalevents WHERE (created_by=? and category=?)");
+            pst.setString(1, username);
+            pst.setString(2, cat);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                PerCalEvent event = new PerCalEvent();
+                
+               
+                event.setidPerCalEvent(rs.getInt("idperCalEvents"));
+                event.setCreated_by(rs.getString("created_by"));
+                event.setDirector_username(rs.getString("director_username"));
+                event.setTitle(rs.getString("title"));
+                Timestamp timestamp = rs.getTimestamp("start");
+                event.setStart_date(timestamp);
+                event.setEnd_date(rs.getTimestamp("end"));
+                event.setCategory(rs.getString("category"));
+                event.setLocation(rs.getString("location"));
+                
+                event.setDescription(rs.getString("description"));
+                event.setRepeat_every(rs.getInt("repeat_frequency"));
+                event.setRepeatTime(rs.getString("repeat_time"));
+                event.setStartRepeatDate(rs.getTimestamp("starts_at"));
+                event.setEndRepeatDate(rs.getTimestamp("expiration"));
+                event.setNotificationTime(rs.getInt("notification_time"));
+                event.setNotificationDate(rs.getString("notification_date"));
+
+                events.add(event);
+            }
+            conn.close();
+            return events;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MySqlFamCalEventDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
 }
+
+
+
+

@@ -7,8 +7,12 @@ package events;
 
 import dao.DaoFactory;
 import dao.NotificationsDao;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -43,10 +47,21 @@ public class getNotificationsListEventHandler extends EventHandlerBase {
             notifications_list= myNotificationsDao.getMessageNotifications(cur_user.getUsername());
         }
         
-
-        request.setAttribute("notification_list", notifications_list);
-
-        path = "Notifications.jsp";
+        if(notifications_list.isEmpty()){
+            PrintWriter out = null;
+            try {
+                out = response.getWriter();
+                out.print("<div class='alert alert-info'><span class='glyphicon glyphicon-info-sign'></span>  You have no notifications yet</div>");
+            } catch (IOException ex) {
+                Logger.getLogger(getNotificationsListEventHandler.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                out.close();
+            }
+        }else{
+            request.setAttribute("notification_list", notifications_list);
+            path = "Notifications.jsp";
+        }
+        
 
     }
 

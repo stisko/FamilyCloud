@@ -65,6 +65,12 @@ public class WallPostEventHandler extends EventHandlerBase{
 
         }
         
+        if(familyPosts.isEmpty()){
+            request.setAttribute("emptya", 1);
+        }else{
+            request.setAttribute("emptya", 0);
+        }
+        
         path="FamilyWall.jsp";
         
     }

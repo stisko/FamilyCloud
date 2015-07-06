@@ -11,15 +11,15 @@
             </div>
             <div class="media-body " >
                 <h4 class="media-heading">To-Do List</h4>
-                 
+
             </div>
-            
-            
-           
+
+
+
         </div>
-        
+
         <div id="suc_todo_mes" class="${noti_message.classs}">${noti_message.message}</div>
-        
+
     </div>
     <div class="col-sm-12" id="contentcontent">
 
@@ -59,9 +59,14 @@
                                 </tr>
                             </thead>
                             <tbody id="changedTable">
+                                <c:choose>
+                                    <c:when test="${emptya eq '1'}">
+                                    <div class="col-sm-12" style="color:  white"><b>You have no events</b></div>
+                                </c:when>
+                                </c:choose>
+
                                 <c:forEach items="${famToDo}" var="famToDo" varStatus="loopStatus">
                                     <tr>
-
                                         <td>${loopStatus.index+1}</td>
                                         <td>${famToDo.title}</td>                                    
                                         <td>${famToDo.assignedTo}</td> 
@@ -69,26 +74,17 @@
                                         <td>${famToDo.dueDate}</td> 
                                         <td>${famToDo.completedDate}</td>
                                         <td>${famToDo.status}</td>
-                                        
+
                                         <c:choose>
-                                            
                                             <c:when test="${(famToDo.createdBy eq cur.username)||(cur.director eq 'Y')}">
-                                                    
                                                 <td><button class="btn btn-default"href="#" data-toggle="modal" data-target="#edittask" value="${famToDo.itemID}" onclick="editToDoItem(this.value)"><span class="glyphicon glyphicon-pencil"> Edit</span></button></td>
                                                 <td><button class="btn btn-default" href="#" data-toggle="modal" data-target="#deletemodal" value="${famToDo.itemID}" onclick="deleteToDoItem(this.value)"><span class="glyphicon glyphicon-remove"> Delete</span></button></td>
                                             </c:when>
-                                            
-                                            
-                                            
                                             <c:otherwise>
-                                                
                                                 <td><button class="btn btn-default disabled " href="#" data-toggle="modal" data-target="#edittask" value="${famToDo.itemID}" onclick="editToDoItem(this.value)"><span class="glyphicon glyphicon-pencil"> Edit</span></button></td>
                                                 <td><button class="btn btn-default disabled " href="#" data-toggle="modal" data-target="#deletemodal" value="${famToDo.itemID}" onclick="deleteToDoItem(this.value)"><span class="glyphicon glyphicon-remove"> Delete</span></button></td>
                                             </c:otherwise>
-                                            
-                                            
                                         </c:choose>
-                                        
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -128,7 +124,7 @@
                 <h4 class="modal-title" id="myModalLabel">Edit Task</h4>
             </div>
             <div id="editToDo_modal_body" >
-                
+
             </div>
         </div>
     </div>
@@ -142,10 +138,10 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Add Task</h4>
             </div>
-            
 
-                <form id="addtaskform" name="formaddToDo" action="controller_servl" method="post">
-                    <div class="modal-body">
+
+            <form id="addtaskform" name="formaddToDo" action="controller_servl" method="post">
+                <div class="modal-body">
 
                     <div class="row">									
                         <div class="col-sm-6">				
@@ -189,20 +185,20 @@
                     </div>
 
 
-                    
-                   
 
-                    
-               			
-            </div>
-            
-            <div class="modal-footer">
-                        
-                        <div id="suc_todo_mes_valid"style="font-size:120%" ></div>                        
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="addtodobutton" form="addtaskform" onclick="insertToDoItem()">Save</button>
-                    </div>
-             </form>
+
+
+
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <div id="suc_todo_mes_valid"style="font-size:120%" ></div>                        
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="addtodobutton" form="addtaskform" onclick="insertToDoItem()">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>	

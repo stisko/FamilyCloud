@@ -859,3 +859,49 @@ function EnableImportBut() {
 
 
 }
+
+
+function viewPerCalbyCategory(color){
+    
+    
+    xhr = GetXmlHttpObject();
+    if (xhr == null)
+    {
+        alert("Browser does not support HTTP Request")
+        return
+    }
+    else
+    {
+        alert(color);
+        //sending selected country to servlet
+        var url = "controller_servl?event=PERCAL";
+        //creating callback method.here countrychanged is callback method
+        xhr.onreadystatechange = function () {
+            customPerCategory_view_calendar_return(xhr, color);
+        };
+        xhr.open("GET", url, true)
+        xhr.send(null)
+    }
+    
+    
+}
+
+
+function customPerCategory_view_calendar_return(xhr, color) {
+    if (xhr.readyState == 4 || xhr.readyState == "complete")
+    {
+        //getting response from server(Servlet)
+
+//                    var json = JSON.parse(xmlHttp.responseText);
+
+        var text = xhr.responseText;
+
+        document.getElementById("newpage").innerHTML = text;
+        fullPerCal('controller_servl?event=PERCALEVENTS&category=' + color);
+
+        //displaying response in select box by using that id
+//                    document.getElementById("apotelesma2").innerHTML = json.message;
+//                    document.getElementById("signup_btn").setAttribute("class", json.disabled);
+
+    }
+}

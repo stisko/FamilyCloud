@@ -79,31 +79,37 @@
 
                             </thead>
                             <tbody id="changedTableSHOP">
-                                <c:forEach items="${familyShopList}" var="familyShopList" varStatus="loopStatus">
-                                    <tr>
-                                        <td>${loopStatus.index+1}</td>
-                                        <td>${familyShopList.shoptitle}</td>
-                                        <td>${familyShopList.assigned_to}</td>
-                                        <td>${familyShopList.created_by}</td>
-                                        <td>${familyShopList.quantity}</td>
-                                        <td>${familyShopList.price}</td>                                    
-                                        <td>${familyShopList.shopstatus}</td>
+                            <c:choose>
+                                <c:when test="${emptya eq '1'}">
+                                    <div class="col-sm-12" style="color:  white"><b>You have no events</b></div>
+                                </c:when>
+                            </c:choose>
 
-                                        <c:choose>
-                                            <c:when test="${(familyShopList.created_by eq cuRRENTuserDr.username)||(cuRRENTuserDr.director eq 'Y')}">
-                                                <td><button class="btn btn-default"  data-toggle="modal" data-target="#edititem" value="${familyShopList.shopitemID}" onclick="editShopItem(this.value)"><span class="glyphicon glyphicon-pencil">Edit</span></button></td>
-                                                <td><button class="btn btn-default"  data-toggle="modal" data-target="#deletemodal" value="${familyShopList.shopitemID}" onclick="deleteShopItem(this.value)"><span class="glyphicon glyphicon-remove">Delete</span></button></td>
-                                            </c:when>
+                            <c:forEach items="${familyShopList}" var="familyShopList" varStatus="loopStatus">
+                                <tr>
+                                    <td>${loopStatus.index+1}</td>
+                                    <td>${familyShopList.shoptitle}</td>
+                                    <td>${familyShopList.assigned_to}</td>
+                                    <td>${familyShopList.created_by}</td>
+                                    <td>${familyShopList.quantity}</td>
+                                    <td>${familyShopList.price}</td>                                    
+                                    <td>${familyShopList.shopstatus}</td>
 
-                                            <c:otherwise>
-                                                <td><button  class="btn btn-default disabled"  data-toggle="modal" data-target="#edititem" value="${familyShopList.shopitemID}" onclick="editShopItem(this.value)"><span class="glyphicon glyphicon-pencil">Edit</span></button></td>
-                                                <td><button  class="btn btn-default disabled"  data-toggle="modal" data-target="#deletemodal" value="${familyShopList.shopitemID}" onclick="deleteShopItem(this.value)"><span class="glyphicon glyphicon-remove">Delete</span></button></td>
-                                            </c:otherwise>
-                                        </c:choose>                                       
+                                    <c:choose>
+                                        <c:when test="${(familyShopList.created_by eq cuRRENTuserDr.username)||(cuRRENTuserDr.director eq 'Y')}">
+                                            <td><button class="btn btn-default"  data-toggle="modal" data-target="#edititem" value="${familyShopList.shopitemID}" onclick="editShopItem(this.value)"><span class="glyphicon glyphicon-pencil">Edit</span></button></td>
+                                            <td><button class="btn btn-default"  data-toggle="modal" data-target="#deletemodal" value="${familyShopList.shopitemID}" onclick="deleteShopItem(this.value)"><span class="glyphicon glyphicon-remove">Delete</span></button></td>
+                                        </c:when>
 
-                                    </tr>
+                                        <c:otherwise>
+                                            <td><button  class="btn btn-default disabled"  data-toggle="modal" data-target="#edititem" value="${familyShopList.shopitemID}" onclick="editShopItem(this.value)"><span class="glyphicon glyphicon-pencil">Edit</span></button></td>
+                                            <td><button  class="btn btn-default disabled"  data-toggle="modal" data-target="#deletemodal" value="${familyShopList.shopitemID}" onclick="deleteShopItem(this.value)"><span class="glyphicon glyphicon-remove">Delete</span></button></td>
+                                        </c:otherwise>
+                                    </c:choose>                                       
 
-                                </c:forEach>
+                                </tr>
+
+                            </c:forEach>
 
                             </tbody>
                         </table>
@@ -157,7 +163,7 @@
                 <h4 class="modal-title" id="myModalLabel">Edit Shop Item</h4>
             </div>
             <div id="editShop_modal_body">
-                
+
 
 
             </div>
@@ -201,7 +207,7 @@
                             <label for="priceadditem">Price</label>
                             <input type="number" class="form-control" id="priceadditem" name="priceaddshop" oninput="style_inp('priceadditem')"  placeholder="1 Quantity Price" min="0" step="0.01" required><span>Invalid Price input</span>
                         </div>
-                        							
+
                     </div>
                     <div class="row">
                         <div class="col-sm-6">				

@@ -59,24 +59,19 @@
                         <li><a href="#" id="dailyViewpersonalcalendar">Day</a>
                         </li>
 
-                        <li class="divider"></li>
+                        <li class="divider"></li>                        
+
                         <li class="dropdown-submenu">
-                            <a href="#">Family Member</a>
+                            <a href="#">Category</a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Marios</a>
-                                </li>
-                                <li><a href="#">Giorgos</a>
-                                </li>
-                                <li><a href="#">Sofia</a>
-                                </li>
-                                <li><a href="#">Panagia</a>
-                                </li>
+                                <li><a onclick="getPersonalCalendar()">All Categories</a></li>
+                                <li><a onclick="viewPerCalbyCategory('red')"><div class="color-box" style="background-color:red;"></div><span>Red</span></a></li>
+                                <li><a onclick="viewPerCalbyCategory('green')"><div class="color-box" style="background-color:green;"></div>Green</a></li>
+                                <li><a onclick="viewPerCalbyCategory('blue')"><div class="color-box" style="background-color:blue;"></div>Blue</a></li>
+                                <li><a onclick="viewPerCalbyCategory('purple')"><div class="color-box" style="background-color:purple;"></div>Purple</a></li>
+                                
                             </ul>
                         </li>
-
-                        <li><a href="#">Category</a>
-                        </li>
-
                     </ul>
                 </div>
             </div>

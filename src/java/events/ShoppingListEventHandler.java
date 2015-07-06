@@ -108,7 +108,11 @@ public class ShoppingListEventHandler extends EventHandlerBase{
         
       //  request.setAttribute("visib", hidd);
         
-        
+        if(famshoplist.isEmpty()){
+            request.setAttribute("emptya", 1);
+        }else{
+            request.setAttribute("emptya", 0);
+        }
         
         
         

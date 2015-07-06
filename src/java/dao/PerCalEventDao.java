@@ -26,4 +26,7 @@ public interface PerCalEventDao {
     
     public boolean updatePerCalEvent(PerCalEvent event);
     
+    
+    public List<PerCalEvent> getPerCalEventsByCateg(String username,String cat);
+    
 }

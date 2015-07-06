@@ -80,6 +80,12 @@
 
             </c:forEach>
 
+            <c:choose>
+                <c:when test="${emptya eq '1'}">
+                    <img class="img-responsive" src="img/emptyMembers.png">
+                </c:when>
+            </c:choose>
+
         </ul>
     </div>
 </div>
@@ -115,17 +121,17 @@
                                 <input type="date" class="form-control" id="birthaddmember" oninput="style_inp('birthaddmember')" placeholder="yyyy-MM-dd" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid Date input</span>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
-                
+
             </div>
-            
+
             <div class="modal-footer">
-                    <div id="suc_todo_mes_valid_Fam" style="font-size:120%"></div>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" id="addmembut" class="btn btn-primary" data-dismiss="modal"  onclick="AddMember()">Add</button>
-                </div>
+                <div id="suc_todo_mes_valid_Fam" style="font-size:120%"></div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="addmembut" class="btn btn-primary" data-dismiss="modal"  onclick="AddMember()">Add</button>
+            </div>
 
         </div>
     </div>
@@ -287,7 +293,7 @@
 
                 <div class="modal-footer">
                     <div id="suc_todo_mes_valid_FamDr" style="font-size:120%"></div>
-                    
+
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary"  id="edit_dir_button" data-dismiss="modal" form="editfamilydirector_form" onclick="initFullFormAjaxUploadDirectorProfile('${json.director.username}')">Save</button>
                 </div>

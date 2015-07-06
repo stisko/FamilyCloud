@@ -118,6 +118,7 @@ public class EventAjaxMail extends EventHandlerBase {
             out.println(obj);
             //out.println("The <b>"+email+"</b> is valid.");
         }
+        out.close();
         
         
     }
