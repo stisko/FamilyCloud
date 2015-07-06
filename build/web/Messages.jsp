@@ -20,7 +20,7 @@
                         <textarea id="postareatext" name="postareatext" rows="1"form="formmessage${members.username}" class="form-control msg_input" onkeyup=""  onkeypress="if (event.keyCode === 13 && !event.ctrlKey) {
                             initFullFormAjaxUploadChat('${members.username}'); this.value='';  }"></textarea>
 
-                        <input id="file-id" type="file" name="our-file" />
+                        <input id="file-id" type="file" name="our-file" style="background-color: white"/>
                     </form>
                 </div>
             </div>

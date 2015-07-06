@@ -9,7 +9,7 @@
         <div class="row">									
             <div class="col-sm-6">				
                 <label for="titleedititem">Item Title</label>
-                <input type="text" class="form-control" id="titleedititem" name="titleeditshop" placeholder="Enter Title" value="${json.selectedShopItem.shoptitle}" required><span>You have to enter a title</span>
+                <input type="text" class="form-control" id="titleedititem" name="titleeditshop" oninput="style_inp('titleedititem')" placeholder="Enter Title" value="${json.selectedShopItem.shoptitle}" required><span>You have to enter a title</span>
             </div>
         </div>
 
@@ -19,11 +19,11 @@
         <div class="row">									
             <div class="col-sm-6">				
                 <label for="quantityedititem">Quantity</label>
-                <input type="number" class="form-control" id="quantityedititem" name="quantityeditshop" placeholder="Quantity of Item" value="${json.selectedShopItem.quantity}" required min="1"><span>Invalid Quantity input</span>
+                <input type="number" class="form-control" id="quantityedititem" name="quantityeditshop" oninput="style_inp('quantityedititem')" placeholder="Quantity of Item" value="${json.selectedShopItem.quantity}" required min="1"><span>Invalid Quantity input</span>
             </div>
             <div class="col-sm-6">				
                 <label for="priceedititem">Price</label>
-                <input type="number" step="0.01" class="form-control" id="priceedititem" name="priceeditshop" placeholder="1 Quantity Price" value="${json.selectedShopItem.price}" required min="0"><span>Invalid Price input</span>
+                <input type="number" step="0.01" class="form-control" id="priceedititem" name="priceeditshop" oninput="style_inp('priceedititem')" placeholder="1 Quantity Price" value="${json.selectedShopItem.price}" required min="0"><span>Invalid Price input</span>
             </div>
 
         </div>
@@ -96,7 +96,7 @@
     </div>
 
     <div class="modal-footer">
-        <div id="suc_todo_mes_valid_Sed" style=" width:70%"></div>
+        <div id="suc_todo_mes_valid_Sed" style="font-size:120%"></div>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" id="editshopbutton" data-dismiss="modal" value="${json.selectedShopItem.itemID}" onclick="Save_changes_shop(this.value)">Save</button>
     </div>

@@ -96,3 +96,31 @@ function  password_valid(pass){
     
     
 }
+
+
+function style_inp(titleaddtask){
+    
+    
+    
+    document.getElementById(titleaddtask).removeAttribute("style");
+    
+    
+}
+
+
+
+
+function style_abstract_valid(tag){
+    
+    
+    document.getElementById(tag).style.border = "1px solid #FF0000";
+
+    document.getElementById(tag).style.boxShadow = "0 0 5px #FF0000";
+
+    document.getElementById(tag).style.background = "#fff url(./img/invalid.png) 98% center no-repeat";
+
+    document.getElementById(tag).style.backgroundSize = "22px 22px";
+    
+    
+    
+}

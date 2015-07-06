@@ -45,9 +45,11 @@ public class LoginEventHandler extends EventHandlerBase {
             //path="HomePage.jsp";
             
         }else{
+            
+            path="StartPage.jsp";
+            
             request.setAttribute("alert_message", "You are not logged in!");
             request.setAttribute("alert_class", "alert alert-danger");
-            path="/StartPage.jsp";
         }
         
     }

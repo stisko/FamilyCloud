@@ -25,7 +25,44 @@ function insertToDoItem() {
     var radios = document.getElementsByName('statusradio');
 
 
-
+    
+    
+    
+    
+    if(notnull_validation(title)){
+       
+        style_inp("titleaddtask");
+        
+    }else{
+        style_abstract_valid("titleaddtask");
+    }
+    
+    
+    if(date_regex_validation(duedate)){
+       
+        style_inp("duedateaddtask");
+        
+    }else{
+        style_abstract_valid("duedateaddtask");
+    }
+    
+    
+    if(radio_validation(radios)){
+       
+       for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=false;
+                    
+            }
+      
+        
+    }else{
+        for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=true;
+                    
+            }
+    }
 
 
     if (notnull_validation(title) && date_regex_validation(duedate) && radio_validation(radios)) {
@@ -37,7 +74,10 @@ function insertToDoItem() {
             return
         }
         else
-        {
+        
+        {     
+            
+            
 
             var InvForm = document.forms.formaddToDo;
             var SelBranchVal = "";
@@ -95,14 +135,25 @@ function insertToDoItem() {
         }
     } else {
         
+        
+        
+        var htmlString = "";  
+
+        htmlString =
+                '<div>'+'<div class = "glyphicon glyphicon-remove-circle">'+'</div>'+'  Fill The Red Required Inputs'+'</div>';
+        
         alert("MPHKA STO POULO");
         document.getElementById("addtodobutton").removeAttribute("data-dismiss");
         
         document.getElementById("suc_todo_mes_valid").style.display="block";
-        document.getElementById("suc_todo_mes_valid").setAttribute("class","alert alert-danger pull-left alert_messa");
+        document.getElementById("suc_todo_mes_valid").setAttribute("class","alert alert-danger pull-left alert_messa_danger");
 
         alert(document.getElementById("suc_todo_mes_valid").innerHTML);
-        document.getElementById("suc_todo_mes_valid").innerHTML="Fill The Red Required Inputs";
+        document.getElementById("suc_todo_mes_valid").innerHTML=htmlString;
+        
+        
+        
+//        
         
        // alert("poulos");
     }
@@ -175,6 +226,45 @@ function Save_changes_todo(itemID) {
     var title = document.forms.edittodoform.titleedittodo.value;
     var duedate = document.forms.edittodoform.duedateedittodo.value;
     var radios = document.getElementsByName('statusradio');
+    
+    
+    if(notnull_validation(title)){
+       
+        style_inp("titleedittask");
+        
+    }else{
+        style_abstract_valid("titleedittask");
+    }
+    
+    
+    if(date_regex_validation(duedate)){
+       
+        style_inp("duedateedittask");
+        
+    }else{
+        style_abstract_valid("duedateedittask");
+    }
+    
+    
+    if(radio_validation(radios)){
+       
+       for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=false;
+                    
+            }
+      
+        
+    }else{
+        for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=true;
+                    
+            }
+    }
+    
+    
+    
 
     if (radio_validation(radios) && notnull_validation(title) && date_regex_validation(duedate)) {
         document.getElementById("edittodobutton").setAttribute("data-dismiss", "modal");
@@ -248,14 +338,17 @@ function Save_changes_todo(itemID) {
     } else {
         document.getElementById("edittodobutton").removeAttribute("data-dismiss");
         
-        
+       var htmlString = "";  
+
+        htmlString =
+                '<div>'+'<div class = "glyphicon glyphicon-remove-circle">'+'</div>'+'  Fill The Red Required Inputs'+'</div>';
         
         
         document.getElementById("suc_todo_mes_valid_ed").style.display="block";
-        document.getElementById("suc_todo_mes_valid_ed").setAttribute("class","alert alert-danger pull-left alert_messa");
+        document.getElementById("suc_todo_mes_valid_ed").setAttribute("class","alert alert-danger pull-left alert_messa_danger");
 
         alert(document.getElementById("suc_todo_mes_valid_ed").innerHTML);
-        document.getElementById("suc_todo_mes_valid_ed").innerHTML="Fill The Red Required Inputs";
+        document.getElementById("suc_todo_mes_valid_ed").innerHTML= htmlString;
         
         
         alert("poulos");

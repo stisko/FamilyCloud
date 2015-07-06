@@ -7,12 +7,12 @@
 <div class="row">									
     <div class="col-sm-6">				
         <label for="titleedittask">Task Title</label>
-        <input type="text" class="form-control" id="titleedittask" name="titleedittodo" placeholder="Enter Title" value="${json.item.title}" required><span>You have to enter a title</span>
+        <input type="text" class="form-control" id="titleedittask" name="titleedittodo" oninput="style_inp('titleedittask')" placeholder="Enter Title" value="${json.item.title}" required><span>You have to enter a title</span>
     </div>									
 
     <div class="col-sm-6">
         <label for="duedateedittask">Due Date</label>
-        <input type="date" class="form-control" id="duedateedittask" name="duedateedittodo" placeholder="yyyy-MM-dd" value="${json.item.dueDate}" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid Date Input</span>
+        <input type="date" class="form-control" id="duedateedittask" name="duedateedittodo" oninput="style_inp('duedateedittask')" placeholder="yyyy-MM-dd" value="${json.item.dueDate}" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid Date Input</span>
     </div>
 </div>
 <div class="row">
@@ -72,7 +72,7 @@
 </div>
 
 <div class="modal-footer">
-    <div id="suc_todo_mes_valid_ed" style=" width:70%"></div> 
+    <div id="suc_todo_mes_valid_ed" style="font-size:120%"></div> 
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     <button type="button" class="btn btn-primary" data-dismiss="modal" value="${json.item.itemID}" id="edittodobutton" onclick="Save_changes_todo(this.value)">Save</button>
 </div>

@@ -197,6 +197,78 @@ function addperEvent() {
     var rpt_number = document.forms.addpersonalcalendarform.addpersonalrpeatevery.value;
     alert(rpt_number);
     var checkbox_repeat = document.getElementById("addpersonalcheckbox_repeat").checked;
+    
+    
+    
+    
+    if(notnull_validation(title)){
+       
+        style_inp("addpersonalevent-title");
+        
+    }else{
+        style_abstract_valid("addpersonalevent-title");
+    }
+    
+    
+    if(datetime_regex_validation(dateadd)){
+       
+        style_inp("datepickeraddeventpersonalstart");
+        
+    }else{
+        style_abstract_valid("datepickeraddeventpersonalstart");
+    }
+    
+    
+     if(datetime_regex_validation(dateaddend)){
+       
+        style_inp("datepickeraddeventpersonalend");
+        
+    }else{
+        style_abstract_valid("datepickeraddeventpersonalend");
+    }
+    
+    
+    
+    
+     if(datetime_regex_validation(start_date)){
+       
+        style_inp("addpersonalrepeatstart");
+        
+    }else{
+        style_abstract_valid("addpersonalrepeatstart");
+    }
+    
+    
+    
+    if(positive_number_validation(notif_number)){
+       
+        style_inp("addpersonalevent_notification_time");
+        
+    }else{
+        style_abstract_valid("addpersonalevent_notification_time");
+    }
+    
+    
+    
+     if( date_regex_validation(end_date)){
+       
+        style_inp("addpersonalexpiresat");
+        
+    }else{
+       
+        style_abstract_valid("addpersonalexpiresat");
+    }
+    
+    
+    
+     if(  positive_number_validation(rpt_number)){
+       
+        style_inp("addpersonalrpeatevery");
+        
+    }else{
+        style_abstract_valid("addpersonalrpeatevery");
+    }
+    
 
 
     var success = false;
@@ -251,12 +323,18 @@ function addperEvent() {
     } else {
 
         document.getElementById("addpercalbut").removeAttribute("data-dismiss");
+        
+        
+        var htmlString = "";  
+
+        htmlString =
+                '<div>'+'<div class = "glyphicon glyphicon-remove-circle">'+'</div>'+'  Fill The Red Required Inputs'+'</div>';
 
         document.getElementById("suc_todo_mes_valid_P").style.display = "block";
-        document.getElementById("suc_todo_mes_valid_P").setAttribute("class", "alert alert-danger pull-left alert_messa");
+        document.getElementById("suc_todo_mes_valid_P").setAttribute("class", "alert alert-danger pull-left alert_messa_danger");
 
         alert(document.getElementById("suc_todo_mes_valid_P").innerHTML);
-        document.getElementById("suc_todo_mes_valid_P").innerHTML = "Fill The Red Required Inputs";
+        document.getElementById("suc_todo_mes_valid_P").innerHTML = htmlString;
 
 
         alert("poulos");
@@ -365,6 +443,76 @@ function UpdatePerCalEvent(id) {
     var rpt_number = document.forms.editpersonalcalendarform.editpersonalrpeatevery.value;
     alert(rpt_number);
     var checkbox_repeat = document.getElementById("editpersonalcheckbox_repeat").checked;
+    
+    
+    
+    if(notnull_validation(title)){
+       
+        style_inp("editpersonalevent-title");
+        
+    }else{
+        style_abstract_valid("editpersonalevent-title");
+    }
+    
+    
+    if(datetime_regex_validation(dateadd)){
+       
+        style_inp("datepickerediteventpersonalstart");
+        
+    }else{
+        style_abstract_valid("datepickerediteventpersonalstart");
+    }
+    
+    
+     if(datetime_regex_validation(dateaddend)){
+       
+        style_inp("datepickerediteventpersonalend");
+        
+    }else{
+        style_abstract_valid("datepickerediteventpersonalend");
+    }
+    
+    
+    
+    
+     if(datetime_regex_validation(start_date)){
+       
+        style_inp("editpersonalrepeatstart");
+        
+    }else{
+        style_abstract_valid("editpersonalrepeatstart");
+    }
+    
+    
+    
+    if(positive_number_validation(notif_number)){
+       
+        style_inp("editpersonalevent_notification_time");
+        
+    }else{
+        style_abstract_valid("editpersonalevent_notification_time");
+    }
+    
+    
+    
+     if( datetime_regex_validation(end_date)){
+       
+        style_inp("editpersonalexpiresat");
+        
+    }else{
+       
+        style_abstract_valid("editpersonalexpiresat");
+    }
+    
+    
+    
+     if(  positive_number_validation(rpt_number)){
+       
+        style_inp("editpersonalrpeatevery");
+        
+    }else{
+        style_abstract_valid("editpersonalrpeatevery");
+    }
 
 
     var success = false;
@@ -419,14 +567,19 @@ function UpdatePerCalEvent(id) {
 
 
         document.getElementById("editsaveupdatebut").removeAttribute("data-dismiss");
+        
+        var htmlString = "";  
+
+        htmlString =
+                '<div>'+'<div class = "glyphicon glyphicon-remove-circle">'+'</div>'+'  Fill The Red Required Inputs'+'</div>';
 
 
 
         document.getElementById("suc_todo_mes_valid_Ped").style.display = "block";
-        document.getElementById("suc_todo_mes_valid_Ped").setAttribute("class", "alert alert-danger pull-left alert_messa");
+        document.getElementById("suc_todo_mes_valid_Ped").setAttribute("class", "alert alert-danger pull-left alert_messa_danger");
 
         alert(document.getElementById("suc_todo_mes_valid_Ped").innerHTML);
-        document.getElementById("suc_todo_mes_valid_Ped").innerHTML = "Fill The Red Required Inputs";
+        document.getElementById("suc_todo_mes_valid_Ped").innerHTML = htmlString;
         alert("poulos");
 
     }
@@ -622,7 +775,7 @@ function sendchecked() {
 
     var SelBranchVal = "";
 
-
+    alert("GAMW TO XRISTO SOU");
 
     var inputs = document.getElementsByName("work_checked");
 
@@ -632,17 +785,11 @@ function sendchecked() {
         if (inputs[i].type == "checkbox") {
             if (inputs[i].checked) {
 
-                alert("CHECKED");
+                alert("CHECKED AND VALUE");
+                
+                alert(inputs[i].value);
 
-                if (inputs[i].parentNode) {
-
-                    alert("VRHKA PARENT");
-
-                    alert(inputs[i].parentNode.textContent);
-
-                    SelBranchVal = inputs[i].parentNode.textContent + "," + SelBranchVal;
-
-                }
+            SelBranchVal = inputs[i].value + "," + SelBranchVal;
 
 
 

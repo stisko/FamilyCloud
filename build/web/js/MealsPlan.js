@@ -27,6 +27,100 @@ function UpdateMealsPlanEvent(id) {
     var end_date = document.forms.editmeal_form.editmealexpiresat.value;
     var rpt_number = document.forms.editmeal_form.editmealrepeatevery.value;
     var checkbox_repeat = document.getElementById("editmealcheckbox_repeat").checked;
+    
+    var radios = document.getElementsByName('optradio2');
+    
+    
+    
+    
+    
+    if(notnull_validation(title)){
+       
+        style_inp("editmealtitle");
+        
+    }else{
+        style_abstract_valid("editmealtitle");
+    }
+    
+    
+    if(date_regex_validation(dateadd)){
+       
+        style_inp("editmealdatefrom");
+        
+    }else{
+        style_abstract_valid("editmealdatefrom");
+    }
+    
+    
+    
+    
+     if(date_regex_validation(start_date)){
+       
+        style_inp("editmealstartsat");
+        
+    }else{
+        style_abstract_valid("editmealstartsat");
+    }
+    
+    
+    
+    if(positive_number_validation(notif_number)){
+       
+        style_inp("editmealnotification_time");
+        
+    }else{
+        style_abstract_valid("editmealnotification_time");
+    }
+    
+    
+    
+     if( date_regex_validation(end_date)){
+       
+        style_inp("editmealexpiresat");
+        
+    }else{
+       
+        style_abstract_valid("editmealexpiresat");
+    }
+    
+    
+    
+     if(  positive_number_validation(rpt_number)){
+       
+        style_inp("editmealrepeatevery");
+        
+    }else{
+        style_abstract_valid("editmealrepeatevery");
+    }
+    
+   
+    
+    
+    
+    if(radio_validation(radios)){
+       
+       for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=false;
+                    
+            }
+      
+        
+    }else{
+        for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=true;
+                    
+            }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 
     var success = false;
     if (checkbox_repeat) {
@@ -49,7 +143,7 @@ function UpdateMealsPlanEvent(id) {
         else
         {
 
-            var radios = document.getElementsByName('optradio');
+            
 
             for (var i = 0, length = radios.length; i < length; i++) {
                 if (radios[i].checked) {
@@ -88,12 +182,17 @@ function UpdateMealsPlanEvent(id) {
 
         document.getElementById("editsavemealbutton").removeAttribute("data-dismiss");
         
+         var htmlString = "";  
+
+        htmlString =
+                '<div>'+'<div class = "glyphicon glyphicon-remove-circle">'+'</div>'+'  Fill The Red Required Inputs'+'</div>';
+        
         
         document.getElementById("suc_todo_mes_valid_Med").style.display="block";
-        document.getElementById("suc_todo_mes_valid_Med").setAttribute("class","alert alert-danger pull-left alert_messa");
+        document.getElementById("suc_todo_mes_valid_Med").setAttribute("class","alert alert-danger pull-left alert_messa_danger");
 
         alert(document.getElementById("suc_todo_mes_valid_Med").innerHTML);
-        document.getElementById("suc_todo_mes_valid_Med").innerHTML="Fill The Red Required Inputs";
+        document.getElementById("suc_todo_mes_valid_Med").innerHTML=htmlString;
         alert("poulos");
 
     }
@@ -288,12 +387,98 @@ function addMeal() {
     var end_date = document.forms.addmealform.enddateaddmeal.value;
     var rpt_number = document.forms.addmealform.repeatnumberaddmeal.value;
     var checkbox_repeat = document.getElementById("addmealcheckbox_repeat").checked;
+    var radios = document.getElementsByName('optradio');
+    
+    
+    
+    
+    
+    if(notnull_validation(title)){
+       
+        style_inp("addmealtitle");
+        
+    }else{
+        style_abstract_valid("addmealtitle");
+    }
+    
+    
+    if(date_regex_validation(dateadd)){
+       
+        style_inp("addmealdatefrom");
+        
+    }else{
+        style_abstract_valid("addmealdatefrom");
+    }
+    
+    
+    
+    
+     if(date_regex_validation(start_date)){
+       
+        style_inp("addmealstartsat");
+        
+    }else{
+        style_abstract_valid("addmealstartsat");
+    }
+    
+    
+    
+    if(positive_number_validation(notif_number)){
+       
+        style_inp("addmealnotification_time");
+        
+    }else{
+        style_abstract_valid("addmealnotification_time");
+    }
+    
+    
+    
+     if( date_regex_validation(end_date)){
+       
+        style_inp("addmealexpiresat");
+        
+    }else{
+       
+        style_abstract_valid("addmealexpiresat");
+    }
+    
+    
+    
+     if(  positive_number_validation(rpt_number)){
+       
+        style_inp("addmealrepeatevery");
+        
+    }else{
+        style_abstract_valid("addmealrepeatevery");
+    }
+    
+   
+    
+    
+    
+    if(radio_validation(radios)){
+       
+       for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=false;
+                    
+            }
+      
+        
+    }else{
+        for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=true;
+                    
+            }
+    }
+    
 
     var success = false;
     if (checkbox_repeat) {
-        success = (notnull_validation(title) && date_regex_validation(dateadd) && date_regex_validation(start_date) && positive_number_validation(notif_number) && date_regex_validation(end_date) && positive_number_validation(rpt_number));
+        success = (notnull_validation(title) && radio_validation(radios)   && date_regex_validation(dateadd) && date_regex_validation(start_date) && positive_number_validation(notif_number) && date_regex_validation(end_date) && positive_number_validation(rpt_number));
     } else {
-        success = (notnull_validation(title) && date_regex_validation(dateadd) && positive_number_validation(notif_number));
+        success = (notnull_validation(title) && radio_validation(radios) && date_regex_validation(dateadd) && positive_number_validation(notif_number));
     }
 
     if (success) {
@@ -306,7 +491,7 @@ function addMeal() {
         }
         else
         {
-            var radios = document.getElementsByName('optradio');
+            
 
             for (var i = 0, length = radios.length; i < length; i++) {
                 if (radios[i].checked) {
@@ -340,11 +525,17 @@ function addMeal() {
     } else {
         document.getElementById("insertmealbutton").removeAttribute("data-dismiss");
         
+        
+         var htmlString = "";  
+
+        htmlString =
+                '<div>'+'<div class = "glyphicon glyphicon-remove-circle">'+'</div>'+'  Fill The Red Required Inputs'+'</div>';
+        
          document.getElementById("suc_todo_mes_valid_M").style.display="block";
-        document.getElementById("suc_todo_mes_valid_M").setAttribute("class","alert alert-danger pull-left alert_messa");
+        document.getElementById("suc_todo_mes_valid_M").setAttribute("class","alert alert-danger pull-left alert_messa_danger");
 
         alert(document.getElementById("suc_todo_mes_valid_M").innerHTML);
-        document.getElementById("suc_todo_mes_valid_M").innerHTML="Fill The Red Required Inputs";
+        document.getElementById("suc_todo_mes_valid_M").innerHTML=htmlString;
         alert("poulos");
     }
 }

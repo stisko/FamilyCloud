@@ -90,6 +90,49 @@ function initFullFormAjaxUploadMemberProfile(username) {
 
     var success = false;
 
+
+
+   if(notnull_validation(last_mem)){
+         
+        style_inp("lastnameeditmember");
+        
+    }else{
+        style_abstract_valid("lastnameeditmember");
+    }
+    
+    
+    if(notnull_validation(first_mem)){
+        
+       
+       
+        style_inp("firstnameeditmember");
+        
+    }else{
+        style_abstract_valid("firstnameeditmember");
+    }
+    
+    
+    
+     if(date_regex_validation(birth_mem)){
+       
+        style_inp("birtheditmember");
+        
+    }else{
+        style_abstract_valid("birtheditmember");
+    }
+    
+    
+    if(email_val(mail_mem)){
+       
+        style_inp("emaileditmember");
+        
+    }else{
+        style_abstract_valid("emaileditmember");
+    }
+
+   
+   
+   
     success = (date_regex_validation(birth_mem) && notnull_validation(last_mem) && notnull_validation(first_mem) && email_val(mail_mem));
 
     if (success) {
@@ -118,15 +161,21 @@ function initFullFormAjaxUploadMemberProfile(username) {
         //document.getElementById('img' + username).removeAttribute("src");
         // Avoid normal form submission
     } else {
+        
+        var htmlString = "";  
+
+        htmlString =
+                '<div>'+'<div class = "glyphicon glyphicon-remove-circle">'+'</div>'+'  Fill The Red Required Inputs'+'</div>';
+                
 
         document.getElementById("memsaveup").removeAttribute("data-dismiss");
 
 
         document.getElementById("suc_todo_mes_valid_FamMem").style.display = "block";
-        document.getElementById("suc_todo_mes_valid_FamMem").setAttribute("class", "alert alert-danger pull-left alert_messa");
+        document.getElementById("suc_todo_mes_valid_FamMem").setAttribute("class", "alert alert-danger pull-left alert_messa_danger");
 
         alert(document.getElementById("suc_todo_mes_valid_FamMem").innerHTML);
-        document.getElementById("suc_todo_mes_valid_FamMem").innerHTML = "Fill The Red Required Inputs";
+        document.getElementById("suc_todo_mes_valid_FamMem").innerHTML = htmlString;
 
 
         alert("poulos");
@@ -184,8 +233,51 @@ function initFullFormAjaxUploadDirectorProfile(username) {
     var mail_di = document.getElementById("emaileditdirector").value;
 
     var birth_di = document.getElementById("birtheditdirector").value
+    
+    
+    if(notnull_validation(lastn_dir)){
+         
+        style_inp("lastnameeditdirector");
+        
+    }else{
+        style_abstract_valid("lastnameeditdirector");
+    }
+    
+    
+    if(notnull_validation(first_dir)){
+        
+       
+       
+        style_inp("firstnameeditdirector");
+        
+    }else{
+        style_abstract_valid("firstnameeditdirector");
+    }
+    
+    
+    
+     if(date_regex_validation(birth_di)){
+       
+        style_inp("birtheditdirector");
+        
+    }else{
+        style_abstract_valid("birtheditdirector");
+    }
+    
+    
+    if(email_val(mail_di)){
+       
+        style_inp("emaileditdirector");
+        
+    }else{
+        style_abstract_valid("emaileditdirector");
+    }
 
 
+
+
+
+    
 
 
     var success = false;
@@ -223,16 +315,21 @@ function initFullFormAjaxUploadDirectorProfile(username) {
 
         document.getElementById("edit_dir_button").removeAttribute("data-dismiss");
         
+        var htmlString = "";  
+
+        htmlString =
+                '<div>'+'<div class = "glyphicon glyphicon-remove-circle">'+'</div>'+'  Fill The Red Required Inputs'+'</div>';
+        
         
         
         alert("poulos");
         
         
         document.getElementById("suc_todo_mes_valid_FamDr").style.display = "block";
-        document.getElementById("suc_todo_mes_valid_FamDr").setAttribute("class", "alert alert-danger pull-left alert_messa");
+        document.getElementById("suc_todo_mes_valid_FamDr").setAttribute("class", "alert alert-danger pull-left alert_messa_danger");
 
         alert(document.getElementById("suc_todo_mes_valid_FamDr").innerHTML);
-        document.getElementById("suc_todo_mes_valid_FamDr").innerHTML = "Fill The Red Required Inputs";
+        document.getElementById("suc_todo_mes_valid_FamDr").innerHTML = htmlString;
 
     }
 
@@ -490,6 +587,43 @@ function AddMember() {
     alert(firstn);
     var bir_dat = document.getElementById("birthaddmember").value;
     alert(bir_dat);
+    
+    
+    
+    if(notnull_validation(lastn)){
+         
+        style_inp("lastnameaddmember");
+        
+    }else{
+        style_abstract_valid("lastnameaddmember");
+    }
+    
+    
+    if(notnull_validation(firstn)){
+        
+       
+       
+        style_inp("firstnameaddmember");
+        
+    }else{
+        style_abstract_valid("firstnameaddmember");
+    }
+    
+    
+    
+     if(date_regex_validation(bir_dat)){
+       
+        style_inp("birthaddmember");
+        
+    }else{
+        style_abstract_valid("birthaddmember");
+    }
+    
+    
+    
+    
+    
+    
     var success = false;
 
     success = (notnull_validation(lastn) && notnull_validation(firstn) && date_regex_validation(bir_dat));
@@ -526,13 +660,16 @@ function AddMember() {
         document.getElementById("addmembut").removeAttribute("data-dismiss");
 
         alert("poulos");
+        var htmlString = "";  
 
+        htmlString =
+                '<div>'+'<div class = "glyphicon glyphicon-remove-circle">'+'</div>'+'  Fill The Red Required Inputs'+'</div>';
 
         document.getElementById("suc_todo_mes_valid_Fam").style.display = "block";
-        document.getElementById("suc_todo_mes_valid_Fam").setAttribute("class", "alert alert-danger pull-left alert_messa");
+        document.getElementById("suc_todo_mes_valid_Fam").setAttribute("class", "alert alert-danger pull-left alert_messa_danger");
 
         alert(document.getElementById("suc_todo_mes_valid_Fam").innerHTML);
-        document.getElementById("suc_todo_mes_valid_Fam").innerHTML = "Fill The Red Required Inputs";
+        document.getElementById("suc_todo_mes_valid_Fam").innerHTML= htmlString;
 
 
 

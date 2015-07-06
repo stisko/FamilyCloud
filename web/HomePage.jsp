@@ -113,14 +113,32 @@
 
                     //displaying response in select box by using that id
                     document.getElementById("checkpasswords").innerHTML = json;
-                    if (document.getElementById("checkpasswords").innerHTML==1) {
-                        
+
+                    
+
+                       
+
+                    
+
+                    if (document.getElementById("checkpasswords").innerHTML == 1) {
+
                         document.getElementById("passspan").style.display = "block";
                         
+                        document.getElementById("passspan").style.color="green";
+                    //   style_abstract_valid("oldpass");
+                    
+                    style_inp("oldpass");
+
                         document.getElementById("passspan").innerHTML = "This is your old password";
                     } else {
+                        
+                       // style_inp("oldpass");
+                       style_abstract_valid("oldpass");
+                       
                         document.getElementById("passspan").style.display = "block";
                         document.getElementById("passspan").innerHTML = "Wrong old password";
+                        
+                         document.getElementById("passspan").style.color="red";
                     }
 
 
@@ -183,15 +201,9 @@
                                                     <li>malakies</li>
                                                 </ul>-->
                         <li class="dropdown">
-                            <a href="" onclick="getMessageNotifications()" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span><span class="badge backg" id="badge_counter_msg"></span></a>
+                            <a href="" onclick="getMessageNotifications()" class="dropdown-toggle" id="messageanime" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span><span class="badge backg" id="badge_counter_msg"></span></a>
                             <ul class="dropdown-menu scroll" id="dropdown_messages">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
+
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -206,7 +218,7 @@
 
 
 
-                        <li role="presentation"><a onclick="getMyFamily()">Home</a>
+                        <li role="presentation"><a href="#" onclick="getMyFamily()">Home</a>
                         </li>
                         <li role="presentation" data-toggle="modal" data-target="#myprofilemodal" onclick="getMyprofile('${json.cur_user.username}')"><a href="#myprofilemodal">My Profile</a>
                         </li>

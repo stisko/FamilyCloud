@@ -40,13 +40,108 @@ function addEvent() {
     var rpt_number = document.forms.addevfamform.addfamilyrepeatevery.value;
     alert(rpt_number);
     var checkbox_repeat = document.getElementById("addfamilycheckbox_repeat").checked;
+    
+    var radios = document.getElementsByName('optradio4');
+    
+    
+    
+    
+    
+    
+    if(notnull_validation(title)){
+       
+        style_inp("addfamilyevent_title");
+        
+    }else{
+        style_abstract_valid("addfamilyevent_title");
+    }
+    
+    
+    if(datetime_regex_validation(dateadd)){
+       
+        style_inp("datepickeraddeventfamilystart");
+        
+    }else{
+        style_abstract_valid("datepickeraddeventfamilystart");
+    }
+    
+    
+     if(datetime_regex_validation(dateaddend)){
+       
+        style_inp("datepickeraddeventfamilyend");
+        
+    }else{
+        style_abstract_valid("datepickeraddeventfamilyend");
+    }
+    
+    
+    
+    
+     if(datetime_regex_validation(start_date)){
+       
+        style_inp("addfamilyrepeatstart");
+        
+    }else{
+        style_abstract_valid("addfamilyrepeatstart");
+    }
+    
+    
+    
+    if(positive_number_validation(notif_number)){
+       
+        style_inp("addfamilyevent_notification_time");
+        
+    }else{
+        style_abstract_valid("addfamilyevent_notification_time");
+    }
+    
+    
+    
+     if( datetime_regex_validation(end_date)){
+       
+        style_inp("addfamilyexpiresat");
+        
+    }else{
+       
+        style_abstract_valid("addfamilyexpiresat");
+    }
+    
+    
+    
+     if(  positive_number_validation(rpt_number)){
+       
+        style_inp("addfamilyrepeatevery");
+        
+    }else{
+        style_abstract_valid("addfamilyrepeatevery");
+    }
+    
+    
+    if(radio_validation(radios)){
+       
+       for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=false;
+                    
+            }
+      
+        
+    }else{
+        for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=true;
+                    
+            }
+    }
+    
+    
 
 
     var success = false;
     if (checkbox_repeat) {
-        success = (notnull_validation(title) && datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && datetime_regex_validation(start_date) && positive_number_validation(notif_number) && datetime_regex_validation(end_date) && positive_number_validation(rpt_number));
+        success = (notnull_validation(title) && radio_validation(radios) && datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && datetime_regex_validation(start_date) && positive_number_validation(notif_number) && datetime_regex_validation(end_date) && positive_number_validation(rpt_number));
     } else {
-        success = (notnull_validation(title) && datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && positive_number_validation(notif_number));
+        success = (notnull_validation(title) && radio_validation(radios)&& datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && positive_number_validation(notif_number));
     }
 
     if (success) {
@@ -100,7 +195,7 @@ function addEvent() {
 
 
 
-            var radios = document.getElementsByName('optradio');
+            
 
             for (var i = 0, length = radios.length; i < length; i++) {
                 if (radios[i].checked) {
@@ -143,11 +238,16 @@ function addEvent() {
 
         document.getElementById("addfameventbut").removeAttribute("data-dismiss");
         
+         var htmlString = "";  
+
+        htmlString =
+                '<div>'+'<div class = "glyphicon glyphicon-remove-circle">'+'</div>'+'  Fill The Red Required Inputs'+'</div>';
+        
         document.getElementById("suc_todo_mes_valid_F").style.display="block";
-        document.getElementById("suc_todo_mes_valid_F").setAttribute("class","alert alert-danger pull-left alert_messa");
+        document.getElementById("suc_todo_mes_valid_F").setAttribute("class","alert alert-danger pull-left alert_messa_danger");
 
         alert(document.getElementById("suc_todo_mes_valid_F").innerHTML);
-        document.getElementById("suc_todo_mes_valid_F").innerHTML="Fill The Red Required Inputs";
+        document.getElementById("suc_todo_mes_valid_F").innerHTML=htmlString;
         
         
         
@@ -293,14 +393,102 @@ function UpdateFamCalEvent(id) {
     var checkbox_repeat = document.getElementById("editfamilycheckbox_repeat").checked;
     
     
-    var radios = document.getElementsByName('optradio');
+    var radios = document.getElementsByName('optradio5');
+    
+    
+    
+    if(notnull_validation(title)){
+       
+        style_inp("editfamilyevent_title");
+        
+    }else{
+        style_abstract_valid("editfamilyevent_title");
+    }
+    
+    
+    if(datetime_regex_validation(dateadd)){
+       
+        style_inp("datepickerediteventfamilystart");
+        
+    }else{
+        style_abstract_valid("datepickerediteventfamilystart");
+    }
+    
+    
+     if(datetime_regex_validation(dateaddend)){
+       
+        style_inp("datepickerediteventfamilyend");
+        
+    }else{
+        style_abstract_valid("datepickerediteventfamilyend");
+    }
+    
+    
+    
+    
+     if(datetime_regex_validation(start_date)){
+       
+        style_inp("editfamilyrepeatstart");
+        
+    }else{
+        style_abstract_valid("editfamilyrepeatstart");
+    }
+    
+    
+    
+    if(positive_number_validation(notif_number)){
+       
+        style_inp("editfamilyevent_notification_time");
+        
+    }else{
+        style_abstract_valid("editfamilyevent_notification_time");
+    }
+    
+    
+    
+     if( datetime_regex_validation(end_date)){
+       
+        style_inp("editfamilyexpiresat");
+        
+    }else{
+       
+        style_abstract_valid("editfamilyexpiresat");
+    }
+    
+    
+    
+     if(  positive_number_validation(rpt_number)){
+       
+        style_inp("editfamilyrepeatevery");
+        
+    }else{
+        style_abstract_valid("editfamilyrepeatevery");
+    }
+    
+    
+    if(radio_validation(radios)){
+       
+       for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=false;
+                    
+            }
+      
+        
+    }else{
+        for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=true;
+                    
+            }
+    }
 
 
     var success = false;
     if (checkbox_repeat) {
-        success = (notnull_validation(title) && radio_validation(radios)&& datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && datetime_regex_validation(start_date) && positive_number_validation(notif_number) && datetime_regex_validation(end_date) && positive_number_validation(rpt_number));
+        success = (notnull_validation(title) && radio_validation(radios) && datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && datetime_regex_validation(start_date) && positive_number_validation(notif_number) && datetime_regex_validation(end_date) && positive_number_validation(rpt_number));
     } else {
-        success = (notnull_validation(title) && radio_validation(radios)&& datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && positive_number_validation(notif_number));
+        success = (notnull_validation(title) && radio_validation(radios) && datetime_regex_validation(dateadd) && datetime_regex_validation(dateaddend) && positive_number_validation(notif_number));
     }
     
     if(success){
@@ -394,14 +582,17 @@ alert(document.getElementById("editfamilyevent_categories").value);
         
         document.getElementById("editsaveFameve").removeAttribute("data-dismiss");
         
-        
+        var htmlString = "";  
+
+        htmlString =
+                '<div>'+'<div class = "glyphicon glyphicon-remove-circle">'+'</div>'+'  Fill The Red Required Inputs'+'</div>';
         
         
         document.getElementById("suc_todo_mes_valid_Fed").style.display="block";
-        document.getElementById("suc_todo_mes_valid_Fed").setAttribute("class","alert alert-danger pull-left alert_messa");
+        document.getElementById("suc_todo_mes_valid_Fed").setAttribute("class","alert alert-danger pull-left alert_messa_danger");
 
         alert(document.getElementById("suc_todo_mes_valid_Fed").innerHTML);
-        document.getElementById("suc_todo_mes_valid_Fed").innerHTML="Fill The Red Required Inputs";
+        document.getElementById("suc_todo_mes_valid_Fed").innerHTML=htmlString;
         
         
         

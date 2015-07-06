@@ -60,6 +60,7 @@ function getMessageNotifications()
     }
 
 }
+
 function notificationsMessage_return(xmlHttp)
 {
 
@@ -71,11 +72,17 @@ function notificationsMessage_return(xmlHttp)
 
         var text = xmlHttp.responseText;
 
-        document.getElementById("dropdown_messages").innerHTML = text;
+        
         //displaying response in select box by using that id
 //                    document.getElementById("apotelesma2").innerHTML = json.message;
 //                    document.getElementById("signup_btn").setAttribute("class", json.disabled);
-
+        
+        
+        
+       
+        
+        document.getElementById("dropdown_messages").innerHTML = text;
+        
     }
 
 }
@@ -100,6 +107,7 @@ function getUnreadNotificationsCount(){
     }
 }
 mem=0;
+mem2=0;
 function unread_counter_return(xmlHttp)
 {
 
@@ -159,6 +167,15 @@ function unreadMessage_counter_return(xmlHttp)
 //                    var json = JSON.parse(xmlHttp.responseText);
 
         var text = xmlHttp.responseText;
+        
+         if(text>mem2){ 
+            document.getElementById("messageanime").setAttribute("class","dropdown-toggle rotate_notif");
+            
+        }else{
+            document.getElementById("messageanime").removeAttribute("class");
+            //document.getElementById("messageanime").setAttribute("class","dropdown-toggle");
+        }
+        mem2=xmlHttp.responseText;
         
         document.getElementById("badge_counter_msg").innerHTML = text;
         setTimeout(function(){getUnreadMessageNotificationsCount();},10000);

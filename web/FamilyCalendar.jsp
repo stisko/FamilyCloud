@@ -108,7 +108,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="addfamilyevent-title">Event Title</label>
-                            <input type="text" class="form-control" id="addfamilyevent_title" name="addfamilyevent_title" placeholder="Enter Title" required><span>You have to enter a title</span>
+                            <input type="text" class="form-control" id="addfamilyevent_title" oninput="style_inp('addfamilyevent_title')" name="addfamilyevent_title" placeholder="Enter Title" required><span>You have to enter a title</span>
                         </div>
                         <div class="col-sm-6">
                             <label for="addfamilyevent_location">Location</label>
@@ -124,21 +124,21 @@
                         <div class="col-sm-6">
                             <label for="datepickeraddeventfamily">Event Range</label>
                             <div class="input-daterange input-group" id="datepickeraddeventfamily">
-                                <input type="datetime" class="input-sm form-control" placeholder="YYYY-MM-DD HH:MM:SS" name="start" id="datepickeraddeventfamilystart" name="datepickeraddeventfamilystart" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required/><span>Invalid Datetime input</span>
+                                <input type="datetime" class="input-sm form-control" placeholder="YYYY-MM-DD HH:MM:SS" name="start" id="datepickeraddeventfamilystart" oninput="style_inp('datepickeraddeventfamilystart')" name="datepickeraddeventfamilystart" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required/><span>Invalid Datetime input</span>
                                 <span class="input-group-addon">to</span>
-                                <input type="datetime" class="input-sm form-control" placeholder="YYYY-MM-DD HH:MM:SS" name="end" id="datepickeraddeventfamilyend" name="datepickeraddeventfamilyend" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required/><span>Invalid Datetime input</span>
+                                <input type="datetime" class="input-sm form-control" placeholder="YYYY-MM-DD HH:MM:SS" name="end" id="datepickeraddeventfamilyend" oninput="style_inp('datepickeraddeventfamilyend')" name="datepickeraddeventfamilyend" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required/><span>Invalid Datetime input</span>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <label for="addfamilyevent_visibility">Visibility</label>
                             <div class="radio" id="addfamilyevent_visibility">
                                 <label>
-                                    <input type="radio" name="optradio" value="Adults" required>Adults
+                                    <input type="radio" name="optradio4" value="Adults">Adults
                                 </label>
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="optradio" value="All">All members
+                                    <input type="radio" name="optradio4" value="All">All members
                                 </label>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                         <div class="col-sm-6">
                             <label for="addfamilyevent_notification">Notifications before</label>
                             <div class="input-group" role="group" id="addfamilyevent_notification">
-                                <input type="number" class="form-control input-sm" id="addfamilyevent_notification_time" placeholder="0" min="0" required>
+                                <input type="number" class="form-control input-sm" id="addfamilyevent_notification_time" oninput="style_inp('addfamilyevent_notification_time')" placeholder="0" min="0" required>
                                 <span class="input-group-btn" style="width:0px;"></span>
                                 <select class="form-control input-sm" id="addfamilyevent_notification_period">
                                     <option>Minutes</option>
@@ -216,25 +216,25 @@
                             </div>
                             <div class="col-sm-6">
                                 <label>Starts at:</label>
-                                <input type="datetime" class="form-control" id="addfamilyrepeatstart" name="addfamilyrepeatstart" placeholder="YYYY-MM-DD HH:MM:SS" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required/><span>Invalid Datetime input</span>
+                                <input type="datetime" class="form-control" id="addfamilyrepeatstart" oninput="style_inp('addfamilyrepeatstart')" name="addfamilyrepeatstart" placeholder="YYYY-MM-DD HH:MM:SS" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required/><span>Invalid Datetime input</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label>Repeat every:</label>
-                                <input type="number" class="form-control input-mir" id="addfamilyrepeatevery" name="addfamilyrepeatevery" placeholder="0" min="1" required><span>Invalid number input</span>
+                                <input type="number" class="form-control input-mir" id="addfamilyrepeatevery" oninput="style_inp('addfamilyrepeatevery')" name="addfamilyrepeatevery" placeholder="0" min="1" required><span>Invalid number input</span>
                                 <!--- prepei na prosthesw days/ months/ weeks analoga me tin proigoumeni epilogi ---->
                             </div>
                             <div class="col-sm-6">
                                 <label>Expiration:</label>
-                                <input type="datetime" class="form-control" id="addfamilyexpiresat" name="addfamilyexpiresat" placeholder="YYYY-MM-DD HH:MM:SS" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required/><span>Invalid Datetime input</span>
+                                <input type="datetime" class="form-control" id="addfamilyexpiresat" oninput="style_inp('addfamilyexpiresat')" name="addfamilyexpiresat" placeholder="YYYY-MM-DD HH:MM:SS" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)) (0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}" required/><span>Invalid Datetime input</span>
                             </div>
                         </div>
                     </div>
                     <!---  edw kleinei kai kala to repeat---->
                 </div>
                 <div class="modal-footer">
-                    <div id="suc_todo_mes_valid_F" style=" width:70%"></div>
+                    <div id="suc_todo_mes_valid_F" style="font-size:120%"></div>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" id="addfameventbut" class="btn btn-primary"data-dismiss="modal" onclick="addEvent()">Add</button>
                 </div>

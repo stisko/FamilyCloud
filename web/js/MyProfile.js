@@ -61,6 +61,43 @@ function ChangePassword(){
      
      var chcc=(npass==retpass);
      alert(checkpassword);
+     
+     
+     
+     
+     if(chcc){
+         
+         style_inp("newpass");
+          style_inp("retypenewpass");
+     }
+     else{
+         
+         style_abstract_valid("retypenewpass");
+         
+     }
+     
+     
+     if(password_valid(oldpass))
+     {
+         style_inp("oldpass");
+     }else{
+         
+         style_abstract_valid("oldpass");
+         
+     }
+     
+      if(password_valid(npass))
+     {
+         style_inp("newpass");
+     }else{
+         
+         style_abstract_valid("newpass");
+     }
+     
+     
+    
+     
+     
      //alert(chcc);
      
      var success= ((checkpassword==1) && chcc && password_valid(npass)&&password_valid(oldpass));
@@ -97,11 +134,17 @@ function ChangePassword(){
          document.getElementById("savepassmodal_prof").removeAttribute("data-dismiss");
          alert("poulos");
          
+         
+         var htmlString = "";  
+
+        htmlString =
+                '<div>'+'<div class = "glyphicon glyphicon-remove-circle">'+'</div>'+'  Fill The Red Required Inputs'+'</div>';
+         
            document.getElementById("suc_todo_mes_valid_MYPROF").style.display = "block";
-        document.getElementById("suc_todo_mes_valid_MYPROF").setAttribute("class", "alert alert-danger pull-left alert_messa");
+        document.getElementById("suc_todo_mes_valid_MYPROF").setAttribute("class", "alert alert-danger pull-left alert_messa_danger");
 
         alert(document.getElementById("suc_todo_mes_valid_MYPROF").innerHTML);
-        document.getElementById("suc_todo_mes_valid_MYPROF").innerHTML = "Fill The Red Required Inputs";
+        document.getElementById("suc_todo_mes_valid_MYPROF").innerHTML = htmlString;
          
          
          

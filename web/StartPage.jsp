@@ -81,6 +81,39 @@
                     document.getElementById("apotelesma2").innerHTML = json.message;
                     document.getElementById("signup_btn").setAttribute("class", json.disabled);
 
+
+                    if (json.flag == "true") {
+
+//                        document.getElementById("registerusername").removeAttribute("style");
+
+                        document.getElementById("registerusername").style.border = "1px solid #FF0000";
+
+                        document.getElementById("registerusername").style.boxShadow = "0 0 5px #FF0000";
+
+                        document.getElementById("registerusername").style.background = "#fff url(./img/invalid.png) 98% center no-repeat";
+
+                        document.getElementById("registerusername").style.backgroundSize = "22px 22px";
+
+
+
+
+                        document.getElementById("apotelesma2").style.color = "red";
+
+                    } else
+
+                    {
+
+
+                        document.getElementById("registerusername").removeAttribute("style");
+
+
+                        document.getElementById("apotelesma2").style.color = "green";
+
+
+                    }
+
+
+
                 }
 
             }
@@ -119,6 +152,43 @@
                     //displaying response in select box by using that id
                     document.getElementById("apotelesma").innerHTML = json.message;
                     document.getElementById("signup_btn").setAttribute("class", json.disabled);
+
+
+
+                    if (json.flag == "true") {
+
+//                        document.getElementById("registerusername").removeAttribute("style");
+
+                        document.getElementById("registeremail").style.border = "1px solid #FF0000";
+
+                        document.getElementById("registeremail").style.boxShadow = "0 0 5px #FF0000";
+
+                        document.getElementById("registeremail").style.background = "#fff url(./img/invalid.png) 98% center no-repeat";
+
+                        document.getElementById("registeremail").style.backgroundSize = "22px 22px";
+
+
+
+
+                        document.getElementById("apotelesma").style.color = "red";
+
+                    } else
+
+                    {
+
+
+                        document.getElementById("registeremail").removeAttribute("style");
+
+
+                        document.getElementById("apotelesma").style.color = "green";
+
+
+                    }
+
+
+
+
+
                 }
             }
 
@@ -155,7 +225,7 @@
                     //sending selected country to servlet
                     var url = "controller_servl?event=EMAILSEN&mail=" + mm;
                     //creating callback method.here countrychanged is callback method
-                    xmlHttp.onreadystatechange = emailReturn
+                    // xmlHttp.onreadystatechange = sendforgot_return
 
                     xmlHttp.open("GET", url, true)
                     xmlHttp.send(null)
@@ -166,13 +236,33 @@
 
 
             }
-            
-            function checkretype_signup(retype_passw){
-                var retype_chk= (document.getElementById("registerpassword").value==retype_passw);
-                if(retype_chk){
-                    document.getElementById("signup_btn").setAttribute("class","btn btn-primary");
-                }else{
-                    document.getElementById("signup_btn").setAttribute("class","btn btn-primary disabled");
+
+            function checkretype_signup(retype_passw) {
+                var retype_chk = (document.getElementById("registerpassword").value == retype_passw);
+                if (retype_chk) {
+
+                    document.getElementById("registerretypepassword").removeAttribute("style");
+
+                    document.getElementById("signup_btn").setAttribute("class", "btn btn-primary");
+
+                    document.getElementById("apotelesma3").innerHTML = "";
+                } else {
+
+
+
+                    document.getElementById("registerretypepassword").style.border = "1px solid #FF0000";
+
+                    document.getElementById("registerretypepassword").style.boxShadow = "0 0 5px #FF0000";
+
+                    document.getElementById("registerretypepassword").style.background = "#fff url(./img/invalid.png) 98% center no-repeat";
+
+                    document.getElementById("registerretypepassword").style.backgroundSize = "22px 22px";
+
+                    document.getElementById("apotelesma3").innerHTML = "Password Mismatch";
+
+                    document.getElementById("apotelesma3").style.color = "#FF0000";
+
+                    document.getElementById("signup_btn").setAttribute("class", "btn btn-primary disabled");
                 }
             }
 
@@ -327,7 +417,7 @@
                             <div class="form-group">
                                 <label for="registerusername" class="col-sm-2 control-label">Username</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="registerusername" name="username_n"  placeholder="Username" onchange="getDuplicateUsername(this.value)" required>
+                                    <input type="text" class="form-control" id="registerusername" name="username_n"  placeholder="Username" oninput="getDuplicateUsername(this.value)" required>
                                     <div id="apotelesma2"></div>
                                 </div>
                             </div>
@@ -342,7 +432,8 @@
                             <div class="form-group">
                                 <label for="registerretypepassword" class="col-sm-2 control-label">Retype Password</label>
                                 <div class="col-sm-8">
-                                    <input type="password" class="form-control" id="registerretypepassword" name="passwordrep_n" onchange="checkretype_signup(this.value)" placeholder="6 digits at least" required pattern="(?=^.{6,}$)((?=.*[A-Z])|(?=.*[a-z])|(?=.*[0-9])).*$"><span>You have to reenter valid password</span>
+                                    <input type="password" class="form-control" id="registerretypepassword" name="passwordrep_n" oninput="checkretype_signup(this.value)" placeholder="6 digits at least" required pattern="(?=^.{6,}$)((?=.*[A-Z])|(?=.*[a-z])|(?=.*[0-9])).*$"><span>You have to reenter valid password</span>
+                                    <div id="apotelesma3"></div>
                                 </div>
                             </div>
 
@@ -356,7 +447,7 @@
                             <div class="form-group">
                                 <label for="registeremail" class="col-sm-2 control-label">Email</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="registeremail" name="email_n" placeholder="someone@hotmail.com" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" onchange="getDuplicateEmails(this.value)" required><span>You have to enter a valid email address</span>
+                                    <input type="text" class="form-control" id="registeremail" name="email_n" placeholder="someone@hotmail.com" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" oninput="getDuplicateEmails(this.value)" required><span>You have to enter a valid email address</span>
                                     <div class="" id="apotelesma"></div>
 
                                 </div>
@@ -410,34 +501,43 @@
                                     <span> You have to enter password</span>
                                 </div>
                             </div>
-                            <div class="row">
 
-                                <a id="forgotpassnotif" onclick="forgotreveal()">Forgot your password ?</a>
-
-
-
-                                <div class="forgpass" id="forgotpassword" style="display:none">
-
-
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <label for="emailforgpass">Email</label>
-                                            <input type="text" id="emailforgpass" class="form-control" placeholder="Email" ></input>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="sendforgot()">Send</button>
-                                        </div>          
-                                    </div>
-                                </div>
-                            </div>
                             <div class="modal-footer">
+                                <a id="forgotpassnotif" onclick="forgotreveal()">Forgot your password ?</a>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary" name="event" value="LOGIN" form="login_form" >Log in</button>
                             </div>
                         </form>
+
+
+                        <div class="forgpass" id="forgotpassword" style="display:none">
+
+                            <form id="login_form_mail" class="form-horizontal" action="controller_servl" method="post"> 
+
+                                <div class="form-group">
+                                    <label for="emailforgpass" class="col-sm-2 control-label">Email</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="emailforgpass" class="form-control" placeholder="Email" name="mailret"></input>
+                                        <div class="" id="apotelesma"></div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-2 col-sm-offset-10">
+                                        <button type="submit" class="btn btn-primary" name="event" value="EMAILSEN" form="login_form_mail">Send</button>
+                                    </div>          
+                                </div>
+
+
+
+
+
+                            </form>
+
+                        </div>
                     </div>
                 </div>
             </div>

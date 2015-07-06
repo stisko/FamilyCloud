@@ -77,9 +77,11 @@ public class EventAjaxMail extends EventHandlerBase {
             if(invalid_mail){
                 obj.put("message", "The <b>"+email+"</b> is invalid. Please write another");
                 obj.put("disabled", "btn btn-primary disabled");
+                 obj.put("flag","true");
                 //out.println("The <b>"+email+"</b> is invalid. Please write another");
                 out.println(obj);
             }else{
+                 obj.put("flag","false");
                 obj.put("message", "The <b>"+email+"</b> is valid.");
                 obj.put("disabled","btn btn-primary");
                 out.println(obj);
@@ -104,12 +106,14 @@ public class EventAjaxMail extends EventHandlerBase {
         boolean invalid_mail = myUserDAO.isDuplicateMail(email);
         
         if(invalid_mail){
-            obj.put("message", "The <b>"+email+"</b> is invalid. Please write another");
+            obj.put("message", "The <b>"+email+"</b> exists. Please write another");
             obj.put("disabled", "btn btn-primary disabled");
+             obj.put("flag","true");
             //out.println("The <b>"+email+"</b> is invalid. Please write another");
             out.println(obj);
         }else{
-            obj.put("message", "The <b>"+email+"</b> is valid.");
+             obj.put("flag","false");
+            obj.put("message", "The <b>"+email+"</b> doesn't exist.");
             obj.put("disabled","btn btn-primary");
             out.println(obj);
             //out.println("The <b>"+email+"</b> is valid.");
@@ -129,8 +133,10 @@ public class EventAjaxMail extends EventHandlerBase {
         if(invalid_mail){
             obj.put("message", "The <b>"+username+"</b> is invalid. Please write another");
             obj.put("disabled", "btn btn-primary disabled");
+            obj.put("flag","true");
             out.println(obj);
         }else{
+            obj.put("flag","false");
             obj.put("message", "The <b>"+username+"</b> is valid.");
             obj.put("disabled","btn btn-primary");
             out.println(obj);

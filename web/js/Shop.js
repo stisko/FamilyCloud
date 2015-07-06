@@ -47,6 +47,59 @@ function insertShoppitem() {
     var price = document.forms.formaddshop.priceaddshop.value;
     var radios = document.getElementsByName('statusradio');
     alert(price);
+    
+    
+    if(notnull_validation(title)){
+       alert("titleeee");
+        style_inp("titleadditem");
+        
+    }else{
+        style_abstract_valid("titleadditem");
+    }
+    
+    
+    if(positive_number_validation(quantity)){
+       
+        style_inp("quantityadditem");
+        
+    }else{
+        style_abstract_valid("quantityadditem");
+    }
+    
+    if(notnegative_number_validation(price)){
+       
+        style_inp("priceadditem");
+        
+    }else{
+        style_abstract_valid("priceadditem");
+    }
+    
+    
+    
+    
+    
+    
+    if(radio_validation(radios)){
+       
+       for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=false;
+                    
+            }
+      
+        
+    }else{
+        for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=true;
+                    
+            }
+    }
+    
+    
+    
+    
+    
     if (radio_validation(radios) && notnull_validation(title) && positive_number_validation(quantity) && notnegative_number_validation(price)) {
 
         document.getElementById("addshopbutton").setAttribute("data-dismiss", "modal");
@@ -105,11 +158,16 @@ function insertShoppitem() {
     } else {
         document.getElementById("addshopbutton").removeAttribute("data-dismiss");
         
+         var htmlString = "";  
+
+        htmlString =
+                '<div>'+'<div class = "glyphicon glyphicon-remove-circle">'+'</div>'+'  Fill The Red Required Inputs'+'</div>';
+        
          document.getElementById("suc_todo_mes_valid_S").style.display="block";
-        document.getElementById("suc_todo_mes_valid_S").setAttribute("class","alert alert-danger pull-left alert_messa");
+        document.getElementById("suc_todo_mes_valid_S").setAttribute("class","alert alert-danger pull-left alert_messa_danger");
 
         alert(document.getElementById("suc_todo_mes_valid_S").innerHTML);
-        document.getElementById("suc_todo_mes_valid_S").innerHTML="Fill The Red Required Inputs";
+        document.getElementById("suc_todo_mes_valid_S").innerHTML=htmlString;
         
         
         alert("poulos");
@@ -176,6 +234,56 @@ function Save_changes_shop(itemID) {
     var quantity = document.forms.editaskform.quantityeditshop.value;
     var price = document.forms.editaskform.priceeditshop.value;
     var radios = document.getElementsByName('statusradio2');
+    
+    
+    if(notnull_validation(title)){
+       
+        style_inp("titleedititem");
+        
+    }else{
+        style_abstract_valid("titleedititem");
+    }
+    
+    
+    if(positive_number_validation(quantity)){
+       
+        style_inp("quantityedititem");
+        
+    }else{
+        style_abstract_valid("quantityedititem");
+    }
+    
+    if(notnegative_number_validation(price)){
+       
+        style_inp("priceedititem");
+        
+    }else{
+        style_abstract_valid("priceedititem");
+    }
+    
+    
+    
+    
+    
+    
+    if(radio_validation(radios)){
+       
+       for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=false;
+                    
+            }
+      
+        
+    }else{
+        for (var i = 0, length = radios.length; i < length; i++) {
+               
+                    radios[i].required=true;
+                    
+            }
+    }
+    
+    
 
     if (notnull_validation(title) && notnegative_number_validation(price) && positive_number_validation(quantity) && radio_validation(radios)) {
         document.getElementById("editshopbutton").setAttribute("data-dismiss", "modal");
@@ -253,13 +361,17 @@ function Save_changes_shop(itemID) {
     } else {
         document.getElementById("editshopbutton").removeAttribute("data-dismiss");
         
+         var htmlString = "";  
+
+        htmlString =
+                '<div>'+'<div class = "glyphicon glyphicon-remove-circle">'+'</div>'+'  Fill The Red Required Inputs'+'</div>';
         
         
         document.getElementById("suc_todo_mes_valid_Sed").style.display="block";
-        document.getElementById("suc_todo_mes_valid_Sed").setAttribute("class","alert alert-danger pull-left alert_messa");
+        document.getElementById("suc_todo_mes_valid_Sed").setAttribute("class","alert alert-danger pull-left alert_messa_danger");
 
         alert(document.getElementById("suc_todo_mes_valid_Sed").innerHTML);
-        document.getElementById("suc_todo_mes_valid_Sed").innerHTML="Fill The Red Required Inputs";
+        document.getElementById("suc_todo_mes_valid_Sed").innerHTML=htmlString;
         
         
         

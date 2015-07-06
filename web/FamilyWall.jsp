@@ -30,13 +30,14 @@
                     <form id="formpost" name="formpost"  enctype="multipart/form-data" >
                         <div class="panel-body">
                             <textarea id="postareatext" name="postareatext" form="formpost" class="form-control blacktextarea" rows="3"></textarea>
-                            <a class="btn fileUpload" type="file" href="#">
-                                <img alt="Notifications" width="24" height="20" src="img/uploadphoto.gif">
+<!--                            <a class="btn fileUpload" type="file" href="#">-->
+                                
                                 <input id="file-id" type="file" name="our-file" />
 
-                            </a>
-                        </div>
-                        <div class="panel-footer"> 
+                            <!--</a>-->
+                            
+                            
+                            <div class=""> 
                             <div class="btn-toolbar pull-right">
                                 <div class="btn-group ">
                                     <button type="button" class="btn btn-default" id="closepost">Close</button>
@@ -46,6 +47,8 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
+                        
                     </form>
                 </div>
             </div>

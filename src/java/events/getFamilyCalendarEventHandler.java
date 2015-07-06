@@ -49,17 +49,17 @@ public class getFamilyCalendarEventHandler extends EventHandlerBase{
             if (temp.equals("insert")) {
 
                 jsme.put("classs", "alert alert-success alert_messa col-sm-8 ");
-                jsme.put("message", "Family Calendar Event Has Been Succefully Added!");
+                jsme.put("message", "<span class=\"glyphicon glyphicon-ok-circle\"></span> Family Calendar Event Has Been Succefully Added!");
 
             } else if (temp.equals("update")) {
 
                 jsme.put("classs", "alert alert-success alert_messa col-sm-8 ");
-                jsme.put("message", "Family Calendar Event Has Been Succefully Updated!");
+                jsme.put("message", "<span class=\"glyphicon glyphicon-ok-circle\"></span> Family Calendar Event Has Been Succefully Updated!");
 
             } else if (temp.equals("delete")) {
 
                 jsme.put("classs", "alert alert-success alert_messa col-sm-8 ");
-                jsme.put("message", "Family Calendar Event Has Been Succefully Deleted!");
+                jsme.put("message", "<span class=\"glyphicon glyphicon-ok-circle\"></span> Family Calendar Event Has Been Succefully Deleted!");
 
             }
 

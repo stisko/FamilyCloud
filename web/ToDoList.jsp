@@ -150,11 +150,11 @@
                     <div class="row">									
                         <div class="col-sm-6">				
                             <label for="titleaddtask">Task Title</label>
-                            <input type="text" name="addtodotitle" class="form-control" id="titleaddtask" placeholder="Enter Title" required><span>You have to enter a title</span>
+                            <input type="text" name="addtodotitle" class="form-control" id="titleaddtask" oninput="style_inp('titleaddtask')" placeholder="Enter Title" required><span>You have to enter a title</span>
                         </div>									
                         <div class="col-sm-6">				
                             <label for="duedateaddtask">Due Date</label>
-                            <input type="date" class="form-control" name="addtododuedatetask" id="duedateaddtask" placeholder="yyyy-MM-dd" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid Date Input</span>
+                            <input type="date" class="form-control" name="addtododuedatetask" id="duedateaddtask" oninput="style_inp('duedateaddtask')" placeholder="yyyy-MM-dd" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid Date Input</span>
                         </div>								
                     </div>
 
@@ -170,11 +170,11 @@
 
                             </select>
                         </div>
-                        <div class="col-sm-6">				
+                        <div class="col-sm-6" id="addtodoradio">				
                             <label for="checkaddpending">Status</label>
                             <div class="radio" id="checkaddpending">
                                 <label>
-                                    <input name="statusradio" type="radio" value="Pending" required>
+                                    <input name="statusradio" type="radio" value="Pending">
                                     Pending
                                 </label>
                             </div>
@@ -198,7 +198,7 @@
             
             <div class="modal-footer">
                         
-                        <div id="suc_todo_mes_valid" style=" width:70%"></div>                        
+                        <div id="suc_todo_mes_valid"style="font-size:120%" ></div>                        
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal" id="addtodobutton" form="addtaskform" onclick="insertToDoItem()">Save</button>
                     </div>

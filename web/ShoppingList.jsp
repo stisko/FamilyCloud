@@ -186,7 +186,7 @@
                     <div class="row">									
                         <div class="col-sm-6">				
                             <label for="titleadditem">Item Title</label>
-                            <input type="text" class="form-control" name="titleaddshop" id="titleadditem" placeholder="Enter Title" required><span>You have to enter a title</span>
+                            <input type="text" class="form-control" name="titleaddshop" id="titleadditem" oninput="style_inp('titleadditem')" placeholder="Enter Title" required><span>You have to enter a title</span>
                         </div>									
 
                     </div>
@@ -195,11 +195,11 @@
                     <div class="row">									
                         <div class="col-sm-6">				
                             <label for="quantityadditem">Quantity</label>
-                            <input type="number" class="form-control" id="quantityadditem" name="quantityaddshop" placeholder="Quantity of Item" min="1" required><span>Invalid Quantity input</span>
+                            <input type="number" class="form-control" id="quantityadditem" name="quantityaddshop" oninput="style_inp('quantityadditem')" placeholder="Quantity of Item" min="1" required><span>Invalid Quantity input</span>
                         </div>
                         <div class="col-sm-6">				
                             <label for="priceadditem">Price</label>
-                            <input type="number" class="form-control" id="priceadditem" name="priceaddshop" placeholder="1 Quantity Price" min="0" step="0.01" required><span>Invalid Price input</span>
+                            <input type="number" class="form-control" id="priceadditem" name="priceaddshop" oninput="style_inp('priceadditem')"  placeholder="1 Quantity Price" min="0" step="0.01" required><span>Invalid Price input</span>
                         </div>
                         							
                     </div>
@@ -221,7 +221,7 @@
                             <label for="checkaddpending">Status</label>
                             <div class="radio" id="checkaddpending">
                                 <label>
-                                    <input name="statusradio" type="radio" value="Pending" required>
+                                    <input name="statusradio" type="radio" value="Pending">
                                     Pending
                                 </label>
                             </div>
@@ -237,7 +237,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <div id="suc_todo_mes_valid_S" style=" width:70%"></div>
+                    <div id="suc_todo_mes_valid_S" style="font-size:120%"></div>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal" id="addshopbutton" form="addshopitemform" onclick="insertShoppitem()">Add</button>
                 </div>

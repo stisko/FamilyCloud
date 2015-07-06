@@ -7,14 +7,14 @@
             redirectTo('${notifications.notification_type}','${notifications.usernameA}');">
             <c:choose>
                 <c:when test="${notifications.isReadB eq 'N'}">
-                    <li style="background-color: #bdc3c7">
+                    <li class="unread">
                 </c:when>
                 <c:otherwise>
                     <li>
                 </c:otherwise>
             </c:choose>    
         
-            <a style="color: black;">
+            <div clss="notifications_msg" >
 
                 <c:choose >
                     <c:when test="${notifications.notification_type eq 'messages'}" >
@@ -49,11 +49,11 @@
 
 
                 <div class="media-body">
-                    <h4 class="media-heading">${notifications.notification_type}</h4>
+                    <h4 class="media-heading"></h4>
 <!--                    <a href="#" id="noti" style="color: black;">${notifications.message}</a>-->
-                    ${notifications.message}
+                    <p class="">${notifications.message}</p>
                 </div>
-            </a>
+            </div>
         </li>
     </div>
 

@@ -53,18 +53,18 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <label for="newpass">New Password</label>
-                        <input class="form-control" type="text" id="newpass" placeholder="New Password" pattern="(?=^.{6,}$)((?=.*[A-Z])|(?=.*[a-z])|(?=.*[0-9])).*$" required/><span>Invalid input</span>
+                        <input class="form-control" type="text" id="newpass" oninput="style_inp('newpass')" placeholder="New Password" pattern="(?=^.{6,}$)((?=.*[A-Z])|(?=.*[a-z])|(?=.*[0-9])).*$" required/><span>Invalid input</span>
                     </div>
                     <div class="col-sm-6">
                         <label for="retypenewpass">Retype Password</label>
-                        <input class="form-control" type="text" id="retypenewpass" placeholder="Retype Password" pattern="(?=^.{6,}$)((?=.*[A-Z])|(?=.*[a-z])|(?=.*[0-9])).*$" required/><span>Invalid input</span>
+                        <input class="form-control" type="text" id="retypenewpass" oninput="style_inp('retypenewpass')" placeholder="Retype Password" pattern="(?=^.{6,}$)((?=.*[A-Z])|(?=.*[a-z])|(?=.*[0-9])).*$" required/><span>Invalid input</span>
                     </div>
                 </div>
             </form>
         </div>
     </div>
     <div class="modal-footer">
-        <div id="suc_todo_mes_valid_MYPROF" style=" width:70%"></div>
+        <div id="suc_todo_mes_valid_MYPROF" style="font-size:120%"></div>
         <div class="btn-group">
 
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

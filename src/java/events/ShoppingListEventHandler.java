@@ -66,17 +66,17 @@ public class ShoppingListEventHandler extends EventHandlerBase{
             if (temp.equals("insert")) {
 
                 jsme.put("classs", "alert alert-success alert_messa col-sm-8 ");
-                jsme.put("message", "ShoppinList Item Has Succefully Added!");
+                jsme.put("message", "<span class=\"glyphicon glyphicon-ok-circle\"></span> ShoppinList Item Has Succefully Added!");
 
             } else if (temp.equals("update")) {
 
                 jsme.put("classs", "alert alert-success alert_messa col-sm-8 ");
-                jsme.put("message", "ShoppinList Item Has Succefully Updated!");
+                jsme.put("message", "<span class=\"glyphicon glyphicon-ok-circle\"></span> ShoppinList Item Has Succefully Updated!");
 
             } else if (temp.equals("delete")) {
 
                 jsme.put("classs", "alert alert-success alert_messa col-sm-8 ");
-                jsme.put("message", "ShoppinList Item Has Succefully Deleted!");
+                jsme.put("message", "<span class=\"glyphicon glyphicon-ok-circle\"></span> ShoppinList Item Has Succefully Deleted!");
 
             }
 

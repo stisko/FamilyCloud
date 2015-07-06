@@ -98,11 +98,11 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="lastnameaddmember">Last Name</label>
-                                <input type="text" class="form-control" id="lastnameaddmember" placeholder="Last Name" required><span>Invalid input</span>
+                                <input type="text" class="form-control" id="lastnameaddmember" oninput="style_inp('lastnameaddmember')" placeholder="Last Name" required><span>Invalid input</span>
                             </div>
                             <div class="col-sm-6">
                                 <label for="firstnameaddmember">First Name</label>
-                                <input type="text" class="form-control" id="firstnameaddmember" placeholder="First Name" required><span>Invalid input</span>
+                                <input type="text" class="form-control" id="firstnameaddmember" oninput="style_inp('firstnameaddmember')" placeholder="First Name" required><span>Invalid input</span>
                             </div>
                         </div>
                         <div class="row">
@@ -112,7 +112,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="birthaddmember">Birth Date</label>
-                                <input type="date" class="form-control" id="birthaddmember" placeholder="yyyy-MM-dd" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid Date input</span>
+                                <input type="date" class="form-control" id="birthaddmember" oninput="style_inp('birthaddmember')" placeholder="yyyy-MM-dd" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid Date input</span>
                             </div>
                         </div>
                         
@@ -122,7 +122,7 @@
             </div>
             
             <div class="modal-footer">
-                    <div id="suc_todo_mes_valid_Fam" style=" width:70%"></div>
+                    <div id="suc_todo_mes_valid_Fam" style="font-size:120%"></div>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" id="addmembut" class="btn btn-primary" data-dismiss="modal"  onclick="AddMember()">Add</button>
                 </div>
@@ -258,21 +258,21 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label for="lastnameeditdirector">Last Name</label>
-                                    <input type="text" class="form-control" id="lastnameeditdirector" name="lastName" placeholder="Last Name" value="${json.director.lastName}"  required><span>Invalid input</span>
+                                    <input type="text" class="form-control" id="lastnameeditdirector" oninput="style_inp('lastnameeditdirector')" name="lastName" placeholder="Last Name" value="${json.director.lastName}"  required><span>Invalid input</span>
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="firstnameeditdirector">First Name</label>
-                                    <input type="text" class="form-control" id="firstnameeditdirector" name="firstName" placeholder="First Name" value="${json.director.firstName}"  required><span>Invalid input</span>
+                                    <input type="text" class="form-control" id="firstnameeditdirector" oninput="style_inp('firstnameeditdirector')" name="firstName" placeholder="First Name" value="${json.director.firstName}"  required><span>Invalid input</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label for="emaileditdirector">Email</label>
-                                    <input type="text" class="form-control" id="emaileditdirector" name="email" placeholder="Email" value="${json.director.email}" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><span>Invalid email input</span>
+                                    <input type="text" class="form-control" id="emaileditdirector" name="email" oninput="style_inp('emaileditdirector')" placeholder="Email" value="${json.director.email}" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><span>Invalid email input</span>
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="birtheditdirector">Birth Date</label>
-                                    <input type="date" class="form-control" id="birtheditdirector" name="birthdate" placeholder="yyyy-mm-dd" value="${json.director.birthdate}" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid date input</span>
+                                    <input type="date" class="form-control" id="birtheditdirector" name="birthdate" oninput="style_inp('birtheditdirector')" placeholder="yyyy-mm-dd" value="${json.director.birthdate}" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required><span>Invalid date input</span>
                                 </div>
                             </div>
                             <div class="row">
@@ -286,7 +286,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <div id="suc_todo_mes_valid_FamDr" style=" width:70%"></div>
+                    <div id="suc_todo_mes_valid_FamDr" style="font-size:120%"></div>
                     
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary"  id="edit_dir_button" data-dismiss="modal" form="editfamilydirector_form" onclick="initFullFormAjaxUploadDirectorProfile('${json.director.username}')">Save</button>
