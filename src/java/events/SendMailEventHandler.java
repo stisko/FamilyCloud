@@ -62,7 +62,7 @@ public class SendMailEventHandler extends EventHandlerBase {
                 // Sender's email ID needs to be mentioned
                 String from = "tucfamcloud@gmail.com";//change accordingly
                 final String username = "tucfamcloud@gmail.com";//change accordingly
-                final String password = "tucfamcloud21";//change accordingly
+                final String password = "password";//change accordingly
 
                 // Assuming you are sending email through relay.jangosmtp.net
                 String host = "smtp.gmail.com";
